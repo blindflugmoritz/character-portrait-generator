@@ -1,0 +1,77 @@
+================================
+SIMPLE DEPLOYMENT INSTRUCTIONS
+================================
+
+Your character generator is READY TO DEPLOY! 🚀
+
+WHAT'S DONE:
+✓ Backend uploaded to PythonAnywhere
+✓ Frontend built as static files
+✓ API configured to call production backend
+✓ Build.zip created (3MB) ready for upload
+
+YOUR DEPLOYMENT SITE:
+https://blindflugstudios.pythonanywhere.com
+
+
+QUICK STEPS (15 minutes):
+==========================
+
+1. UPLOAD FRONTEND
+   a. Go to: https://www.pythonanywhere.com/files/
+   b. Navigate to: /home/blindflugstudios/
+   c. Click "Upload a file" → select frontend/build.zip
+   d. Open Bash console and run:
+      cd /home/blindflugstudios
+      unzip build.zip
+      rm build.zip
+
+2. RUN BACKEND SETUP
+   Open Bash console: https://www.pythonanywhere.com/consoles/
+
+   cd /home/blindflugstudios/crew-generator-backend
+   bash setup.sh
+
+   (Takes 2-3 minutes to install everything)
+
+3. CREATE WEB APP
+   Go to: https://www.pythonanywhere.com/#/webapps/
+
+   - Click "Add a new web app"
+   - Choose "Manual configuration"
+   - Select "Python 3.10"
+
+4. CONFIGURE WSGI
+   - Click on WSGI configuration file
+   - Copy/paste contents from DEPLOYMENT_COMPLETE_GUIDE.md (Section "STEP 4")
+   - Save file
+
+5. SET VIRTUAL ENVIRONMENT
+   In Web tab, "Virtualenv" field:
+   /home/blindflugstudios/crew-generator-backend/venv
+
+6. UPDATE SETTINGS
+   Edit: /home/blindflugstudios/crew-generator-backend/crew_generator_backend/settings.py
+
+   Change:
+   ALLOWED_HOSTS = ['blindflugstudios.pythonanywhere.com', 'localhost']
+
+   Add at end:
+   STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+7. RELOAD
+   Click big green "Reload" button
+
+DONE! 🎉
+
+Test it:
+https://blindflugstudios.pythonanywhere.com/
+
+
+TROUBLESHOOTING:
+================
+- Error 500? Check error log in Web tab
+- Photo upload not working? Check .env has ANTHROPIC_API_KEY
+- Frontend not loading? Verify /home/blindflugstudios/build/ exists
+
+Full details in: DEPLOYMENT_COMPLETE_GUIDE.md

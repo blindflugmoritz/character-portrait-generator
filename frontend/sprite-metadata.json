@@ -1,0 +1,2608 @@
+{
+  "metadata": {
+    "total_sprites": 254,
+    "categories": 18,
+    "generated_date": "2025-11-27",
+    "purpose": "Photo-matching feature for character portrait generator"
+  },
+  "categories": {
+    "1_Blemish_Skin": {
+      "blemish_00_00.png": {
+        "style": "single scar",
+        "description": "Small diagonal scar mark on face",
+        "size": "small",
+        "shape": "diagonal slash",
+        "color": "dark/black",
+        "characteristics": "single mark, combat/injury scar",
+        "gender_fit": "both",
+        "tags": ["scar", "mark", "diagonal", "small", "injury", "battle"]
+      },
+      "blemish_01_00.png": {
+        "style": "double scars",
+        "description": "Two parallel diagonal scar marks",
+        "size": "small",
+        "shape": "parallel slashes",
+        "color": "dark/black",
+        "characteristics": "claw-like marks, dramatic",
+        "gender_fit": "both",
+        "tags": ["scar", "mark", "double", "parallel", "claw", "battle", "dramatic"]
+      },
+      "blemish_02_00.png": {
+        "style": "vertical scar",
+        "description": "Long vertical scar with barbs",
+        "size": "medium",
+        "shape": "vertical with jagged edges",
+        "color": "dark/black",
+        "characteristics": "prominent, dramatic, stitched appearance",
+        "gender_fit": "both",
+        "tags": ["scar", "mark", "vertical", "long", "dramatic", "stitched", "prominent"]
+      }
+    },
+    "2_Nose_Skin": {
+      "nose_00_00.png": {
+        "style": "rounded curved",
+        "description": "Smooth rounded nose with gentle curve",
+        "size": "medium",
+        "shape": "curved, rounded tip",
+        "color": "skin outline",
+        "characteristics": "feminine, soft, delicate",
+        "gender_fit": "female",
+        "tags": ["nose", "curved", "rounded", "soft", "feminine", "delicate"]
+      },
+      "nose_00_01.png": {
+        "style": "rounded curved",
+        "description": "Similar rounded nose, slight variation in curve",
+        "size": "medium",
+        "shape": "curved, rounded",
+        "color": "skin outline",
+        "characteristics": "feminine, soft",
+        "gender_fit": "female",
+        "tags": ["nose", "curved", "rounded", "soft", "feminine"]
+      },
+      "nose_00_02.png": {
+        "style": "rounded curved",
+        "description": "Rounded nose with pronounced curve",
+        "size": "medium",
+        "shape": "strongly curved",
+        "color": "skin outline",
+        "characteristics": "feminine, prominent curve",
+        "gender_fit": "female",
+        "tags": ["nose", "curved", "rounded", "prominent", "feminine"]
+      },
+      "nose_01_00.png": {
+        "style": "broad curved",
+        "description": "Broader nose with gentle curve",
+        "size": "medium-large",
+        "shape": "wide, curved",
+        "color": "skin outline",
+        "characteristics": "neutral, natural width",
+        "gender_fit": "both",
+        "tags": ["nose", "curved", "broad", "wide", "natural"]
+      },
+      "nose_01_01.png": {
+        "style": "broad curved",
+        "description": "Broader nose variation",
+        "size": "medium-large",
+        "shape": "wide, curved",
+        "color": "skin outline",
+        "characteristics": "neutral, substantial",
+        "gender_fit": "both",
+        "tags": ["nose", "curved", "broad", "wide", "substantial"]
+      },
+      "nose_02_00.png": {
+        "style": "angular",
+        "description": "Angular nose with sharp bridge",
+        "size": "medium",
+        "shape": "angular, straight bridge",
+        "color": "skin outline",
+        "characteristics": "masculine, defined",
+        "gender_fit": "male",
+        "tags": ["nose", "angular", "straight", "sharp", "masculine", "defined"]
+      },
+      "nose_03_00.png": {
+        "style": "button nose",
+        "description": "Small upturned button nose",
+        "size": "small",
+        "shape": "rounded, upturned",
+        "color": "skin outline",
+        "characteristics": "cute, youthful, small",
+        "gender_fit": "female",
+        "tags": ["nose", "button", "small", "upturned", "cute", "youthful", "feminine"]
+      },
+      "nose_04_00.png": {
+        "style": "hook nose",
+        "description": "Prominent hook nose",
+        "size": "large",
+        "shape": "curved downward, hooked",
+        "color": "skin outline",
+        "characteristics": "prominent, distinctive, aquiline",
+        "gender_fit": "both",
+        "tags": ["nose", "hook", "large", "prominent", "aquiline", "curved", "distinctive"]
+      },
+      "nose_04_01.png": {
+        "style": "hook nose",
+        "description": "Hook nose variation",
+        "size": "large",
+        "shape": "curved downward",
+        "color": "skin outline",
+        "characteristics": "prominent, aquiline",
+        "gender_fit": "both",
+        "tags": ["nose", "hook", "large", "prominent", "aquiline", "curved"]
+      },
+      "nose_05_00.png": {
+        "style": "straight narrow",
+        "description": "Straight narrow nose",
+        "size": "small-medium",
+        "shape": "straight, narrow",
+        "color": "skin outline",
+        "characteristics": "refined, delicate",
+        "gender_fit": "both",
+        "tags": ["nose", "straight", "narrow", "refined", "delicate", "slim"]
+      },
+      "nose_05_01.png": {
+        "style": "straight narrow",
+        "description": "Straight narrow nose variation",
+        "size": "small-medium",
+        "shape": "straight, narrow",
+        "color": "skin outline",
+        "characteristics": "refined, elegant",
+        "gender_fit": "both",
+        "tags": ["nose", "straight", "narrow", "refined", "elegant", "slim"]
+      },
+      "nose_06_00.png": {
+        "style": "short rounded",
+        "description": "Short rounded nose",
+        "size": "small",
+        "shape": "short, rounded",
+        "color": "skin outline",
+        "characteristics": "compact, youthful",
+        "gender_fit": "both",
+        "tags": ["nose", "short", "rounded", "compact", "youthful", "small"]
+      },
+      "nose_06_01.png": {
+        "style": "short rounded",
+        "description": "Short rounded nose variation",
+        "size": "small",
+        "shape": "short, rounded",
+        "color": "skin outline",
+        "characteristics": "compact, cute",
+        "gender_fit": "both",
+        "tags": ["nose", "short", "rounded", "compact", "cute", "small"]
+      },
+      "nose_07_00.png": {
+        "style": "upturned",
+        "description": "Upturned nose with visible nostril",
+        "size": "medium",
+        "shape": "upturned, curved up",
+        "color": "skin outline",
+        "characteristics": "perky, distinctive",
+        "gender_fit": "both",
+        "tags": ["nose", "upturned", "perky", "nostril", "distinctive"]
+      },
+      "nose_07_01.png": {
+        "style": "upturned",
+        "description": "Upturned nose variation",
+        "size": "medium",
+        "shape": "upturned, curved up",
+        "color": "skin outline",
+        "characteristics": "perky, youthful",
+        "gender_fit": "both",
+        "tags": ["nose", "upturned", "perky", "youthful", "distinctive"]
+      },
+      "nose_08_00.png": {
+        "style": "curved compact",
+        "description": "Compact curved nose",
+        "size": "small-medium",
+        "shape": "curved, compact",
+        "color": "skin outline",
+        "characteristics": "subtle, natural",
+        "gender_fit": "both",
+        "tags": ["nose", "curved", "compact", "subtle", "natural"]
+      },
+      "nose_08_01.png": {
+        "style": "curved compact",
+        "description": "Compact curved nose variation",
+        "size": "small-medium",
+        "shape": "curved, neat",
+        "color": "skin outline",
+        "characteristics": "neat, refined",
+        "gender_fit": "both",
+        "tags": ["nose", "curved", "compact", "neat", "refined"]
+      },
+      "nose_09_00.png": {
+        "style": "curved delicate",
+        "description": "Delicate curved nose",
+        "size": "small",
+        "shape": "gently curved",
+        "color": "skin outline",
+        "characteristics": "delicate, feminine",
+        "gender_fit": "female",
+        "tags": ["nose", "curved", "delicate", "gentle", "feminine"]
+      },
+      "nose_09_01.png": {
+        "style": "curved delicate",
+        "description": "Delicate curved nose variation",
+        "size": "small",
+        "shape": "softly curved",
+        "color": "skin outline",
+        "characteristics": "delicate, soft",
+        "gender_fit": "female",
+        "tags": ["nose", "curved", "delicate", "soft", "feminine"]
+      },
+      "nose_10_00.png": {
+        "style": "curved medium",
+        "description": "Medium curved nose",
+        "size": "medium",
+        "shape": "curved, balanced",
+        "color": "skin outline",
+        "characteristics": "balanced, natural",
+        "gender_fit": "both",
+        "tags": ["nose", "curved", "medium", "balanced", "natural"]
+      },
+      "nose_11_00.png": {
+        "style": "curved wide",
+        "description": "Wide curved nose",
+        "size": "medium-large",
+        "shape": "curved, wide",
+        "color": "skin outline",
+        "characteristics": "substantial, natural",
+        "gender_fit": "both",
+        "tags": ["nose", "curved", "wide", "substantial", "natural"]
+      },
+      "nose_12_00.png": {
+        "style": "curved strong",
+        "description": "Strong curved nose",
+        "size": "medium",
+        "shape": "strongly curved",
+        "color": "skin outline",
+        "characteristics": "prominent, defined",
+        "gender_fit": "both",
+        "tags": ["nose", "curved", "strong", "prominent", "defined"]
+      },
+      "nose_12_01.png": {
+        "style": "curved strong",
+        "description": "Strong curved nose variation",
+        "size": "medium",
+        "shape": "prominently curved",
+        "color": "skin outline",
+        "characteristics": "distinctive, defined",
+        "gender_fit": "both",
+        "tags": ["nose", "curved", "strong", "distinctive", "defined"]
+      },
+      "nose_20_00.png": {
+        "style": "straight bridge",
+        "description": "Straight bridge with defined tip",
+        "size": "medium",
+        "shape": "straight with prominent bridge",
+        "color": "skin outline",
+        "characteristics": "defined, prominent bridge",
+        "gender_fit": "male",
+        "tags": ["nose", "straight", "bridge", "defined", "prominent", "masculine"]
+      },
+      "nose_21_00.png": {
+        "style": "strong bridge",
+        "description": "Strong straight bridge with nostril detail",
+        "size": "medium-large",
+        "shape": "straight, strong bridge",
+        "color": "skin outline",
+        "characteristics": "masculine, strong, detailed",
+        "gender_fit": "male",
+        "tags": ["nose", "straight", "bridge", "strong", "masculine", "detailed"]
+      }
+    },
+    "3_Accessory_Accessory": {
+      "accessory_00_00.png": {
+        "style": "beauty mark",
+        "description": "Small beauty mark or mole on upper cheek",
+        "size": "tiny",
+        "shape": "circular dot",
+        "color": "black/dark",
+        "characteristics": "classic beauty mark, elegant",
+        "gender_fit": "both",
+        "tags": ["beauty mark", "mole", "dot", "facial", "mark", "elegant"]
+      },
+      "accessory_00_01.png": {
+        "style": "beauty mark",
+        "description": "Beauty mark in mid-cheek position",
+        "size": "tiny",
+        "shape": "circular dot",
+        "color": "black/dark",
+        "characteristics": "classic, elegant",
+        "gender_fit": "both",
+        "tags": ["beauty mark", "mole", "dot", "facial", "mark", "elegant"]
+      },
+      "accessory_00_02.png": {
+        "style": "beauty mark",
+        "description": "Beauty mark in lower cheek position",
+        "size": "tiny",
+        "shape": "circular dot",
+        "color": "black/dark",
+        "characteristics": "classic, elegant",
+        "gender_fit": "both",
+        "tags": ["beauty mark", "mole", "dot", "facial", "mark", "elegant"]
+      },
+      "accessory_00_03.png": {
+        "style": "beauty mark",
+        "description": "Beauty mark in alternate position",
+        "size": "tiny",
+        "shape": "circular dot",
+        "color": "black/dark",
+        "characteristics": "classic, distinctive",
+        "gender_fit": "both",
+        "tags": ["beauty mark", "mole", "dot", "facial", "mark", "distinctive"]
+      },
+      "accessory_01_00.png": {
+        "style": "monocle",
+        "description": "Single monocle eyeglass on one eye",
+        "size": "medium",
+        "shape": "circular lens with arm",
+        "color": "black frame",
+        "characteristics": "sophisticated, vintage, gentleman",
+        "gender_fit": "male",
+        "tags": ["monocle", "eyewear", "glasses", "vintage", "sophisticated", "gentleman", "formal"]
+      },
+      "accessory_02_00.png": {
+        "style": "round glasses",
+        "description": "Small round wire-frame glasses",
+        "size": "medium",
+        "shape": "circular lenses",
+        "color": "black frame",
+        "characteristics": "intellectual, vintage, scholarly",
+        "gender_fit": "both",
+        "tags": ["glasses", "eyewear", "round", "wire-frame", "intellectual", "scholarly", "vintage"]
+      },
+      "accessory_02_01.png": {
+        "style": "round glasses",
+        "description": "Round glasses with temples",
+        "size": "medium",
+        "shape": "circular lenses, full frame",
+        "color": "black frame",
+        "characteristics": "intellectual, classic",
+        "gender_fit": "both",
+        "tags": ["glasses", "eyewear", "round", "intellectual", "classic", "scholarly"]
+      },
+      "accessory_02_02.png": {
+        "style": "round glasses",
+        "description": "Round glasses, full view",
+        "size": "medium",
+        "shape": "circular lenses",
+        "color": "black frame",
+        "characteristics": "intellectual, retro",
+        "gender_fit": "both",
+        "tags": ["glasses", "eyewear", "round", "intellectual", "retro", "classic"]
+      },
+      "accessory_02_03.png": {
+        "style": "rectangular glasses",
+        "description": "Rectangular frame glasses",
+        "size": "medium",
+        "shape": "rectangular lenses",
+        "color": "black frame",
+        "characteristics": "modern, professional",
+        "gender_fit": "both",
+        "tags": ["glasses", "eyewear", "rectangular", "modern", "professional", "contemporary"]
+      },
+      "accessory_03_00.png": {
+        "style": "smoking pipe",
+        "description": "Classic smoking pipe in mouth",
+        "size": "medium",
+        "shape": "curved pipe with bowl",
+        "color": "black",
+        "characteristics": "sophisticated, vintage, detective-style",
+        "gender_fit": "male",
+        "tags": ["pipe", "smoking", "vintage", "sophisticated", "detective", "accessory"]
+      }
+    },
+    "4_Eyebrows_Hair": {
+      "eyebrows_00_00.png": {
+        "style": "curved natural",
+        "description": "Natural curved eyebrows with gentle arch",
+        "thickness": "medium",
+        "shape": "curved, arched",
+        "color": "black/dark",
+        "characteristics": "feminine, soft, natural arch",
+        "gender_fit": "female",
+        "tags": ["eyebrows", "curved", "arched", "natural", "feminine", "soft"]
+      },
+      "eyebrows_00_01.png": {
+        "style": "curved natural",
+        "description": "Natural curved eyebrows, darker",
+        "thickness": "medium",
+        "shape": "curved, arched",
+        "color": "black/dark",
+        "characteristics": "feminine, defined",
+        "gender_fit": "female",
+        "tags": ["eyebrows", "curved", "arched", "natural", "feminine", "dark"]
+      },
+      "eyebrows_01_00.png": {
+        "style": "straight thin",
+        "description": "Thin straight eyebrows with minimal arch",
+        "thickness": "thin",
+        "shape": "slightly curved, tapered",
+        "color": "black/dark",
+        "characteristics": "delicate, minimalist",
+        "gender_fit": "both",
+        "tags": ["eyebrows", "thin", "straight", "delicate", "minimal", "tapered"]
+      },
+      "eyebrows_02_00.png": {
+        "style": "straight medium",
+        "description": "Medium straight eyebrows",
+        "thickness": "medium",
+        "shape": "straight, minimal arch",
+        "color": "black/dark",
+        "characteristics": "neutral, natural",
+        "gender_fit": "both",
+        "tags": ["eyebrows", "straight", "medium", "natural", "neutral"]
+      },
+      "eyebrows_02_01.png": {
+        "style": "straight medium",
+        "description": "Medium straight eyebrows, slightly tapered",
+        "thickness": "medium",
+        "shape": "straight with taper",
+        "color": "black/dark",
+        "characteristics": "natural, subtle",
+        "gender_fit": "both",
+        "tags": ["eyebrows", "straight", "medium", "natural", "tapered"]
+      },
+      "eyebrows_03_00.png": {
+        "style": "curved thick",
+        "description": "Thick curved eyebrows with pronounced arch",
+        "thickness": "thick",
+        "shape": "curved, angular arch",
+        "color": "black/dark",
+        "characteristics": "bold, expressive, angular",
+        "gender_fit": "both",
+        "tags": ["eyebrows", "thick", "curved", "bold", "angular", "expressive"]
+      },
+      "eyebrows_03_01.png": {
+        "style": "curved thick",
+        "description": "Thick curved eyebrows, strong arch",
+        "thickness": "thick",
+        "shape": "curved, strong arch",
+        "color": "black/dark",
+        "characteristics": "bold, dramatic",
+        "gender_fit": "both",
+        "tags": ["eyebrows", "thick", "curved", "bold", "dramatic", "strong"]
+      },
+      "eyebrows_04_00.png": {
+        "style": "angled thick",
+        "description": "Thick angular eyebrows",
+        "thickness": "thick",
+        "shape": "angular, straight with bend",
+        "color": "black/dark",
+        "characteristics": "masculine, strong, defined",
+        "gender_fit": "male",
+        "tags": ["eyebrows", "thick", "angular", "masculine", "strong", "defined"]
+      },
+      "eyebrows_05_00.png": {
+        "style": "straight flat",
+        "description": "Flat straight eyebrows, minimal curve",
+        "thickness": "medium-thin",
+        "shape": "flat, horizontal",
+        "color": "black/dark",
+        "characteristics": "minimalist, modern",
+        "gender_fit": "both",
+        "tags": ["eyebrows", "flat", "straight", "minimal", "modern", "horizontal"]
+      },
+      "eyebrows_05_01.png": {
+        "style": "straight flat thick",
+        "description": "Thick flat eyebrows",
+        "thickness": "thick",
+        "shape": "flat, blocky",
+        "color": "black/dark",
+        "characteristics": "bold, masculine, strong",
+        "gender_fit": "male",
+        "tags": ["eyebrows", "flat", "thick", "bold", "masculine", "blocky"]
+      },
+      "eyebrows_05_02.png": {
+        "style": "straight flat",
+        "description": "Flat eyebrows with slight asymmetry",
+        "thickness": "medium",
+        "shape": "flat, slightly uneven",
+        "color": "black/dark",
+        "characteristics": "casual, natural asymmetry",
+        "gender_fit": "both",
+        "tags": ["eyebrows", "flat", "straight", "asymmetric", "natural", "casual"]
+      },
+      "eyebrows_06_00.png": {
+        "style": "curved angular",
+        "description": "Curved eyebrows with sharp angle",
+        "thickness": "medium",
+        "shape": "curved with angular peak",
+        "color": "black/dark",
+        "characteristics": "expressive, dramatic arch",
+        "gender_fit": "both",
+        "tags": ["eyebrows", "curved", "angular", "peaked", "expressive", "dramatic"]
+      },
+      "eyebrows_06_01.png": {
+        "style": "curved angular",
+        "description": "Curved angular eyebrows, emphasized",
+        "thickness": "medium",
+        "shape": "curved with strong angle",
+        "color": "black/dark",
+        "characteristics": "expressive, defined peak",
+        "gender_fit": "both",
+        "tags": ["eyebrows", "curved", "angular", "peaked", "expressive", "defined"]
+      },
+      "eyebrows_07_00.png": {
+        "style": "unibrow",
+        "description": "Connected eyebrows forming unibrow",
+        "thickness": "thick",
+        "shape": "continuous across bridge",
+        "color": "black/dark",
+        "characteristics": "distinctive, natural, connected",
+        "gender_fit": "male",
+        "tags": ["eyebrows", "unibrow", "connected", "thick", "natural", "distinctive"]
+      }
+    },
+    "5_Eyes_Eye": {
+      "eyes_00_00.png": {
+        "style": "closed neutral",
+        "description": "Fully closed eyes, blank expression",
+        "size": "standard",
+        "shape": "closed lids",
+        "color": "black outline",
+        "characteristics": "sleeping, resting, peaceful",
+        "gender_fit": "both",
+        "tags": ["eyes", "closed", "sleeping", "peaceful", "resting", "blank"]
+      },
+      "eyes_00_01.png": {
+        "style": "squinting happy",
+        "description": "Squinted eyes with happy expression",
+        "size": "small",
+        "shape": "curved upward, squinted",
+        "color": "black",
+        "characteristics": "happy, smiling eyes, cheerful",
+        "gender_fit": "both",
+        "tags": ["eyes", "squinted", "happy", "smiling", "cheerful", "joyful"]
+      },
+      "eyes_01_00.png": {
+        "style": "closed neutral",
+        "description": "Closed eyes, blank",
+        "size": "standard",
+        "shape": "closed",
+        "color": "black",
+        "characteristics": "neutral, blank",
+        "gender_fit": "both",
+        "tags": ["eyes", "closed", "neutral", "blank"]
+      },
+      "eyes_02_00.png": {
+        "style": "closed neutral",
+        "description": "Closed eyes variation",
+        "size": "standard",
+        "shape": "closed",
+        "color": "black",
+        "characteristics": "blank, neutral",
+        "gender_fit": "both",
+        "tags": ["eyes", "closed", "neutral", "blank"]
+      },
+      "eyes_03_00.png": {
+        "style": "narrow squint",
+        "description": "Narrow squinted eyes",
+        "size": "small",
+        "shape": "horizontal slits",
+        "color": "black",
+        "characteristics": "suspicious, doubtful, skeptical",
+        "gender_fit": "both",
+        "tags": ["eyes", "squinted", "narrow", "suspicious", "skeptical", "doubtful"]
+      },
+      "eyes_03_01.png": {
+        "style": "alert narrow",
+        "description": "Narrow eyes with visible pupils",
+        "size": "small",
+        "shape": "narrow with pupils",
+        "color": "black",
+        "characteristics": "alert, focused, observant",
+        "gender_fit": "both",
+        "tags": ["eyes", "narrow", "alert", "focused", "observant", "attentive"]
+      },
+      "eyes_03_02.png": {
+        "style": "squinting closed",
+        "description": "Tightly squinted eyes",
+        "size": "small",
+        "shape": "angled slits",
+        "color": "black",
+        "characteristics": "laughing, intense squint",
+        "gender_fit": "both",
+        "tags": ["eyes", "squinted", "closed", "laughing", "tight", "intense"]
+      },
+      "eyes_03_03.png": {
+        "style": "arched squint",
+        "description": "Squinted eyes with arch",
+        "size": "small",
+        "shape": "arched slits",
+        "color": "black",
+        "characteristics": "playful, winking expression",
+        "gender_fit": "both",
+        "tags": ["eyes", "squinted", "arched", "playful", "mischievous"]
+      },
+      "eyes_03_04.png": {
+        "style": "determined squint",
+        "description": "Narrowed determined eyes",
+        "size": "small",
+        "shape": "narrow determined slits",
+        "color": "black",
+        "characteristics": "determined, focused, serious",
+        "gender_fit": "both",
+        "tags": ["eyes", "narrow", "determined", "focused", "serious", "intense"]
+      },
+      "eyes_03_05.png": {
+        "style": "angry squint",
+        "description": "Angrily narrowed eyes",
+        "size": "small",
+        "shape": "angled narrow slits",
+        "color": "black",
+        "characteristics": "angry, aggressive, threatening",
+        "gender_fit": "both",
+        "tags": ["eyes", "narrow", "angry", "aggressive", "threatening", "intense"]
+      },
+      "eyes_04_00.png": {
+        "style": "closed blank",
+        "description": "Completely closed blank eyes",
+        "size": "standard",
+        "shape": "closed",
+        "color": "transparent/white",
+        "characteristics": "blank, empty",
+        "gender_fit": "both",
+        "tags": ["eyes", "closed", "blank", "empty"]
+      },
+      "eyes_04_01.png": {
+        "style": "sleepy half-closed",
+        "description": "Half-closed sleepy eyes",
+        "size": "small",
+        "shape": "drooping, half-closed",
+        "color": "black",
+        "characteristics": "tired, sleepy, drowsy",
+        "gender_fit": "both",
+        "tags": ["eyes", "half-closed", "sleepy", "tired", "drowsy", "drooping"]
+      },
+      "eyes_05_00.png": {
+        "style": "narrow slits",
+        "description": "Very narrow eye slits",
+        "size": "tiny",
+        "shape": "horizontal slits",
+        "color": "black",
+        "characteristics": "minimal, simple",
+        "gender_fit": "both",
+        "tags": ["eyes", "narrow", "slits", "minimal", "simple"]
+      },
+      "eyes_06_00.png": {
+        "style": "narrow slits",
+        "description": "Narrow horizontal eye slits",
+        "size": "tiny",
+        "shape": "horizontal lines",
+        "color": "black",
+        "characteristics": "minimal, simple",
+        "gender_fit": "both",
+        "tags": ["eyes", "narrow", "slits", "minimal", "simple", "lines"]
+      },
+      "eyes_07_00.png": {
+        "style": "narrow slits",
+        "description": "Slightly wider narrow slits",
+        "size": "small",
+        "shape": "horizontal slits",
+        "color": "black",
+        "characteristics": "calm, neutral",
+        "gender_fit": "both",
+        "tags": ["eyes", "narrow", "slits", "calm", "neutral"]
+      },
+      "eyes_07_01.png": {
+        "style": "alert narrow",
+        "description": "Narrow eyes with pupils visible",
+        "size": "small",
+        "shape": "narrow with visible pupils",
+        "color": "black",
+        "characteristics": "alert, aware",
+        "gender_fit": "both",
+        "tags": ["eyes", "narrow", "alert", "pupils", "aware", "attentive"]
+      },
+      "eyes_08_00.png": {
+        "style": "solid dots",
+        "description": "Simple solid dot eyes",
+        "size": "tiny",
+        "shape": "circular dots",
+        "color": "black",
+        "characteristics": "simple, cute, minimal",
+        "gender_fit": "both",
+        "tags": ["eyes", "dots", "simple", "cute", "minimal", "circular"]
+      },
+      "eyes_08_01.png": {
+        "style": "angry narrow",
+        "description": "Narrow angry eyes with pupils",
+        "size": "small",
+        "shape": "angled downward, narrow",
+        "color": "black",
+        "characteristics": "angry, hostile, glaring",
+        "gender_fit": "both",
+        "tags": ["eyes", "narrow", "angry", "hostile", "glaring", "aggressive"]
+      },
+      "eyes_08_02.png": {
+        "style": "closed blank",
+        "description": "Blank closed eyes",
+        "size": "standard",
+        "shape": "closed",
+        "color": "transparent",
+        "characteristics": "blank, neutral",
+        "gender_fit": "both",
+        "tags": ["eyes", "closed", "blank", "neutral"]
+      },
+      "eyes_08_03.png": {
+        "style": "downcast narrow",
+        "description": "Narrowed downcast eyes",
+        "size": "small",
+        "shape": "angled down, narrow",
+        "color": "black",
+        "characteristics": "sad, downcast, melancholy",
+        "gender_fit": "both",
+        "tags": ["eyes", "narrow", "downcast", "sad", "melancholy", "dejected"]
+      },
+      "eyes_09_00.png": {
+        "style": "small dots",
+        "description": "Very small dot eyes",
+        "size": "tiny",
+        "shape": "tiny dots",
+        "color": "black",
+        "characteristics": "cute, minimal, simple",
+        "gender_fit": "both",
+        "tags": ["eyes", "dots", "tiny", "cute", "minimal", "simple"]
+      },
+      "eyes_09_00_female.png": {
+        "style": "feminine almond",
+        "description": "Almond-shaped eyes with lashes",
+        "size": "medium",
+        "shape": "almond with lashes",
+        "color": "black",
+        "characteristics": "feminine, elegant, expressive",
+        "gender_fit": "female",
+        "tags": ["eyes", "almond", "feminine", "lashes", "elegant", "expressive"]
+      },
+      "eyes_09_01.png": {
+        "style": "small dots",
+        "description": "Small dot eyes variation",
+        "size": "tiny",
+        "shape": "small dots",
+        "color": "black",
+        "characteristics": "cute, simple",
+        "gender_fit": "both",
+        "tags": ["eyes", "dots", "small", "cute", "simple"]
+      },
+      "eyes_09_01_female.png": {
+        "style": "feminine almond",
+        "description": "Almond-shaped eyes with lashes variation",
+        "size": "medium",
+        "shape": "almond with prominent lashes",
+        "color": "black",
+        "characteristics": "feminine, delicate, expressive",
+        "gender_fit": "female",
+        "tags": ["eyes", "almond", "feminine", "lashes", "delicate", "expressive"]
+      },
+      "eyes_10_00.png": {
+        "style": "winking asymmetric",
+        "description": "Asymmetric winking eyes",
+        "size": "small",
+        "shape": "one open, one closed",
+        "color": "black",
+        "characteristics": "playful, winking, flirty",
+        "gender_fit": "both",
+        "tags": ["eyes", "winking", "asymmetric", "playful", "flirty"]
+      },
+      "eyes_11_00.png": {
+        "style": "wide open solid",
+        "description": "Wide open solid eyes",
+        "size": "medium",
+        "shape": "wide open ovals",
+        "color": "black",
+        "characteristics": "alert, surprised, wide",
+        "gender_fit": "both",
+        "tags": ["eyes", "wide", "open", "alert", "surprised"]
+      },
+      "eyes_12_00.png": {
+        "style": "curved relaxed",
+        "description": "Relaxed curved eyes",
+        "size": "medium",
+        "shape": "gently curved",
+        "color": "black",
+        "characteristics": "relaxed, calm, content",
+        "gender_fit": "both",
+        "tags": ["eyes", "curved", "relaxed", "calm", "content"]
+      },
+      "eyes_12_01.png": {
+        "style": "curved relaxed",
+        "description": "Relaxed curved eyes variation",
+        "size": "medium",
+        "shape": "softly curved",
+        "color": "black",
+        "characteristics": "content, peaceful, gentle",
+        "gender_fit": "both",
+        "tags": ["eyes", "curved", "relaxed", "peaceful", "gentle"]
+      }
+    },
+    "6_HeadshapeAuxiliary_Skin": {
+      "headshape_00_00.png": {
+        "style": "chin shadow",
+        "description": "Subtle chin and jaw shadow detail",
+        "size": "small",
+        "shape": "curved shadow under jaw",
+        "color": "skin tone shadow",
+        "characteristics": "dimensional, shading, depth",
+        "gender_fit": "both",
+        "tags": ["shadow", "chin", "jaw", "shading", "depth", "dimensional"]
+      },
+      "headshape_01_00.png": {
+        "style": "jaw definition",
+        "description": "Jaw line definition shadow",
+        "size": "small",
+        "shape": "angular jaw shadow",
+        "color": "skin tone shadow",
+        "characteristics": "defined, masculine jawline",
+        "gender_fit": "male",
+        "tags": ["shadow", "jaw", "jawline", "defined", "masculine", "angular"]
+      }
+    },
+    "7_Moustache_Hair": {
+      "moustache_00_00.png": {
+        "style": "toothbrush style",
+        "description": "Short rectangular moustache under nose",
+        "thickness": "thick",
+        "shape": "rectangular, compact",
+        "color": "black/dark",
+        "characteristics": "Charlie Chaplin style, vintage",
+        "gender_fit": "male",
+        "tags": ["moustache", "toothbrush", "rectangular", "compact", "vintage", "short"]
+      },
+      "moustache_00_01.png": {
+        "style": "pencil thin",
+        "description": "Very thin pencil moustache",
+        "thickness": "thin",
+        "shape": "thin line with gaps",
+        "color": "black/dark",
+        "characteristics": "refined, minimalist, vintage",
+        "gender_fit": "male",
+        "tags": ["moustache", "pencil", "thin", "refined", "minimalist", "line"]
+      },
+      "moustache_01_00.png": {
+        "style": "handlebar wide",
+        "description": "Wide handlebar moustache",
+        "thickness": "thick",
+        "shape": "curved upward at ends",
+        "color": "black/dark",
+        "characteristics": "dramatic, vintage, gentlemanly",
+        "gender_fit": "male",
+        "tags": ["moustache", "handlebar", "wide", "curved", "dramatic", "vintage"]
+      },
+      "moustache_01_01.png": {
+        "style": "handlebar",
+        "description": "Classic handlebar moustache",
+        "thickness": "medium-thick",
+        "shape": "curved ends",
+        "color": "black/dark",
+        "characteristics": "vintage, distinguished",
+        "gender_fit": "male",
+        "tags": ["moustache", "handlebar", "curved", "vintage", "distinguished"]
+      },
+      "moustache_02_00.png": {
+        "style": "chevron thick",
+        "description": "Thick chevron moustache",
+        "thickness": "very thick",
+        "shape": "downward angled, thick",
+        "color": "black/dark",
+        "characteristics": "bold, prominent, masculine",
+        "gender_fit": "male",
+        "tags": ["moustache", "chevron", "thick", "bold", "prominent", "masculine"]
+      },
+      "moustache_02_01.png": {
+        "style": "chevron",
+        "description": "Chevron moustache",
+        "thickness": "thick",
+        "shape": "angled downward",
+        "color": "black/dark",
+        "characteristics": "masculine, bold",
+        "gender_fit": "male",
+        "tags": ["moustache", "chevron", "thick", "masculine", "bold"]
+      },
+      "moustache_03_00.png": {
+        "style": "walrus layered",
+        "description": "Thick layered walrus moustache",
+        "thickness": "very thick",
+        "shape": "layered, drooping",
+        "color": "black/dark",
+        "characteristics": "bushy, prominent, wild",
+        "gender_fit": "male",
+        "tags": ["moustache", "walrus", "thick", "layered", "bushy", "wild"]
+      },
+      "moustache_03_01.png": {
+        "style": "walrus",
+        "description": "Walrus moustache",
+        "thickness": "very thick",
+        "shape": "drooping, bushy",
+        "color": "black/dark",
+        "characteristics": "bushy, prominent",
+        "gender_fit": "male",
+        "tags": ["moustache", "walrus", "thick", "drooping", "bushy"]
+      },
+      "moustache_03_02.png": {
+        "style": "walrus full",
+        "description": "Full walrus moustache",
+        "thickness": "very thick",
+        "shape": "full, drooping",
+        "color": "black/dark",
+        "characteristics": "very bushy, wild",
+        "gender_fit": "male",
+        "tags": ["moustache", "walrus", "thick", "full", "bushy", "wild"]
+      },
+      "moustache_04_00.png": {
+        "style": "pyramidal",
+        "description": "Pyramid-shaped moustache",
+        "thickness": "medium-thick",
+        "shape": "triangular, pointed down",
+        "color": "black/dark",
+        "characteristics": "distinctive, geometric",
+        "gender_fit": "male",
+        "tags": ["moustache", "pyramidal", "triangular", "geometric", "distinctive"]
+      },
+      "moustache_04_01.png": {
+        "style": "pyramidal",
+        "description": "Pyramid moustache variation",
+        "thickness": "medium",
+        "shape": "triangular",
+        "color": "black/dark",
+        "characteristics": "geometric, unique",
+        "gender_fit": "male",
+        "tags": ["moustache", "pyramidal", "triangular", "geometric", "unique"]
+      },
+      "moustache_04_02.png": {
+        "style": "pyramidal full",
+        "description": "Full pyramid moustache",
+        "thickness": "thick",
+        "shape": "wide triangular",
+        "color": "black/dark",
+        "characteristics": "bold, geometric",
+        "gender_fit": "male",
+        "tags": ["moustache", "pyramidal", "triangular", "geometric", "bold", "full"]
+      }
+    },
+    "8_Beard_Hair": {
+      "beard_00_00.png": {
+        "style": "full round beard",
+        "description": "Full round beard covering chin and jaw",
+        "thickness": "thick",
+        "shape": "rounded, full coverage",
+        "color": "black/dark",
+        "characteristics": "bushy, full, masculine",
+        "gender_fit": "male",
+        "tags": ["beard", "full", "round", "bushy", "thick", "masculine"]
+      },
+      "beard_00_01.png": {
+        "style": "full beard",
+        "description": "Full beard variation",
+        "thickness": "thick",
+        "shape": "full coverage",
+        "color": "black/dark",
+        "characteristics": "bushy, masculine",
+        "gender_fit": "male",
+        "tags": ["beard", "full", "bushy", "thick", "masculine"]
+      },
+      "beard_00_02.png": {
+        "style": "full dense beard",
+        "description": "Dense full beard",
+        "thickness": "very thick",
+        "shape": "full, dense",
+        "color": "black/dark",
+        "characteristics": "very bushy, prominent",
+        "gender_fit": "male",
+        "tags": ["beard", "full", "dense", "bushy", "thick", "prominent"]
+      },
+      "beard_20_00.png": {
+        "style": "goatee pointed",
+        "description": "Pointed chin goatee",
+        "thickness": "medium",
+        "shape": "V-shaped, pointed",
+        "color": "black/dark",
+        "characteristics": "stylish, pointed, distinctive",
+        "gender_fit": "male",
+        "tags": ["beard", "goatee", "pointed", "chin", "stylish", "distinctive"]
+      }
+    },
+    "9_Mouth_Lip": {
+      "mouth_00_00.png": {
+        "style": "neutral closed",
+        "description": "Simple closed neutral mouth",
+        "size": "small",
+        "shape": "horizontal line with slight curve",
+        "color": "black outline",
+        "characteristics": "neutral, calm, composed",
+        "gender_fit": "both",
+        "tags": ["mouth", "closed", "neutral", "calm", "line", "composed"]
+      },
+      "mouth_01_00.png": {
+        "style": "slightly parted",
+        "description": "Slightly parted lips",
+        "size": "small",
+        "shape": "parted with gap",
+        "color": "black outline",
+        "characteristics": "relaxed, slightly open",
+        "gender_fit": "both",
+        "tags": ["mouth", "parted", "open", "relaxed", "gap"]
+      },
+      "mouth_02_00.png": {
+        "style": "pursed",
+        "description": "Pursed lips",
+        "size": "small",
+        "shape": "pursed, compressed",
+        "color": "black outline",
+        "characteristics": "thoughtful, compressed",
+        "gender_fit": "both",
+        "tags": ["mouth", "pursed", "compressed", "thoughtful", "closed"]
+      },
+      "mouth_03_00.png": {
+        "style": "slight curve",
+        "description": "Mouth with slight upward curve",
+        "size": "small",
+        "shape": "gently curved upward",
+        "color": "black outline",
+        "characteristics": "subtle smile, pleasant",
+        "gender_fit": "both",
+        "tags": ["mouth", "curved", "smile", "subtle", "pleasant"]
+      },
+      "mouth_04_00.png": {
+        "style": "flat line",
+        "description": "Straight flat mouth line",
+        "size": "small",
+        "shape": "horizontal straight line",
+        "color": "black outline",
+        "characteristics": "neutral, expressionless",
+        "gender_fit": "both",
+        "tags": ["mouth", "flat", "straight", "neutral", "line", "expressionless"]
+      },
+      "mouth_05_00.png": {
+        "style": "downturned",
+        "description": "Downturned mouth corners",
+        "size": "small",
+        "shape": "curved downward",
+        "color": "black outline",
+        "characteristics": "sad, displeased, frowning",
+        "gender_fit": "both",
+        "tags": ["mouth", "downturned", "sad", "frown", "displeased"]
+      },
+      "mouth_06_00.png": {
+        "style": "wide smile",
+        "description": "Wide smiling mouth",
+        "size": "medium",
+        "shape": "wide curved upward",
+        "color": "black outline",
+        "characteristics": "happy, joyful, broad smile",
+        "gender_fit": "both",
+        "tags": ["mouth", "smile", "wide", "happy", "joyful", "broad"]
+      },
+      "mouth_07_00.png": {
+        "style": "open smile",
+        "description": "Open smiling mouth showing teeth",
+        "size": "medium",
+        "shape": "open with teeth visible",
+        "color": "black outline",
+        "characteristics": "very happy, laughing",
+        "gender_fit": "both",
+        "tags": ["mouth", "smile", "open", "teeth", "happy", "laughing"]
+      },
+      "mouth_08_00.png": {
+        "style": "smirk",
+        "description": "Asymmetric smirk",
+        "size": "small",
+        "shape": "one-sided curve",
+        "color": "black outline",
+        "characteristics": "sly, mischievous, knowing",
+        "gender_fit": "both",
+        "tags": ["mouth", "smirk", "asymmetric", "sly", "mischievous"]
+      },
+      "mouth_09_00.png": {
+        "style": "gentle smile",
+        "description": "Gentle closed smile",
+        "size": "small-medium",
+        "shape": "gently curved upward",
+        "color": "black outline",
+        "characteristics": "pleasant, friendly, warm",
+        "gender_fit": "both",
+        "tags": ["mouth", "smile", "gentle", "friendly", "warm", "pleasant"]
+      },
+      "mouth_10_00.png": {
+        "style": "compressed",
+        "description": "Tightly compressed lips",
+        "size": "small",
+        "shape": "compressed horizontal",
+        "color": "black outline",
+        "characteristics": "tense, restrained",
+        "gender_fit": "both",
+        "tags": ["mouth", "compressed", "tight", "tense", "restrained"]
+      },
+      "mouth_11_00.png": {
+        "style": "open round",
+        "description": "Round open mouth",
+        "size": "medium",
+        "shape": "circular, open",
+        "color": "black outline",
+        "characteristics": "surprised, shocked, gasping",
+        "gender_fit": "both",
+        "tags": ["mouth", "open", "round", "surprised", "shocked", "gasping"]
+      },
+      "mouth_12_00.png": {
+        "style": "wide open",
+        "description": "Wide open mouth",
+        "size": "large",
+        "shape": "wide oval opening",
+        "color": "black outline",
+        "characteristics": "shouting, yelling, surprised",
+        "gender_fit": "both",
+        "tags": ["mouth", "open", "wide", "shouting", "yelling", "surprised"]
+      },
+      "mouth_13_00.png": {
+        "style": "small open",
+        "description": "Small open mouth",
+        "size": "small",
+        "shape": "small oval",
+        "color": "black outline",
+        "characteristics": "slightly surprised, speaking",
+        "gender_fit": "both",
+        "tags": ["mouth", "open", "small", "surprised", "speaking"]
+      },
+      "mouth_14_00.png": {
+        "style": "slight frown",
+        "description": "Slightly frowning mouth",
+        "size": "small",
+        "shape": "curved slightly down",
+        "color": "black outline",
+        "characteristics": "concerned, slightly unhappy",
+        "gender_fit": "both",
+        "tags": ["mouth", "frown", "concerned", "unhappy", "slight"]
+      },
+      "mouth_15_00.png": {
+        "style": "wavy smile",
+        "description": "Wavy smiling mouth",
+        "size": "medium",
+        "shape": "wavy curved upward",
+        "color": "black outline",
+        "characteristics": "cheerful, playful",
+        "gender_fit": "both",
+        "tags": ["mouth", "smile", "wavy", "cheerful", "playful"]
+      }
+    },
+    "10_Hair_Hair": {
+      "hair_00_00.png": {
+        "style": "spiky short",
+        "description": "Short spiky anime-style hair",
+        "length": "short",
+        "shape": "spiky, angular",
+        "color": "black/dark",
+        "characteristics": "energetic, youthful, anime style",
+        "gender_fit": "male",
+        "tags": ["hair", "spiky", "short", "anime", "energetic", "youthful", "angular"]
+      },
+      "hair_00_01.png": {
+        "style": "spiky short",
+        "description": "Short spiky hair variation",
+        "length": "short",
+        "shape": "spiky, messy",
+        "color": "lighter tone",
+        "characteristics": "casual, messy, youthful",
+        "gender_fit": "male",
+        "tags": ["hair", "spiky", "short", "messy", "casual", "youthful"]
+      },
+      "hair_00_02.png": {
+        "style": "spiky short",
+        "description": "Short spiky hair, another color",
+        "length": "short",
+        "shape": "spiky, dynamic",
+        "color": "medium tone",
+        "characteristics": "dynamic, energetic",
+        "gender_fit": "male",
+        "tags": ["hair", "spiky", "short", "dynamic", "energetic"]
+      },
+      "hair_01_00.png": {
+        "style": "swept side",
+        "description": "Side-swept wavy hair",
+        "length": "medium-short",
+        "shape": "swept to side, wavy",
+        "color": "black/dark",
+        "characteristics": "stylish, casual, modern",
+        "gender_fit": "both",
+        "tags": ["hair", "swept", "side", "wavy", "stylish", "casual"]
+      },
+      "hair_01_01.png": {
+        "style": "swept side",
+        "description": "Side-swept hair variation",
+        "length": "medium-short",
+        "shape": "swept, flowing",
+        "color": "lighter tone",
+        "characteristics": "casual, flowing",
+        "gender_fit": "both",
+        "tags": ["hair", "swept", "side", "flowing", "casual"]
+      },
+      "hair_02_00.png": {
+        "style": "buzzcut short",
+        "description": "Very short buzzcut hairline",
+        "length": "very short",
+        "shape": "cropped close, hairline only",
+        "color": "black/dark",
+        "characteristics": "military, minimal, practical",
+        "gender_fit": "male",
+        "tags": ["hair", "buzzcut", "short", "cropped", "military", "minimal"]
+      },
+      "hair_02_01.png": {
+        "style": "buzzcut short",
+        "description": "Buzzcut variation",
+        "length": "very short",
+        "shape": "cropped, minimal",
+        "color": "medium tone",
+        "characteristics": "practical, clean",
+        "gender_fit": "male",
+        "tags": ["hair", "buzzcut", "short", "cropped", "practical", "clean"]
+      },
+      "hair_02_02.png": {
+        "style": "buzzcut short",
+        "description": "Buzzcut another shade",
+        "length": "very short",
+        "shape": "cropped close",
+        "color": "lighter tone",
+        "characteristics": "minimal, neat",
+        "gender_fit": "male",
+        "tags": ["hair", "buzzcut", "short", "cropped", "minimal", "neat"]
+      },
+      "hair_03_00.png": {
+        "style": "side part slicked",
+        "description": "Slicked side-parted hair",
+        "length": "medium-short",
+        "shape": "parted, slicked down",
+        "color": "black/dark",
+        "characteristics": "formal, classic, gentleman",
+        "gender_fit": "male",
+        "tags": ["hair", "parted", "slicked", "formal", "classic", "gentleman"]
+      },
+      "hair_03_01.png": {
+        "style": "side part slicked",
+        "description": "Slicked side-part variation",
+        "length": "medium-short",
+        "shape": "side parted, neat",
+        "color": "medium tone",
+        "characteristics": "formal, professional",
+        "gender_fit": "male",
+        "tags": ["hair", "parted", "slicked", "formal", "professional"]
+      },
+      "hair_03_02.png": {
+        "style": "side part slicked",
+        "description": "Side-part slicked, light color",
+        "length": "medium-short",
+        "shape": "parted, groomed",
+        "color": "light tone",
+        "characteristics": "formal, groomed",
+        "gender_fit": "male",
+        "tags": ["hair", "parted", "slicked", "formal", "groomed"]
+      },
+      "hair_04_00.png": {
+        "style": "bald",
+        "description": "Completely bald, no hair",
+        "length": "none",
+        "shape": "bald head outline",
+        "color": "none",
+        "characteristics": "bald, clean shaven head",
+        "gender_fit": "male",
+        "tags": ["hair", "bald", "none", "shaven", "hairless"]
+      },
+      "hair_05_00.png": {
+        "style": "receding short",
+        "description": "Short hair with receding hairline",
+        "length": "short",
+        "shape": "receding, sparse front",
+        "color": "black/dark",
+        "characteristics": "mature, receding, natural aging",
+        "gender_fit": "male",
+        "tags": ["hair", "short", "receding", "mature", "aging", "sparse"]
+      },
+      "hair_05_01.png": {
+        "style": "receding short",
+        "description": "Receding hairline variation",
+        "length": "short",
+        "shape": "receding temples",
+        "color": "medium tone",
+        "characteristics": "mature, natural",
+        "gender_fit": "male",
+        "tags": ["hair", "short", "receding", "mature", "natural"]
+      },
+      "hair_06_00.png": {
+        "style": "wavy medium",
+        "description": "Medium length wavy hair",
+        "length": "medium",
+        "shape": "wavy, flowing",
+        "color": "black/dark",
+        "characteristics": "flowing, romantic, wavy",
+        "gender_fit": "both",
+        "tags": ["hair", "wavy", "medium", "flowing", "romantic"]
+      },
+      "hair_06_01.png": {
+        "style": "wavy medium",
+        "description": "Wavy medium hair variation",
+        "length": "medium",
+        "shape": "wavy, loose",
+        "color": "medium tone",
+        "characteristics": "natural, flowing",
+        "gender_fit": "both",
+        "tags": ["hair", "wavy", "medium", "flowing", "natural"]
+      },
+      "hair_06_02.png": {
+        "style": "wavy medium",
+        "description": "Wavy hair light color",
+        "length": "medium",
+        "shape": "wavy, soft",
+        "color": "light tone",
+        "characteristics": "soft, flowing",
+        "gender_fit": "both",
+        "tags": ["hair", "wavy", "medium", "flowing", "soft"]
+      },
+      "hair_07_00.png": {
+        "style": "long flowing",
+        "description": "Long flowing hair",
+        "length": "long",
+        "shape": "straight, flowing down",
+        "color": "black/dark",
+        "characteristics": "dramatic, feminine, long",
+        "gender_fit": "female",
+        "tags": ["hair", "long", "flowing", "straight", "dramatic", "feminine"]
+      },
+      "hair_07_00_female.png": {
+        "style": "long wavy feminine",
+        "description": "Long wavy feminine hair with volume",
+        "length": "long",
+        "shape": "wavy, voluminous, side-swept",
+        "color": "black/dark",
+        "characteristics": "elegant, voluminous, romantic",
+        "gender_fit": "female",
+        "tags": ["hair", "long", "wavy", "feminine", "voluminous", "elegant"]
+      },
+      "hair_07_01.png": {
+        "style": "long flowing",
+        "description": "Long hair variation",
+        "length": "long",
+        "shape": "flowing, straight",
+        "color": "medium tone",
+        "characteristics": "elegant, long",
+        "gender_fit": "female",
+        "tags": ["hair", "long", "flowing", "straight", "elegant"]
+      },
+      "hair_07_01_female.png": {
+        "style": "long wavy feminine",
+        "description": "Long wavy hair with side volume",
+        "length": "long",
+        "shape": "wavy, full, side-swept",
+        "color": "brown/medium",
+        "characteristics": "romantic, full, flowing",
+        "gender_fit": "female",
+        "tags": ["hair", "long", "wavy", "feminine", "romantic", "full"]
+      },
+      "hair_07_02_female.png": {
+        "style": "long wavy updo",
+        "description": "Long wavy hair swept up with volume",
+        "length": "long",
+        "shape": "wavy, swept upward, voluminous",
+        "color": "medium tone",
+        "characteristics": "elegant, upswept, dramatic",
+        "gender_fit": "female",
+        "tags": ["hair", "long", "wavy", "updo", "elegant", "voluminous"]
+      },
+      "hair_07_03_female.png": {
+        "style": "long wavy flowing",
+        "description": "Long flowing wavy hair with full volume",
+        "length": "long",
+        "shape": "wavy, flowing, voluminous",
+        "color": "medium tone",
+        "characteristics": "romantic, full, dramatic",
+        "gender_fit": "female",
+        "tags": ["hair", "long", "wavy", "flowing", "romantic", "voluminous"]
+      },
+      "hair_08_00.png": {
+        "style": "bob short",
+        "description": "Short bob haircut",
+        "length": "short",
+        "shape": "rounded bob, chin-length",
+        "color": "black/dark",
+        "characteristics": "classic, feminine, neat",
+        "gender_fit": "female",
+        "tags": ["hair", "bob", "short", "rounded", "classic", "feminine"]
+      },
+      "hair_08_00_female.png": {
+        "style": "curly bob",
+        "description": "Curly bob with volume on sides",
+        "length": "short",
+        "shape": "curly, voluminous bob",
+        "color": "black/dark",
+        "characteristics": "curly, voluminous, playful",
+        "gender_fit": "female",
+        "tags": ["hair", "bob", "curly", "voluminous", "playful", "short"]
+      },
+      "hair_08_01.png": {
+        "style": "bob short",
+        "description": "Bob haircut variation",
+        "length": "short",
+        "shape": "rounded, neat",
+        "color": "medium tone",
+        "characteristics": "classic, neat",
+        "gender_fit": "female",
+        "tags": ["hair", "bob", "short", "rounded", "classic", "neat"]
+      },
+      "hair_08_01_female.png": {
+        "style": "curly bob",
+        "description": "Curly bob with side curls",
+        "length": "short",
+        "shape": "curly, rounded",
+        "color": "brown/medium",
+        "characteristics": "curly, bouncy, feminine",
+        "gender_fit": "female",
+        "tags": ["hair", "bob", "curly", "bouncy", "feminine", "short"]
+      },
+      "hair_09_00.png": {
+        "style": "ponytail side",
+        "description": "Side ponytail style",
+        "length": "medium-long",
+        "shape": "gathered to side",
+        "color": "black/dark",
+        "characteristics": "playful, youthful, asymmetric",
+        "gender_fit": "female",
+        "tags": ["hair", "ponytail", "side", "playful", "youthful", "asymmetric"]
+      },
+      "hair_09_00_female.png": {
+        "style": "twin tails curly",
+        "description": "Curly twin tails on sides",
+        "length": "medium",
+        "shape": "two curly pigtails",
+        "color": "black/dark",
+        "characteristics": "playful, curly, youthful",
+        "gender_fit": "female",
+        "tags": ["hair", "twin tails", "curly", "playful", "pigtails", "youthful"]
+      },
+      "hair_09_01.png": {
+        "style": "ponytail side",
+        "description": "Side ponytail variation",
+        "length": "medium-long",
+        "shape": "side gathered",
+        "color": "medium tone",
+        "characteristics": "playful, casual",
+        "gender_fit": "female",
+        "tags": ["hair", "ponytail", "side", "playful", "casual"]
+      },
+      "hair_09_01_female.png": {
+        "style": "swept wavy side",
+        "description": "Wavy hair swept to side",
+        "length": "medium",
+        "shape": "side-swept, wavy",
+        "color": "brown/medium",
+        "characteristics": "elegant, wavy, side-swept",
+        "gender_fit": "female",
+        "tags": ["hair", "wavy", "swept", "side", "elegant", "flowing"]
+      },
+      "hair_09_02_female.png": {
+        "style": "curly updo",
+        "description": "Curly hair in side updo",
+        "length": "medium",
+        "shape": "curly, gathered sides",
+        "color": "medium tone",
+        "characteristics": "curly, elegant, playful",
+        "gender_fit": "female",
+        "tags": ["hair", "curly", "updo", "elegant", "gathered", "playful"]
+      },
+      "hair_09_03_female.png": {
+        "style": "side bun",
+        "description": "Hair gathered in side bun with curls",
+        "length": "medium",
+        "shape": "side bun, curly",
+        "color": "medium tone",
+        "characteristics": "elegant, curly, asymmetric",
+        "gender_fit": "female",
+        "tags": ["hair", "bun", "side", "curly", "elegant", "gathered"]
+      },
+      "hair_10_00.png": {
+        "style": "wavy long",
+        "description": "Long wavy flowing hair",
+        "length": "long",
+        "shape": "wavy, voluminous",
+        "color": "black/dark",
+        "characteristics": "romantic, voluminous, dramatic",
+        "gender_fit": "female",
+        "tags": ["hair", "long", "wavy", "voluminous", "romantic", "dramatic"]
+      },
+      "hair_10_00_female.png": {
+        "style": "wavy shoulder-length",
+        "description": "Wavy shoulder-length hair",
+        "length": "medium-long",
+        "shape": "wavy, flowing to shoulders",
+        "color": "black/dark",
+        "characteristics": "wavy, natural, flowing",
+        "gender_fit": "female",
+        "tags": ["hair", "wavy", "shoulder-length", "flowing", "natural"]
+      },
+      "hair_10_01.png": {
+        "style": "wavy long",
+        "description": "Long wavy hair variation",
+        "length": "long",
+        "shape": "wavy, flowing",
+        "color": "medium tone",
+        "characteristics": "romantic, flowing",
+        "gender_fit": "female",
+        "tags": ["hair", "long", "wavy", "flowing", "romantic"]
+      },
+      "hair_10_01_female.png": {
+        "style": "wavy shoulder-length",
+        "description": "Wavy shoulder-length hair variation",
+        "length": "medium-long",
+        "shape": "wavy, natural waves",
+        "color": "brown/medium",
+        "characteristics": "natural, wavy, casual",
+        "gender_fit": "female",
+        "tags": ["hair", "wavy", "shoulder-length", "natural", "casual"]
+      },
+      "hair_11_00.png": {
+        "style": "wavy bob",
+        "description": "Short wavy bob",
+        "length": "short",
+        "shape": "wavy, chin-length",
+        "color": "black/dark",
+        "characteristics": "wavy, elegant, modern",
+        "gender_fit": "both",
+        "tags": ["hair", "wavy", "bob", "short", "elegant", "modern"]
+      },
+      "hair_11_01.png": {
+        "style": "wavy bob",
+        "description": "Short wavy bob variation",
+        "length": "short",
+        "shape": "wavy, textured",
+        "color": "medium tone",
+        "characteristics": "textured, modern, wavy",
+        "gender_fit": "both",
+        "tags": ["hair", "wavy", "bob", "short", "textured", "modern"]
+      },
+      "hair_12_00.png": {
+        "style": "curly bob",
+        "description": "Curly bob hairstyle",
+        "length": "short",
+        "shape": "curly, bouncy",
+        "color": "black/dark",
+        "characteristics": "curly, voluminous, bouncy",
+        "gender_fit": "both",
+        "tags": ["hair", "curly", "bob", "short", "bouncy", "voluminous"]
+      },
+      "hair_13_00.png": {
+        "style": "curly afro",
+        "description": "Curly afro hairstyle",
+        "length": "medium",
+        "shape": "curly, rounded afro",
+        "color": "black/dark",
+        "characteristics": "curly, voluminous, natural",
+        "gender_fit": "both",
+        "tags": ["hair", "curly", "afro", "voluminous", "natural", "textured"]
+      }
+    },
+    "11_Detail_Skin": {
+      "detail_00_00.png": {
+        "style": "forehead wrinkle",
+        "description": "Single horizontal forehead line",
+        "size": "small",
+        "shape": "horizontal line",
+        "color": "skin shadow",
+        "characteristics": "aging, expression line",
+        "gender_fit": "both",
+        "tags": ["wrinkle", "forehead", "line", "aging", "expression"]
+      },
+      "detail_01_00.png": {
+        "style": "worry lines",
+        "description": "Double horizontal forehead lines",
+        "size": "small",
+        "shape": "parallel horizontal lines",
+        "color": "skin shadow",
+        "characteristics": "aging, worry, expression",
+        "gender_fit": "both",
+        "tags": ["wrinkle", "forehead", "lines", "aging", "worry"]
+      },
+      "detail_02_00.png": {
+        "style": "frown line",
+        "description": "Vertical frown line between brows",
+        "size": "small",
+        "shape": "vertical line",
+        "color": "skin shadow",
+        "characteristics": "concentration, aging, serious",
+        "gender_fit": "both",
+        "tags": ["wrinkle", "frown", "vertical", "aging", "serious"]
+      },
+      "detail_03_00.png": {
+        "style": "frown lines",
+        "description": "Double vertical frown lines",
+        "size": "small",
+        "shape": "parallel vertical lines",
+        "color": "skin shadow",
+        "characteristics": "concentration, aging, intense",
+        "gender_fit": "both",
+        "tags": ["wrinkle", "frown", "vertical", "aging", "intense"]
+      },
+      "detail_04_00.png": {
+        "style": "combination lines",
+        "description": "Mixed horizontal and vertical expression lines",
+        "size": "small",
+        "shape": "horizontal and vertical",
+        "color": "skin shadow",
+        "characteristics": "mature, expressive, aging",
+        "gender_fit": "both",
+        "tags": ["wrinkle", "expression", "mixed", "aging", "mature"]
+      },
+      "detail_05_00.png": {
+        "style": "crow's feet",
+        "description": "Eye corner wrinkles (crow's feet)",
+        "size": "small",
+        "shape": "radiating lines from eye corner",
+        "color": "skin shadow",
+        "characteristics": "aging, smile lines, mature",
+        "gender_fit": "both",
+        "tags": ["wrinkle", "crows feet", "eye", "aging", "smile lines"]
+      },
+      "detail_06_00.png": {
+        "style": "under eye shadow",
+        "description": "Under-eye shadow/bags",
+        "size": "small",
+        "shape": "curved shadow under eyes",
+        "color": "skin shadow",
+        "characteristics": "tired, mature, aged",
+        "gender_fit": "both",
+        "tags": ["shadow", "under-eye", "bags", "tired", "aging"]
+      },
+      "detail_07_00.png": {
+        "style": "cheek line",
+        "description": "Nasolabial fold/smile line",
+        "size": "medium",
+        "shape": "curved line from nose to mouth",
+        "color": "skin shadow",
+        "characteristics": "mature, expression line, aging",
+        "gender_fit": "both",
+        "tags": ["wrinkle", "smile line", "nasolabial", "aging", "cheek"]
+      },
+      "detail_08_00.png": {
+        "style": "deep smile lines",
+        "description": "Pronounced nasolabial folds",
+        "size": "medium",
+        "shape": "deep curved lines",
+        "color": "skin shadow",
+        "characteristics": "aged, expressive, deep",
+        "gender_fit": "both",
+        "tags": ["wrinkle", "smile line", "deep", "aging", "pronounced"]
+      },
+      "detail_09_00.png": {
+        "style": "jaw shadow",
+        "description": "Shadow defining jaw line",
+        "size": "small",
+        "shape": "curved shadow along jaw",
+        "color": "skin shadow",
+        "characteristics": "dimensional, defined jaw",
+        "gender_fit": "both",
+        "tags": ["shadow", "jaw", "dimensional", "definition"]
+      }
+    },
+    "12_Detail_Skin": {
+      "detail_10_00.png": {
+        "style": "cheek blush",
+        "description": "Rosy cheek marks",
+        "size": "small",
+        "shape": "curved marks on cheeks",
+        "color": "skin tone/pink",
+        "characteristics": "youthful, blushing, healthy",
+        "gender_fit": "both",
+        "tags": ["blush", "cheek", "rosy", "youthful", "healthy"]
+      },
+      "detail_11_00.png": {
+        "style": "temple shadow",
+        "description": "Temple area shading",
+        "size": "small",
+        "shape": "shadow at temples",
+        "color": "skin shadow",
+        "characteristics": "dimensional, depth",
+        "gender_fit": "both",
+        "tags": ["shadow", "temple", "dimensional", "depth"]
+      },
+      "detail_12_00.png": {
+        "style": "forehead shadow",
+        "description": "Forehead contour shadow",
+        "size": "medium",
+        "shape": "horizontal shadow band",
+        "color": "skin shadow",
+        "characteristics": "dimensional, contoured",
+        "gender_fit": "both",
+        "tags": ["shadow", "forehead", "contour", "dimensional"]
+      },
+      "detail_13_00.png": {
+        "style": "bridge shadow",
+        "description": "Nose bridge shadow",
+        "size": "small",
+        "shape": "vertical shadow on nose",
+        "color": "skin shadow",
+        "characteristics": "dimensional, defined nose",
+        "gender_fit": "both",
+        "tags": ["shadow", "nose", "bridge", "dimensional"]
+      },
+      "detail_14_00.png": {
+        "style": "mouth shadow",
+        "description": "Shadow around mouth area",
+        "size": "small",
+        "shape": "shadow around lips",
+        "color": "skin shadow",
+        "characteristics": "dimensional, depth",
+        "gender_fit": "both",
+        "tags": ["shadow", "mouth", "lips", "dimensional"]
+      },
+      "detail_15_00.png": {
+        "style": "neck shadow",
+        "description": "Neck shading detail",
+        "size": "medium",
+        "shape": "shadow on neck",
+        "color": "skin shadow",
+        "characteristics": "dimensional, depth",
+        "gender_fit": "both",
+        "tags": ["shadow", "neck", "dimensional", "depth"]
+      },
+      "detail_16_00.png": {
+        "style": "chin shadow",
+        "description": "Chin contour shadow",
+        "size": "small",
+        "shape": "shadow under chin",
+        "color": "skin shadow",
+        "characteristics": "dimensional, defined",
+        "gender_fit": "both",
+        "tags": ["shadow", "chin", "contour", "dimensional"]
+      },
+      "detail_17_00.png": {
+        "style": "overall shading",
+        "description": "General facial shading",
+        "size": "medium",
+        "shape": "distributed shadows",
+        "color": "skin shadow",
+        "characteristics": "dimensional, depth, contoured",
+        "gender_fit": "both",
+        "tags": ["shadow", "face", "shading", "dimensional", "contour"]
+      },
+      "detail_18_00.png": {
+        "style": "side shadow",
+        "description": "Side face shading",
+        "size": "medium",
+        "shape": "side contour shadow",
+        "color": "skin shadow",
+        "characteristics": "dimensional, profile depth",
+        "gender_fit": "both",
+        "tags": ["shadow", "side", "contour", "dimensional"]
+      },
+      "detail_19_00.png": {
+        "style": "eye socket shadow",
+        "description": "Eye socket depth shading",
+        "size": "small",
+        "shape": "shadow around eye area",
+        "color": "skin shadow",
+        "characteristics": "dimensional, depth",
+        "gender_fit": "both",
+        "tags": ["shadow", "eye", "socket", "dimensional", "depth"]
+      },
+      "detail_20_00.png": {
+        "style": "brow shadow",
+        "description": "Brow bone shading",
+        "size": "small",
+        "shape": "shadow above eyes",
+        "color": "skin shadow",
+        "characteristics": "dimensional, defined brow",
+        "gender_fit": "both",
+        "tags": ["shadow", "brow", "bone", "dimensional"]
+      }
+    },
+    "13_Headshape_Skin": {
+      "headshape_00_00.png": {
+        "style": "oval standard",
+        "description": "Standard oval face shape",
+        "size": "standard",
+        "shape": "oval, balanced proportions",
+        "color": "skin outline",
+        "characteristics": "neutral, balanced, average",
+        "gender_fit": "both",
+        "tags": ["face", "oval", "standard", "balanced", "neutral"]
+      },
+      "headshape_00_01.png": {
+        "style": "oval standard",
+        "description": "Oval face with slight chin",
+        "size": "standard",
+        "shape": "oval with defined chin",
+        "color": "skin outline",
+        "characteristics": "balanced, defined",
+        "gender_fit": "both",
+        "tags": ["face", "oval", "chin", "balanced", "defined"]
+      },
+      "headshape_01_00.png": {
+        "style": "round soft",
+        "description": "Round soft face shape",
+        "size": "round",
+        "shape": "rounded, soft curves",
+        "color": "skin outline",
+        "characteristics": "youthful, soft, gentle",
+        "gender_fit": "both",
+        "tags": ["face", "round", "soft", "youthful", "gentle"]
+      },
+      "headshape_02_00.png": {
+        "style": "angular square",
+        "description": "Angular square jaw face",
+        "size": "broad",
+        "shape": "square jaw, angular",
+        "color": "skin outline",
+        "characteristics": "masculine, strong jaw, angular",
+        "gender_fit": "male",
+        "tags": ["face", "square", "angular", "masculine", "strong jaw"]
+      },
+      "headshape_03_00.png": {
+        "style": "heart shaped",
+        "description": "Heart-shaped face with pointed chin",
+        "size": "narrow at chin",
+        "shape": "wide forehead, narrow chin",
+        "color": "skin outline",
+        "characteristics": "feminine, delicate chin",
+        "gender_fit": "female",
+        "tags": ["face", "heart", "pointed chin", "feminine", "delicate"]
+      },
+      "headshape_04_00.png": {
+        "style": "diamond angular",
+        "description": "Diamond face with prominent cheekbones",
+        "size": "angular",
+        "shape": "narrow forehead and chin, wide cheeks",
+        "color": "skin outline",
+        "characteristics": "distinctive, angular, prominent cheeks",
+        "gender_fit": "both",
+        "tags": ["face", "diamond", "angular", "cheekbones", "distinctive"]
+      },
+      "headshape_05_00.png": {
+        "style": "rectangular long",
+        "description": "Long rectangular face shape",
+        "size": "elongated",
+        "shape": "long, rectangular",
+        "color": "skin outline",
+        "characteristics": "elongated, mature",
+        "gender_fit": "both",
+        "tags": ["face", "rectangular", "long", "elongated", "mature"]
+      },
+      "headshape_06_00.png": {
+        "style": "triangular strong",
+        "description": "Triangular face with strong jaw",
+        "size": "wide at jaw",
+        "shape": "narrow forehead, wide jaw",
+        "color": "skin outline",
+        "characteristics": "strong jaw, distinctive",
+        "gender_fit": "male",
+        "tags": ["face", "triangular", "strong jaw", "wide", "masculine"]
+      },
+      "headshape_07_00.png": {
+        "style": "narrow oval",
+        "description": "Narrow oval face",
+        "size": "narrow",
+        "shape": "elongated oval, narrow",
+        "color": "skin outline",
+        "characteristics": "delicate, slim, refined",
+        "gender_fit": "both",
+        "tags": ["face", "oval", "narrow", "delicate", "slim"]
+      },
+      "headshape_07_01.png": {
+        "style": "narrow oval",
+        "description": "Narrow oval with defined chin",
+        "size": "narrow",
+        "shape": "slim oval, pointed chin",
+        "color": "skin outline",
+        "characteristics": "refined, delicate",
+        "gender_fit": "both",
+        "tags": ["face", "oval", "narrow", "refined", "pointed chin"]
+      },
+      "headshape_08_00.png": {
+        "style": "broad square",
+        "description": "Broad square masculine face",
+        "size": "wide",
+        "shape": "broad, square jaw",
+        "color": "skin outline",
+        "characteristics": "very masculine, broad, strong",
+        "gender_fit": "male",
+        "tags": ["face", "square", "broad", "masculine", "strong", "wide"]
+      },
+      "headshape_08_00_female.png": {
+        "style": "soft oval feminine",
+        "description": "Soft oval feminine face with gentle curves",
+        "size": "standard",
+        "shape": "soft oval, smooth curves",
+        "color": "skin outline",
+        "characteristics": "feminine, soft, delicate",
+        "gender_fit": "female",
+        "tags": ["face", "oval", "soft", "feminine", "gentle", "delicate"]
+      },
+      "headshape_08_01.png": {
+        "style": "broad square",
+        "description": "Broad square face with prominent jaw",
+        "size": "wide",
+        "shape": "very square, wide jaw",
+        "color": "skin outline",
+        "characteristics": "very masculine, powerful",
+        "gender_fit": "male",
+        "tags": ["face", "square", "broad", "powerful", "masculine", "wide jaw"]
+      },
+      "headshape_08_01_female.png": {
+        "style": "soft oval feminine",
+        "description": "Soft feminine face with delicate features",
+        "size": "standard",
+        "shape": "soft curves, delicate",
+        "color": "skin outline",
+        "characteristics": "feminine, delicate, refined",
+        "gender_fit": "female",
+        "tags": ["face", "oval", "feminine", "delicate", "soft", "refined"]
+      },
+      "headshape_08_02.png": {
+        "style": "broad square",
+        "description": "Broad square face variation",
+        "size": "wide",
+        "shape": "square, strong",
+        "color": "skin outline",
+        "characteristics": "masculine, powerful",
+        "gender_fit": "male",
+        "tags": ["face", "square", "broad", "masculine", "strong"]
+      },
+      "headshape_09_00.png": {
+        "style": "round full",
+        "description": "Full round face",
+        "size": "round",
+        "shape": "circular, full cheeks",
+        "color": "skin outline",
+        "characteristics": "youthful, cherubic, soft",
+        "gender_fit": "both",
+        "tags": ["face", "round", "full", "youthful", "cherubic", "soft"]
+      },
+      "headshape_09_00_female.png": {
+        "style": "round soft feminine",
+        "description": "Round soft feminine face",
+        "size": "round",
+        "shape": "rounded, soft feminine curves",
+        "color": "skin outline",
+        "characteristics": "feminine, soft, gentle, youthful",
+        "gender_fit": "female",
+        "tags": ["face", "round", "soft", "feminine", "gentle", "youthful"]
+      },
+      "headshape_09_01.png": {
+        "style": "round full",
+        "description": "Full round face with soft features",
+        "size": "round",
+        "shape": "very round, plump",
+        "color": "skin outline",
+        "characteristics": "very youthful, soft, gentle",
+        "gender_fit": "both",
+        "tags": ["face", "round", "full", "plump", "youthful", "gentle"]
+      },
+      "headshape_09_01_female.png": {
+        "style": "round soft feminine",
+        "description": "Round feminine face with full cheeks",
+        "size": "round",
+        "shape": "round, full, feminine",
+        "color": "skin outline",
+        "characteristics": "feminine, youthful, soft, cherubic",
+        "gender_fit": "female",
+        "tags": ["face", "round", "feminine", "full", "youthful", "cherubic"]
+      },
+      "headshape_10_00.png": {
+        "style": "soft standard",
+        "description": "Soft standard face shape",
+        "size": "standard",
+        "shape": "balanced, soft curves",
+        "color": "skin outline",
+        "characteristics": "neutral, soft, balanced",
+        "gender_fit": "both",
+        "tags": ["face", "standard", "soft", "balanced", "neutral"]
+      },
+      "headshape_11_00.png": {
+        "style": "soft oval",
+        "description": "Soft oval face shape",
+        "size": "standard",
+        "shape": "oval, gentle curves",
+        "color": "skin outline",
+        "characteristics": "gentle, balanced, soft",
+        "gender_fit": "both",
+        "tags": ["face", "oval", "soft", "gentle", "balanced"]
+      },
+      "headshape_12_00.png": {
+        "style": "standard balanced",
+        "description": "Standard balanced face",
+        "size": "standard",
+        "shape": "balanced proportions",
+        "color": "skin outline",
+        "characteristics": "neutral, average, balanced",
+        "gender_fit": "both",
+        "tags": ["face", "standard", "balanced", "neutral", "average"]
+      },
+      "headshape_13_00.png": {
+        "style": "rounded standard",
+        "description": "Rounded standard face",
+        "size": "standard",
+        "shape": "slightly rounded",
+        "color": "skin outline",
+        "characteristics": "neutral, rounded, natural",
+        "gender_fit": "both",
+        "tags": ["face", "rounded", "standard", "neutral", "natural"]
+      },
+      "headshape_14_00.png": {
+        "style": "oval mature",
+        "description": "Mature oval face shape",
+        "size": "standard",
+        "shape": "oval, mature proportions",
+        "color": "skin outline",
+        "characteristics": "mature, balanced, defined",
+        "gender_fit": "both",
+        "tags": ["face", "oval", "mature", "balanced", "defined"]
+      },
+      "headshape_15_00.png": {
+        "style": "standard neutral",
+        "description": "Standard neutral face",
+        "size": "standard",
+        "shape": "neutral proportions",
+        "color": "skin outline",
+        "characteristics": "neutral, average, balanced",
+        "gender_fit": "both",
+        "tags": ["face", "standard", "neutral", "balanced", "average"]
+      }
+    },
+    "15_Ears_Skin": {
+      "ears_00_00.png": {
+        "style": "standard rounded",
+        "description": "Standard rounded ears",
+        "size": "medium",
+        "shape": "rounded, typical proportions",
+        "color": "skin outline",
+        "characteristics": "normal, average, natural",
+        "gender_fit": "both",
+        "tags": ["ears", "rounded", "standard", "normal", "average"]
+      },
+      "ears_01_00.png": {
+        "style": "small compact",
+        "description": "Small compact ears",
+        "size": "small",
+        "shape": "compact, close to head",
+        "color": "skin outline",
+        "characteristics": "small, neat, compact",
+        "gender_fit": "both",
+        "tags": ["ears", "small", "compact", "neat", "petite"]
+      },
+      "ears_02_00.png": {
+        "style": "large prominent",
+        "description": "Large prominent ears",
+        "size": "large",
+        "shape": "protruding, prominent",
+        "color": "skin outline",
+        "characteristics": "large, distinctive, protruding",
+        "gender_fit": "both",
+        "tags": ["ears", "large", "prominent", "protruding", "distinctive"]
+      },
+      "ears_03_00.png": {
+        "style": "angular pointed",
+        "description": "Angular ears with pointed top",
+        "size": "medium",
+        "shape": "angular, slightly pointed",
+        "color": "skin outline",
+        "characteristics": "angular, distinctive, pointed",
+        "gender_fit": "both",
+        "tags": ["ears", "angular", "pointed", "distinctive", "sharp"]
+      },
+      "ears_04_00.png": {
+        "style": "round full",
+        "description": "Round full ears",
+        "size": "medium-large",
+        "shape": "round, full lobes",
+        "color": "skin outline",
+        "characteristics": "rounded, full, soft",
+        "gender_fit": "both",
+        "tags": ["ears", "round", "full", "soft", "rounded"]
+      },
+      "ears_05_00.png": {
+        "style": "narrow elongated",
+        "description": "Narrow elongated ears",
+        "size": "long",
+        "shape": "narrow, vertically elongated",
+        "color": "skin outline",
+        "characteristics": "long, narrow, distinctive",
+        "gender_fit": "both",
+        "tags": ["ears", "narrow", "elongated", "long", "distinctive"]
+      },
+      "ears_06_00.png": {
+        "style": "flat close",
+        "description": "Flat ears close to head",
+        "size": "medium",
+        "shape": "flat, minimal protrusion",
+        "color": "skin outline",
+        "characteristics": "flat, close-set, minimal",
+        "gender_fit": "both",
+        "tags": ["ears", "flat", "close", "minimal", "subtle"]
+      },
+      "ears_07_00.png": {
+        "style": "detached lobes",
+        "description": "Ears with detached/hanging lobes",
+        "size": "medium",
+        "shape": "pronounced hanging lobes",
+        "color": "skin outline",
+        "characteristics": "distinctive lobes, hanging",
+        "gender_fit": "both",
+        "tags": ["ears", "lobes", "detached", "hanging", "distinctive"]
+      }
+    },
+    "16_Clothes_Clothes": {
+      "clothes_00_00.png": {
+        "style": "formal suit",
+        "description": "Dark formal suit with tie and collar",
+        "size": "standard torso coverage",
+        "shape": "suit jacket with shirt and tie",
+        "color": "dark blue/gray with white collar",
+        "characteristics": "professional, formal, business attire with pocket square",
+        "gender_fit": "male",
+        "tags": ["clothes", "suit", "formal", "business", "tie", "professional", "jacket"]
+      },
+      "clothes_00_01.png": {
+        "style": "formal suit",
+        "description": "Formal suit variation",
+        "size": "standard torso",
+        "shape": "suit with tie",
+        "color": "dark with white shirt",
+        "characteristics": "formal, professional",
+        "gender_fit": "male",
+        "tags": ["clothes", "suit", "formal", "business", "tie", "professional"]
+      },
+      "clothes_01_00.png": {
+        "style": "casual shirt",
+        "description": "Casual open collar shirt",
+        "size": "standard torso",
+        "shape": "collared shirt, no tie",
+        "color": "varied",
+        "characteristics": "casual, relaxed, open collar",
+        "gender_fit": "both",
+        "tags": ["clothes", "shirt", "casual", "collar", "relaxed"]
+      },
+      "clothes_02_00.png": {
+        "style": "mechanic outfit",
+        "description": "Mechanic or worker outfit with tool",
+        "size": "standard torso",
+        "shape": "jacket with shovel/tool",
+        "color": "gray/beige work clothes",
+        "characteristics": "working class, laborer, practical",
+        "gender_fit": "male",
+        "tags": ["clothes", "mechanic", "worker", "tool", "labor", "practical"]
+      },
+      "clothes_03_00.png": {
+        "style": "worker outfit",
+        "description": "Dark worker outfit with wrench",
+        "size": "standard torso",
+        "shape": "work clothes with wrench",
+        "color": "dark blue/navy",
+        "characteristics": "mechanic, worker, industrial",
+        "gender_fit": "male",
+        "tags": ["clothes", "worker", "mechanic", "wrench", "industrial", "labor"]
+      },
+      "clothes_04_00.png": {
+        "style": "blacksmith outfit",
+        "description": "Blacksmith with hammer and tie",
+        "size": "standard torso",
+        "shape": "suit with hammer",
+        "color": "dark suit with tool",
+        "characteristics": "craftsman, blacksmith, tradesman",
+        "gender_fit": "male",
+        "tags": ["clothes", "blacksmith", "hammer", "craftsman", "tool", "tradesman"]
+      },
+      "clothes_05_00.png": {
+        "style": "medic uniform",
+        "description": "Military medic uniform with cross",
+        "size": "standard torso",
+        "shape": "military uniform with medic cross",
+        "color": "dark blue with white cross armband",
+        "characteristics": "military, medic, healthcare, armed forces",
+        "gender_fit": "male",
+        "tags": ["clothes", "uniform", "medic", "military", "medical", "cross"]
+      },
+      "clothes_06_00.png": {
+        "style": "casual button-up",
+        "description": "Light casual button-up shirt",
+        "size": "standard torso",
+        "shape": "button-up shirt with collar",
+        "color": "light blue/gray",
+        "characteristics": "casual, everyday, comfortable",
+        "gender_fit": "both",
+        "tags": ["clothes", "shirt", "casual", "button-up", "everyday"]
+      },
+      "clothes_07_00_F.png": {
+        "style": "mechanic outfit female",
+        "description": "Female mechanic outfit with shovel",
+        "size": "standard torso",
+        "shape": "work clothes with tool",
+        "color": "beige/tan work clothes",
+        "characteristics": "worker, laborer, practical, feminine",
+        "gender_fit": "female",
+        "tags": ["clothes", "mechanic", "worker", "female", "tool", "labor"]
+      },
+      "clothes_08_00_F.png": {
+        "style": "worker outfit female",
+        "description": "Female worker outfit with hammer",
+        "size": "standard torso",
+        "shape": "dark work outfit with hammer",
+        "color": "dark blue",
+        "characteristics": "mechanic, worker, industrial, feminine",
+        "gender_fit": "female",
+        "tags": ["clothes", "worker", "female", "hammer", "mechanic", "industrial"]
+      },
+      "clothes_09_00_F.png": {
+        "style": "casual shirt female",
+        "description": "Female casual collared shirt with tie",
+        "size": "standard torso",
+        "shape": "shirt with tie",
+        "color": "light blue",
+        "characteristics": "casual, feminine, smart casual",
+        "gender_fit": "female",
+        "tags": ["clothes", "shirt", "female", "casual", "tie", "collar"]
+      },
+      "clothes_10_00_F.png": {
+        "style": "worker outfit female",
+        "description": "Female worker with wrench",
+        "size": "standard torso",
+        "shape": "work clothes with wrench",
+        "color": "dark blue",
+        "characteristics": "mechanic, worker, practical, feminine",
+        "gender_fit": "female",
+        "tags": ["clothes", "worker", "female", "wrench", "mechanic", "industrial"]
+      },
+      "clothes_11_00_F.png": {
+        "style": "military uniform female",
+        "description": "Female military uniform with epaulettes",
+        "size": "standard torso",
+        "shape": "military jacket with shoulder decorations",
+        "color": "dark blue with white shirt",
+        "characteristics": "military, formal, officer, feminine",
+        "gender_fit": "female",
+        "tags": ["clothes", "military", "uniform", "female", "officer", "formal"]
+      },
+      "clothes_12_00_F.png": {
+        "style": "police uniform female",
+        "description": "Female police uniform with pockets",
+        "size": "standard torso",
+        "shape": "police uniform with collar",
+        "color": "dark blue",
+        "characteristics": "police, law enforcement, formal, feminine",
+        "gender_fit": "female",
+        "tags": ["clothes", "police", "uniform", "female", "law enforcement", "formal"]
+      }
+    },
+    "17_Body_Skin": {
+      "body_00_00.png": {
+        "style": "neck and shoulders",
+        "description": "Standard neck and shoulder structure",
+        "size": "standard proportions",
+        "shape": "neck with shoulders",
+        "color": "skin tone",
+        "characteristics": "neutral proportions, average build",
+        "gender_fit": "both",
+        "tags": ["body", "neck", "shoulders", "standard", "neutral"]
+      },
+      "body_01_00.png": {
+        "style": "broad shoulders",
+        "description": "Broad shoulders and thick neck",
+        "size": "large, muscular",
+        "shape": "wide shoulders, thick neck",
+        "color": "skin tone",
+        "characteristics": "masculine, muscular, athletic",
+        "gender_fit": "male",
+        "tags": ["body", "shoulders", "broad", "muscular", "athletic", "masculine"]
+      }
+    },
+    "18_HairBack_Hair": {
+      "hairback_04_00.png": {
+        "style": "bald back",
+        "description": "Back of bald head",
+        "length": "none",
+        "shape": "smooth head back",
+        "color": "none",
+        "characteristics": "bald, no hair",
+        "gender_fit": "male",
+        "tags": ["hair", "back", "bald", "none"]
+      },
+      "hairback_07_00_female.png": {
+        "style": "long back female",
+        "description": "Long hair flowing down back",
+        "length": "long",
+        "shape": "straight, flowing down",
+        "color": "black/dark",
+        "characteristics": "long, flowing, dramatic",
+        "gender_fit": "female",
+        "tags": ["hair", "back", "long", "flowing", "straight"]
+      },
+      "hairback_07_01_female.png": {
+        "style": "long back female",
+        "description": "Long hair back variation",
+        "length": "long",
+        "shape": "flowing down",
+        "color": "brown/medium",
+        "characteristics": "long, elegant",
+        "gender_fit": "female",
+        "tags": ["hair", "back", "long", "flowing", "elegant"]
+      },
+      "hairback_07_03_female.png": {
+        "style": "long back female",
+        "description": "Long hair back light color",
+        "length": "long",
+        "shape": "flowing",
+        "color": "light tone",
+        "characteristics": "long, flowing",
+        "gender_fit": "female",
+        "tags": ["hair", "back", "long", "flowing"]
+      },
+      "hairback_08_00.png": {
+        "style": "bob back",
+        "description": "Bob haircut back view",
+        "length": "short",
+        "shape": "rounded at nape",
+        "color": "black/dark",
+        "characteristics": "short, neat, rounded",
+        "gender_fit": "female",
+        "tags": ["hair", "back", "bob", "short", "neat"]
+      },
+      "hairback_08_00_female.png": {
+        "style": "bob back female",
+        "description": "Female bob back view",
+        "length": "short",
+        "shape": "rounded, neat",
+        "color": "black/dark",
+        "characteristics": "short, classic, feminine",
+        "gender_fit": "female",
+        "tags": ["hair", "back", "bob", "short", "neat", "feminine"]
+      },
+      "hairback_08_01.png": {
+        "style": "bob back",
+        "description": "Bob back variation",
+        "length": "short",
+        "shape": "rounded",
+        "color": "medium tone",
+        "characteristics": "short, classic",
+        "gender_fit": "female",
+        "tags": ["hair", "back", "bob", "short", "classic"]
+      },
+      "hairback_08_01_female.png": {
+        "style": "bob back female",
+        "description": "Female bob back variation",
+        "length": "short",
+        "shape": "rounded, styled",
+        "color": "brown/medium",
+        "characteristics": "short, elegant, feminine",
+        "gender_fit": "female",
+        "tags": ["hair", "back", "bob", "short", "elegant", "feminine"]
+      },
+      "hairback_09_00.png": {
+        "style": "ponytail back",
+        "description": "Ponytail hanging down back",
+        "length": "long",
+        "shape": "gathered, hanging",
+        "color": "black/dark",
+        "characteristics": "practical, sporty, neat",
+        "gender_fit": "female",
+        "tags": ["hair", "back", "ponytail", "long", "hanging", "sporty"]
+      },
+      "hairback_09_00_female.png": {
+        "style": "ponytail back female",
+        "description": "Female ponytail back view",
+        "length": "long",
+        "shape": "gathered, flowing",
+        "color": "black/dark",
+        "characteristics": "practical, neat, feminine",
+        "gender_fit": "female",
+        "tags": ["hair", "back", "ponytail", "long", "neat", "feminine"]
+      },
+      "hairback_09_01.png": {
+        "style": "ponytail back",
+        "description": "Ponytail back variation",
+        "length": "long",
+        "shape": "tied, hanging",
+        "color": "medium tone",
+        "characteristics": "practical, neat",
+        "gender_fit": "female",
+        "tags": ["hair", "back", "ponytail", "long", "neat"]
+      },
+      "hairback_09_01_female.png": {
+        "style": "ponytail back female",
+        "description": "Female ponytail back variation",
+        "length": "long",
+        "shape": "gathered, styled",
+        "color": "brown/medium",
+        "characteristics": "neat, practical, feminine",
+        "gender_fit": "female",
+        "tags": ["hair", "back", "ponytail", "long", "neat", "feminine"]
+      },
+      "hairback_09_02.png": {
+        "style": "ponytail back",
+        "description": "Ponytail light color",
+        "length": "long",
+        "shape": "hanging",
+        "color": "light tone",
+        "characteristics": "neat, sporty",
+        "gender_fit": "female",
+        "tags": ["hair", "back", "ponytail", "long", "sporty"]
+      },
+      "hairback_09_02_female.png": {
+        "style": "ponytail back female",
+        "description": "Female ponytail light color",
+        "length": "long",
+        "shape": "flowing, gathered",
+        "color": "light tone",
+        "characteristics": "neat, elegant, feminine",
+        "gender_fit": "female",
+        "tags": ["hair", "back", "ponytail", "long", "elegant", "feminine"]
+      },
+      "hairback_09_03.png": {
+        "style": "side ponytail back",
+        "description": "Side ponytail view from back",
+        "length": "long",
+        "shape": "asymmetric, side",
+        "color": "varied tone",
+        "characteristics": "playful, asymmetric",
+        "gender_fit": "female",
+        "tags": ["hair", "back", "ponytail", "side", "asymmetric", "playful"]
+      },
+      "hairback_09_03_female.png": {
+        "style": "side ponytail back female",
+        "description": "Female side ponytail back view",
+        "length": "long",
+        "shape": "side-gathered, asymmetric",
+        "color": "varied tone",
+        "characteristics": "playful, asymmetric, feminine",
+        "gender_fit": "female",
+        "tags": ["hair", "back", "ponytail", "side", "playful", "feminine"]
+      },
+      "hairback_09_04_female.png": {
+        "style": "ponytail back female",
+        "description": "Female ponytail another variation",
+        "length": "long",
+        "shape": "gathered, styled",
+        "color": "varied",
+        "characteristics": "practical, feminine",
+        "gender_fit": "female",
+        "tags": ["hair", "back", "ponytail", "long", "practical", "feminine"]
+      },
+      "hairback_09_05_female.png": {
+        "style": "ponytail back female",
+        "description": "Female ponytail final variation",
+        "length": "long",
+        "shape": "tied back, neat",
+        "color": "varied",
+        "characteristics": "neat, feminine",
+        "gender_fit": "female",
+        "tags": ["hair", "back", "ponytail", "long", "neat", "feminine"]
+      },
+      "hairback_10_00.png": {
+        "style": "wavy long back",
+        "description": "Long wavy hair from back",
+        "length": "long",
+        "shape": "wavy, voluminous",
+        "color": "black/dark",
+        "characteristics": "romantic, voluminous, flowing",
+        "gender_fit": "female",
+        "tags": ["hair", "back", "long", "wavy", "voluminous", "romantic"]
+      },
+      "hairback_10_00_female.png": {
+        "style": "wavy long back female",
+        "description": "Female wavy long hair back",
+        "length": "long",
+        "shape": "wavy, flowing",
+        "color": "black/dark",
+        "characteristics": "romantic, flowing, feminine",
+        "gender_fit": "female",
+        "tags": ["hair", "back", "long", "wavy", "romantic", "feminine"]
+      },
+      "hairback_10_01.png": {
+        "style": "wavy long back",
+        "description": "Long wavy hair back variation",
+        "length": "long",
+        "shape": "wavy, flowing",
+        "color": "medium tone",
+        "characteristics": "romantic, flowing",
+        "gender_fit": "female",
+        "tags": ["hair", "back", "long", "wavy", "flowing", "romantic"]
+      },
+      "hairback_11_00.png": {
+        "style": "side hair strands",
+        "description": "Side hair strands visible from back",
+        "length": "short-medium",
+        "shape": "side strands",
+        "color": "black/dark",
+        "characteristics": "partial, side detail",
+        "gender_fit": "both",
+        "tags": ["hair", "back", "side", "strands", "detail"]
+      },
+      "hairback_11_01.png": {
+        "style": "side hair strands",
+        "description": "Side hair strands variation",
+        "length": "short-medium",
+        "shape": "wavy side strands",
+        "color": "medium tone",
+        "characteristics": "side detail, wavy",
+        "gender_fit": "both",
+        "tags": ["hair", "back", "side", "strands", "wavy", "detail"]
+      },
+      "hairback_12_00.png": {
+        "style": "side curls back",
+        "description": "Side curls visible from back",
+        "length": "medium",
+        "shape": "curly side strands",
+        "color": "black/dark",
+        "characteristics": "curly, side detail",
+        "gender_fit": "both",
+        "tags": ["hair", "back", "curls", "side", "detail"]
+      },
+      "hairback_12_01.png": {
+        "style": "side curls back",
+        "description": "Side curls back variation",
+        "length": "medium",
+        "shape": "wavy curly sides",
+        "color": "medium tone",
+        "characteristics": "wavy, curly, side detail",
+        "gender_fit": "both",
+        "tags": ["hair", "back", "curls", "wavy", "side", "detail"]
+      },
+      "hairback_13_00.png": {
+        "style": "curly sides back",
+        "description": "Curly hair sides from back",
+        "length": "medium",
+        "shape": "curly side volume",
+        "color": "black/dark",
+        "characteristics": "curly, voluminous sides",
+        "gender_fit": "both",
+        "tags": ["hair", "back", "curly", "sides", "volume"]
+      }
+    },
+    "19_ClothesBack_Clothes": {
+      "clothesback_00_00.png": {
+        "style": "suit back",
+        "description": "Back view of suit jacket",
+        "size": "standard",
+        "shape": "suit jacket back",
+        "color": "dark formal",
+        "characteristics": "formal, professional, tailored",
+        "gender_fit": "male",
+        "tags": ["clothes", "back", "suit", "formal", "jacket", "professional"]
+      },
+      "clothesback_14_00.png": {
+        "style": "casual back",
+        "description": "Back view of casual clothing",
+        "size": "standard",
+        "shape": "casual shirt back",
+        "color": "varied",
+        "characteristics": "casual, relaxed",
+        "gender_fit": "both",
+        "tags": ["clothes", "back", "casual", "shirt", "relaxed"]
+      }
+    },
+    "20_Background_Background": {
+      "BG1.png": {
+        "style": "military sunset",
+        "description": "Military base with sunset sky",
+        "size": "full background",
+        "shape": "landscape scene",
+        "color": "orange/yellow sunset with green ground",
+        "characteristics": "military, base, sunset, atmospheric, dramatic",
+        "gender_fit": "both",
+        "tags": ["background", "military", "sunset", "base", "sky", "landscape"]
+      },
+      "BG2.png": {
+        "style": "military sunset airfield",
+        "description": "Airfield with planes and sunset",
+        "size": "full background",
+        "shape": "landscape scene",
+        "color": "orange/yellow sunset with silhouettes",
+        "characteristics": "military, airfield, planes, sunset, dramatic",
+        "gender_fit": "both",
+        "tags": ["background", "military", "airfield", "planes", "sunset", "aircraft"]
+      },
+      "BG3.png": {
+        "style": "military airfield cloudy",
+        "description": "Airfield with plane and cloudy sky",
+        "size": "full background",
+        "shape": "landscape scene",
+        "color": "blue/gray cloudy sky with hangars",
+        "characteristics": "military, airfield, cloudy, aircraft, atmospheric",
+        "gender_fit": "both",
+        "tags": ["background", "military", "airfield", "cloudy", "plane", "hangar"]
+      }
+    }
+  }
+}

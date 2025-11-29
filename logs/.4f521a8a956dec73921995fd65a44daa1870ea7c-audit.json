@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/Users/mz/coding/charactergenerator-prototype/logs/.4f521a8a956dec73921995fd65a44daa1870ea7c-audit.json",
+    "files": [
+        {
+            "date": 1759495297180,
+            "name": "/Users/mz/coding/charactergenerator-prototype/logs/mcp-puppeteer-2025-10-03.log",
+            "hash": "3e8892a6c77fd3a1d2a4f477aa25d5560f8ee7c30cd1b663c40fc47d3848c63f"
+        }
+    ],
+    "hashType": "sha256"
+}
