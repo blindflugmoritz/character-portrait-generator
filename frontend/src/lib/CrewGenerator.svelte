@@ -1,15 +1,17 @@
 <script>
-	import { env } from '$env/dynamic/public';
+	import { Card } from '$lib/components/ui/card';
+	import { Button } from '$lib/components/ui/button';
+	import { Textarea } from '$lib/components/ui/textarea';
+	import { Label } from '$lib/components/ui/label';
 
-	export let onCrewGenerated = (crew) => {};
+	let { onCrewGenerated } = $props();
 
-	let description = '';
-	let replaceExisting = false;
-	let loading = false;
-	let error = '';
-	let successMessage = '';
+	let description = $state('');
+	let replaceExisting = $state(false);
+	let loading = $state(false);
+	let error = $state('');
+	let successMessage = $state('');
 
-	// Get API URL from environment (defaults to localhost for development)
 	const API_URL = 'https://blindflugstudios.pythonanywhere.com';
 
 	async function generateCrew() {
@@ -40,12 +42,8 @@
 				throw new Error(data.error || 'Failed to generate crew');
 			}
 
-			// Call the callback with generated crew
 			onCrewGenerated(data.crew, data.replaceExisting);
-
 			successMessage = `Successfully generated ${data.count} crew member${data.count !== 1 ? 's' : ''}!`;
-
-			// Clear description after successful generation
 			description = '';
 		} catch (err) {
 			error = err.message;
@@ -55,7 +53,6 @@
 		}
 	}
 
-	// Example descriptions
 	const examples = [
 		'Create a crew of 10 Polish pilots from 303 Squadron',
 		'Generate 5 American bomber crew members from the 8th Air Force',
@@ -69,256 +66,69 @@
 	}
 </script>
 
-<div class="generator-container">
-	<div class="generator-header">
-		<h3>🤖 AI Crew Generator</h3>
-		<p>Describe your crew and let AI generate authentic characters with backgrounds</p>
-		<p class="limit-note">Maximum 10 crew members per generation</p>
+<Card.Root class="p-6">
+	<div class="mb-5">
+		<h3 class="text-xl font-bold mb-2">🤖 AI Crew Generator</h3>
+		<p class="text-sm text-muted-foreground mb-1">
+			Describe your crew and let AI generate authentic characters with backgrounds
+		</p>
+		<p class="text-xs text-muted-foreground italic">Maximum 10 crew members per generation</p>
 	</div>
 
-	<div class="examples">
-		<label>Quick examples:</label>
-		<div class="example-buttons">
+	<div class="mb-5 p-4 bg-muted/50 rounded-lg border">
+		<Label class="text-sm font-semibold mb-3 block">Quick examples:</Label>
+		<div class="flex flex-wrap gap-2">
 			{#each examples as example}
-				<button class="example-btn" on:click={() => useExample(example)}>
+				<Button
+					onclick={() => useExample(example)}
+					variant="outline"
+					size="sm"
+					class="text-xs"
+				>
 					{example}
-				</button>
+				</Button>
 			{/each}
 		</div>
 	</div>
 
-	<div class="input-section">
-		<label for="crew-description">Crew Description</label>
-		<textarea
+	<div class="mb-4">
+		<Label for="crew-description">Crew Description</Label>
+		<Textarea
 			id="crew-description"
 			bind:value={description}
 			placeholder="E.g., 'Create a crew of 10 Polish pilots from 303 Squadron with varied experience levels'"
-			rows="4"
+			rows={4}
 			disabled={loading}
+			class="mt-2"
 		/>
 	</div>
 
-	<div class="options">
-		<label class="checkbox-label">
-			<input type="checkbox" bind:checked={replaceExisting} disabled={loading} />
-			Replace existing crew (otherwise adds to current crew)
+	<div class="mb-4">
+		<label class="flex items-center gap-2 cursor-pointer">
+			<input type="checkbox" bind:checked={replaceExisting} disabled={loading} class="cursor-pointer" />
+			<span class="text-sm">Replace existing crew (otherwise adds to current crew)</span>
 		</label>
 	</div>
 
 	{#if error}
-		<div class="error-message">
+		<div class="bg-destructive/10 border border-destructive text-destructive p-3 rounded mb-4 text-sm">
 			<strong>Error:</strong>
 			{error}
 		</div>
 	{/if}
 
 	{#if successMessage}
-		<div class="success-message">{successMessage}</div>
+		<div class="bg-green-50 border border-green-200 text-green-700 p-3 rounded mb-4 text-sm">
+			{successMessage}
+		</div>
 	{/if}
 
-	<button class="generate-btn" on:click={generateCrew} disabled={loading || !description.trim()}>
+	<Button onclick={generateCrew} disabled={loading || !description.trim()} class="w-full">
 		{#if loading}
-			<span class="spinner"></span>
+			<div class="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2"></div>
 			Generating crew...
 		{:else}
 			✨ Generate Crew
 		{/if}
-	</button>
-</div>
-
-<style>
-	.generator-container {
-		background: white;
-		border: 2px solid #333;
-		border-radius: 8px;
-		padding: 20px;
-		margin-bottom: 20px;
-	}
-
-	.generator-header {
-		margin-bottom: 20px;
-	}
-
-	.generator-header h3 {
-		margin: 0 0 8px 0;
-		color: #333;
-		font-size: 20px;
-	}
-
-	.generator-header p {
-		margin: 0;
-		color: #666;
-		font-size: 14px;
-	}
-
-	.generator-header .limit-note {
-		margin-top: 8px;
-		color: #888;
-		font-size: 12px;
-		font-style: italic;
-	}
-
-	.examples {
-		margin-bottom: 20px;
-		padding: 15px;
-		background: #f8f9fa;
-		border-radius: 5px;
-	}
-
-	.examples label {
-		display: block;
-		font-weight: bold;
-		color: #555;
-		font-size: 13px;
-		margin-bottom: 10px;
-	}
-
-	.example-buttons {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 8px;
-	}
-
-	.example-btn {
-		background: white;
-		border: 1px solid #ddd;
-		padding: 6px 12px;
-		border-radius: 4px;
-		font-size: 12px;
-		cursor: pointer;
-		transition: all 0.2s ease;
-		color: #555;
-	}
-
-	.example-btn:hover {
-		border-color: #667eea;
-		color: #667eea;
-		background: #f0f4ff;
-	}
-
-	.input-section {
-		margin-bottom: 15px;
-	}
-
-	.input-section label {
-		display: block;
-		margin-bottom: 8px;
-		font-weight: bold;
-		color: #333;
-		font-size: 14px;
-	}
-
-	textarea {
-		width: 100%;
-		padding: 12px;
-		border: 1px solid #ccc;
-		border-radius: 4px;
-		font-size: 14px;
-		font-family: inherit;
-		resize: vertical;
-		transition: border-color 0.2s ease;
-	}
-
-	textarea:focus {
-		outline: none;
-		border-color: #667eea;
-		box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
-	}
-
-	textarea:disabled {
-		background: #f5f5f5;
-		cursor: not-allowed;
-	}
-
-	.options {
-		margin-bottom: 20px;
-	}
-
-	.checkbox-label {
-		display: flex;
-		align-items: center;
-		font-size: 14px;
-		color: #555;
-		cursor: pointer;
-	}
-
-	.checkbox-label input[type='checkbox'] {
-		margin-right: 8px;
-		cursor: pointer;
-	}
-
-	.error-message {
-		background: #fee;
-		border: 1px solid #fcc;
-		color: #c33;
-		padding: 12px;
-		border-radius: 4px;
-		margin-bottom: 15px;
-		font-size: 14px;
-	}
-
-	.success-message {
-		background: #efe;
-		border: 1px solid #cfc;
-		color: #3a3;
-		padding: 12px;
-		border-radius: 4px;
-		margin-bottom: 15px;
-		font-size: 14px;
-	}
-
-	.generate-btn {
-		width: 100%;
-		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-		color: white;
-		border: none;
-		padding: 14px 24px;
-		border-radius: 6px;
-		font-size: 16px;
-		font-weight: bold;
-		cursor: pointer;
-		transition: all 0.2s ease;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: 8px;
-	}
-
-	.generate-btn:hover:not(:disabled) {
-		transform: translateY(-2px);
-		box-shadow: 0 6px 12px rgba(102, 126, 234, 0.3);
-	}
-
-	.generate-btn:disabled {
-		opacity: 0.6;
-		cursor: not-allowed;
-		transform: none;
-	}
-
-	.spinner {
-		display: inline-block;
-		width: 16px;
-		height: 16px;
-		border: 2px solid rgba(255, 255, 255, 0.3);
-		border-top-color: white;
-		border-radius: 50%;
-		animation: spin 0.8s linear infinite;
-	}
-
-	@keyframes spin {
-		to {
-			transform: rotate(360deg);
-		}
-	}
-
-	@media (max-width: 768px) {
-		.example-buttons {
-			flex-direction: column;
-		}
-
-		.example-btn {
-			width: 100%;
-			text-align: left;
-		}
-	}
-</style>
+	</Button>
+</Card.Root>

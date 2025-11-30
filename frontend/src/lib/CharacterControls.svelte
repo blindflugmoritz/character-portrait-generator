@@ -1,4 +1,8 @@
 <script>
+	import { Button } from '$lib/components/ui/button';
+	import { Card } from '$lib/components/ui/card';
+	import { Label } from '$lib/components/ui/label';
+	import * as Select from '$lib/components/ui/select';
 	import {
 		LAYERS,
 		BODY_SHAPES,
@@ -13,7 +17,7 @@
 	} from './assetData.js';
 	import { spriteLabels } from './spriteLabels.js';
 
-	export let character = {};
+	let { character = $bindable() } = $props();
 
 	// Initialize with default character if empty
 	if (!character.parts) {
@@ -24,7 +28,6 @@
 	if (!character.gender) {
 		character.gender = 'Male';
 	}
-
 
 	// Randomize character
 	function randomizeCharacter() {
@@ -118,20 +121,24 @@
 	}
 
 	// Get layers grouped by category
-	$: layersByCategory = Object.entries(LAYERS).reduce((acc, [name, layer]) => {
-		if (!acc[layer.category]) {
-			acc[layer.category] = [];
-		}
-		acc[layer.category].push({ name, ...layer });
-		return acc;
-	}, {});
+	let layersByCategory = $derived(
+		Object.entries(LAYERS).reduce((acc, [name, layer]) => {
+			if (!acc[layer.category]) {
+				acc[layer.category] = [];
+			}
+			acc[layer.category].push({ name, ...layer });
+			return acc;
+		}, {})
+	);
 
 	// Sort categories with Background at the end
-	$: sortedCategories = Object.entries(layersByCategory).sort(([catA], [catB]) => {
-		if (catA === 'Background') return 1;
-		if (catB === 'Background') return -1;
-		return 0;
-	});
+	let sortedCategories = $derived(
+		Object.entries(layersByCategory).sort(([catA], [catB]) => {
+			if (catA === 'Background') return 1;
+			if (catB === 'Background') return -1;
+			return 0;
+		})
+	);
 
 	// Helper: Get sprite label from layer, index, variant
 	function getSpriteLabel(layerName, index, variant) {
@@ -147,374 +154,227 @@
 	}
 </script>
 
-<div class="controls-container">
-	<div class="controls-header">
-		<h2>Character Customization</h2>
-		<button class="randomize-btn" on:click={randomizeCharacter}>🎲 Randomize</button>
+<Card.Root class="p-6">
+	<div class="flex justify-between items-center mb-6">
+		<h2 class="text-2xl font-bold">Character Customization</h2>
+		<Button onclick={randomizeCharacter} variant="default">
+			🎲 Randomize
+		</Button>
 	</div>
 
 	<!-- Gender Selection -->
-	<div class="section">
-		<h3>Gender</h3>
-		<select
-			value={character.gender}
-			on:change={(e) => {
-				console.log('Gender dropdown changed to:', e.target.value);
-				updateGender(e.target.value);
-			}}
+	<div class="mb-6">
+		<Label>Gender</Label>
+		<Select.Root
+			selected={{ value: character.gender, label: character.gender }}
+			onSelectedChange={(v) => v && updateGender(v.value)}
 		>
-			<option value="Male">Male</option>
-			<option value="Female">Female</option>
-		</select>
+			<Select.Trigger class="w-full">
+				<Select.Value placeholder="Select gender" />
+			</Select.Trigger>
+			<Select.Content>
+				<Select.Item value="Male">Male</Select.Item>
+				<Select.Item value="Female">Female</Select.Item>
+			</Select.Content>
+		</Select.Root>
 	</div>
 
 	<!-- Body Shape Selection -->
-	<div class="section">
-		<h3>Body Shape</h3>
-		<select
-			value={character.bodyShapeIndex}
-			on:change={(e) => updateBodyShape(e.target.value)}
+	<div class="mb-6">
+		<Label>Body Shape</Label>
+		<Select.Root
+			selected={{ value: String(character.bodyShapeIndex), label: BODY_SHAPES.find(s => s.index === character.bodyShapeIndex)?.name || 'Average' }}
+			onSelectedChange={(v) => v && updateBodyShape(v.value)}
 		>
-			{#each BODY_SHAPES as shape}
-				<option value={shape.index}>{shape.name}</option>
-			{/each}
-		</select>
+			<Select.Trigger class="w-full">
+				<Select.Value placeholder="Select body shape" />
+			</Select.Trigger>
+			<Select.Content>
+				{#each BODY_SHAPES as shape}
+					<Select.Item value={String(shape.index)}>{shape.name}</Select.Item>
+				{/each}
+			</Select.Content>
+		</Select.Root>
 	</div>
 
 	<!-- Color Selection -->
-	<div class="section">
-		<h3>Colors</h3>
-		<div class="color-controls">
-			<div class="color-control">
-				<label>Skin Color</label>
-				<select
-					value={character.colorIndices?.Skin ?? 2}
-					on:change={(e) => updateColor('Skin', e.target.value)}
+	<div class="mb-6">
+		<Label class="text-lg font-semibold mb-3 block">Colors</Label>
+		<div class="space-y-4">
+			<!-- Skin Color -->
+			<div class="flex items-center gap-3">
+				<Label class="w-32">Skin Color</Label>
+				<Select.Root
+					selected={{ value: String(character.colorIndices?.Skin ?? 2), label: COLOR_PALETTES.Skin[character.colorIndices?.Skin ?? 2].name }}
+					onSelectedChange={(v) => v && updateColor('Skin', v.value)}
 				>
-					{#each COLOR_PALETTES.Skin as color}
-						<option value={color.index}>
-							{color.name}
-						</option>
-					{/each}
-				</select>
+					<Select.Trigger class="flex-1">
+						<Select.Value />
+					</Select.Trigger>
+					<Select.Content>
+						{#each COLOR_PALETTES.Skin as color}
+							<Select.Item value={String(color.index)}>{color.name}</Select.Item>
+						{/each}
+					</Select.Content>
+				</Select.Root>
 				<div
-					class="color-swatch"
-					style="background-color: {COLOR_PALETTES.Skin[character.colorIndices?.Skin ?? 2]
-						.hex}"
-				/>
+					class="w-8 h-8 rounded border-2 border-gray-300"
+					style="background-color: {COLOR_PALETTES.Skin[character.colorIndices?.Skin ?? 2].hex}"
+				></div>
 			</div>
 
-			<div class="color-control">
-				<label>Hair Color</label>
-				<select
-					value={character.colorIndices?.Hair ?? 3}
-					on:change={(e) => updateColor('Hair', e.target.value)}
+			<!-- Hair Color -->
+			<div class="flex items-center gap-3">
+				<Label class="w-32">Hair Color</Label>
+				<Select.Root
+					selected={{ value: String(character.colorIndices?.Hair ?? 3), label: COLOR_PALETTES.Hair[character.colorIndices?.Hair ?? 3].name }}
+					onSelectedChange={(v) => v && updateColor('Hair', v.value)}
 				>
-					{#each COLOR_PALETTES.Hair as color}
-						<option value={color.index}>
-							{color.name}
-						</option>
-					{/each}
-				</select>
+					<Select.Trigger class="flex-1">
+						<Select.Value />
+					</Select.Trigger>
+					<Select.Content>
+						{#each COLOR_PALETTES.Hair as color}
+							<Select.Item value={String(color.index)}>{color.name}</Select.Item>
+						{/each}
+					</Select.Content>
+				</Select.Root>
 				<div
-					class="color-swatch"
-					style="background-color: {COLOR_PALETTES.Hair[character.colorIndices?.Hair ?? 3]
-						.hex}"
-				/>
+					class="w-8 h-8 rounded border-2 border-gray-300"
+					style="background-color: {COLOR_PALETTES.Hair[character.colorIndices?.Hair ?? 3].hex}"
+				></div>
 			</div>
 
-			<div class="color-control">
-				<label>Eye Color</label>
-				<select
-					value={character.colorIndices?.Eye ?? 2}
-					on:change={(e) => updateColor('Eye', e.target.value)}
+			<!-- Eye Color -->
+			<div class="flex items-center gap-3">
+				<Label class="w-32">Eye Color</Label>
+				<Select.Root
+					selected={{ value: String(character.colorIndices?.Eye ?? 2), label: COLOR_PALETTES.Eye[character.colorIndices?.Eye ?? 2].name }}
+					onSelectedChange={(v) => v && updateColor('Eye', v.value)}
 				>
-					{#each COLOR_PALETTES.Eye as color}
-						<option value={color.index}>
-							{color.name}
-						</option>
-					{/each}
-				</select>
+					<Select.Trigger class="flex-1">
+						<Select.Value />
+					</Select.Trigger>
+					<Select.Content>
+						{#each COLOR_PALETTES.Eye as color}
+							<Select.Item value={String(color.index)}>{color.name}</Select.Item>
+						{/each}
+					</Select.Content>
+				</Select.Root>
 				<div
-					class="color-swatch"
+					class="w-8 h-8 rounded border-2 border-gray-300"
 					style="background-color: {COLOR_PALETTES.Eye[character.colorIndices?.Eye ?? 2].hex}"
-				/>
+				></div>
 			</div>
 
-			<div class="color-control">
-				<label>Accessory Color</label>
-				<select
-					value={character.colorIndices?.Accessory ?? 1}
-					on:change={(e) => updateColor('Accessory', e.target.value)}
+			<!-- Accessory Color -->
+			<div class="flex items-center gap-3">
+				<Label class="w-32">Accessory Color</Label>
+				<Select.Root
+					selected={{ value: String(character.colorIndices?.Accessory ?? 1), label: COLOR_PALETTES.Accessory[character.colorIndices?.Accessory ?? 1].name }}
+					onSelectedChange={(v) => v && updateColor('Accessory', v.value)}
 				>
-					{#each COLOR_PALETTES.Accessory as color}
-						<option value={color.index}>
-							{color.name}
-						</option>
-					{/each}
-				</select>
+					<Select.Trigger class="flex-1">
+						<Select.Value />
+					</Select.Trigger>
+					<Select.Content>
+						{#each COLOR_PALETTES.Accessory as color}
+							<Select.Item value={String(color.index)}>{color.name}</Select.Item>
+						{/each}
+					</Select.Content>
+				</Select.Root>
 				<div
-					class="color-swatch"
-					style="background-color: {COLOR_PALETTES.Accessory[
-						character.colorIndices?.Accessory ?? 1
-					].hex}"
-				/>
+					class="w-8 h-8 rounded border-2 border-gray-300"
+					style="background-color: {COLOR_PALETTES.Accessory[character.colorIndices?.Accessory ?? 1].hex}"
+				></div>
 			</div>
 		</div>
 	</div>
 
 	<!-- Layer Controls by Category -->
-	<div class="categories">
+	<div class="space-y-6">
 		{#each sortedCategories as [categoryName, layers]}
-			<div class="category">
-				<h3>{categoryName}</h3>
-				{#each layers as layer}
-					{@const hairIndex = character.parts?.Hair?.index}
-				{@const baseIndices = getAvailableIndices(layer.name, character.gender)}
-				{@const indices = layer.name === 'HairBack' && hairIndex !== -1 ? getMatchingHairBackIndices(hairIndex, character.gender) : baseIndices}
-					{@const partData = character.parts?.[layer.name] || { index: -1, variant: -1 }}
-					{@const variants = partData.index !== -1 ? getAvailableVariants(layer.name, partData.index, character.gender) : []}
-					{@const hasMoustache = character.parts?.Moustache?.index !== -1}
-					{@const isMouthDisabled = layer.name === 'Mouth' && hasMoustache}
-					{@const isFemaleHiddenLayer = character.gender === 'Female' && (layer.name === 'Beard' || layer.name === 'Moustache')}
+			{@const hairIndex = character.parts?.Hair?.index}
+			<div class="border rounded-lg p-4 bg-muted/50">
+				<h3 class="text-lg font-semibold mb-4">{categoryName}</h3>
+				<div class="space-y-4">
+					{#each layers as layer}
+						{@const baseIndices = getAvailableIndices(layer.name, character.gender)}
+						{@const indices = layer.name === 'HairBack' && hairIndex !== -1 ? getMatchingHairBackIndices(hairIndex, character.gender) : baseIndices}
+						{@const partData = character.parts?.[layer.name] || { index: -1, variant: -1 }}
+						{@const variants = partData.index !== -1 ? getAvailableVariants(layer.name, partData.index, character.gender) : []}
+						{@const hasMoustache = character.parts?.Moustache?.index !== -1}
+						{@const isMouthDisabled = layer.name === 'Mouth' && hasMoustache}
+						{@const isFemaleHiddenLayer = character.gender === 'Female' && (layer.name === 'Beard' || layer.name === 'Moustache')}
 
-					{#if indices.length > 0 && !isFemaleHiddenLayer}
-						<div class="layer-control" class:disabled={isMouthDisabled}>
-							<label>
-								{layer.name.replace(/([A-Z])/g, ' $1').trim()}
-								{#if isMouthDisabled}
-									<span class="disabled-hint">(disabled when moustache present)</span>
-								{/if}
-							</label>
-							<div class="part-selectors">
-								<!-- Index selector -->
-								<select
-									class="index-select"
-									value={partData.index}
-									disabled={isMouthDisabled}
-									on:change={(e) => {
-										const newIndex = parseInt(e.target.value);
-										if (newIndex === -1) {
-											removePart(layer.name);
-										} else {
-											const availVariants = getAvailableVariants(layer.name, newIndex, character.gender);
-											updatePart(layer.name, newIndex, availVariants[0] || 0);
-										}
-									}}
-								>
-									{#if layer.canBeNone}
-										<option value="-1">None</option>
+						{#if indices.length > 0 && !isFemaleHiddenLayer}
+							<div class:opacity-50={isMouthDisabled}>
+								<Label>
+									{layer.name.replace(/([A-Z])/g, ' $1').trim()}
+									{#if isMouthDisabled}
+										<span class="text-xs text-muted-foreground">(disabled when moustache present)</span>
 									{/if}
-									{#each indices as index, i}
-										{@const firstVariant = getAvailableVariants(layer.name, index, character.gender)[0] || 0}
-										<option value={index}>{getSpriteLabel(layer.name, index, firstVariant)}</option>
-									{/each}
-								</select>
-
-								<!-- Variant selector (only show if index is selected AND has multiple variants) -->
-								{#if partData.index !== -1 && variants.length > 1}
-									<select
-										class="variant-select"
-										value={partData.variant}
+								</Label>
+								<div class="flex gap-2 mt-2">
+									<!-- Index selector -->
+									<Select.Root
+										selected={partData.index === -1 ? { value: '-1', label: 'None' } : { value: String(partData.index), label: getSpriteLabel(layer.name, partData.index, getAvailableVariants(layer.name, partData.index, character.gender)[0] || 0) }}
+										onSelectedChange={(v) => {
+											if (!v || isMouthDisabled) return;
+											const newIndex = parseInt(v.value);
+											if (newIndex === -1) {
+												removePart(layer.name);
+											} else {
+												const availVariants = getAvailableVariants(layer.name, newIndex, character.gender);
+												updatePart(layer.name, newIndex, availVariants[0] || 0);
+											}
+										}}
 										disabled={isMouthDisabled}
-										on:change={(e) => updatePart(layer.name, partData.index, e.target.value)}
 									>
-										{#each variants as variant, i}
-											<option value={variant}>{getSpriteLabel(layer.name, partData.index, variant)}</option>
-										{/each}
-									</select>
-								{/if}
+										<Select.Trigger class="flex-[2]">
+											<Select.Value />
+										</Select.Trigger>
+										<Select.Content>
+											{#if layer.canBeNone}
+												<Select.Item value="-1">None</Select.Item>
+											{/if}
+											{#each indices as index}
+												{@const firstVariant = getAvailableVariants(layer.name, index, character.gender)[0] || 0}
+												<Select.Item value={String(index)}>{getSpriteLabel(layer.name, index, firstVariant)}</Select.Item>
+											{/each}
+										</Select.Content>
+									</Select.Root>
 
-								<!-- Remove button -->
-								{#if layer.canBeNone && partData.index !== -1 && !isMouthDisabled}
-									<button class="clear-btn" on:click={() => removePart(layer.name)} title="Remove">
-										✕
-									</button>
-								{/if}
+									<!-- Variant selector (only show if index is selected AND has multiple variants) -->
+									{#if partData.index !== -1 && variants.length > 1}
+										<Select.Root
+											selected={{ value: String(partData.variant), label: getSpriteLabel(layer.name, partData.index, partData.variant) }}
+											onSelectedChange={(v) => v && !isMouthDisabled && updatePart(layer.name, partData.index, v.value)}
+											disabled={isMouthDisabled}
+										>
+											<Select.Trigger class="flex-1">
+												<Select.Value />
+											</Select.Trigger>
+											<Select.Content>
+												{#each variants as variant}
+													<Select.Item value={String(variant)}>{getSpriteLabel(layer.name, partData.index, variant)}</Select.Item>
+												{/each}
+											</Select.Content>
+										</Select.Root>
+									{/if}
+
+									<!-- Remove button -->
+									{#if layer.canBeNone && partData.index !== -1 && !isMouthDisabled}
+										<Button onclick={() => removePart(layer.name)} variant="destructive" size="icon">
+											✕
+										</Button>
+									{/if}
+								</div>
 							</div>
-						</div>
-					{/if}
-				{/each}
+						{/if}
+					{/each}
+				</div>
 			</div>
 		{/each}
 	</div>
-</div>
-
-<style>
-	.controls-container {
-		background: white;
-		border: 2px solid #333;
-		border-radius: 8px;
-		padding: 20px;
-		max-height: 80vh;
-		overflow-y: auto;
-	}
-
-	.controls-header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		margin-bottom: 20px;
-		padding-bottom: 10px;
-		border-bottom: 1px solid #eee;
-	}
-
-	.controls-header h2 {
-		margin: 0;
-		color: #333;
-	}
-
-	.randomize-btn {
-		background: #4caf50;
-		color: white;
-		border: none;
-		padding: 10px 20px;
-		border-radius: 5px;
-		cursor: pointer;
-		font-size: 16px;
-		font-weight: bold;
-	}
-
-	.randomize-btn:hover {
-		background: #45a049;
-	}
-
-	.section {
-		margin-bottom: 20px;
-		padding: 15px;
-		background: #fafafa;
-		border: 1px solid #ddd;
-		border-radius: 5px;
-	}
-
-	.section h3 {
-		margin: 0 0 10px 0;
-		color: #555;
-		font-size: 18px;
-	}
-
-	.section select {
-		width: 100%;
-		padding: 8px;
-		border: 1px solid #ccc;
-		border-radius: 3px;
-		font-size: 14px;
-	}
-
-	.color-controls {
-		display: flex;
-		flex-direction: column;
-		gap: 10px;
-	}
-
-	.color-control {
-		display: grid;
-		grid-template-columns: 100px 1fr 30px;
-		align-items: center;
-		gap: 10px;
-	}
-
-	.color-control label {
-		font-weight: bold;
-		color: #333;
-		font-size: 14px;
-	}
-
-	.color-swatch {
-		width: 30px;
-		height: 30px;
-		border: 2px solid #333;
-		border-radius: 4px;
-	}
-
-	.categories {
-		display: flex;
-		flex-direction: column;
-		gap: 20px;
-	}
-
-	.category {
-		border: 1px solid #ddd;
-		border-radius: 5px;
-		padding: 15px;
-		background: #fafafa;
-	}
-
-	.category h3 {
-		margin: 0 0 15px 0;
-		color: #555;
-		font-size: 18px;
-		border-bottom: 1px solid #ddd;
-		padding-bottom: 5px;
-	}
-
-	.layer-control {
-		margin-bottom: 15px;
-	}
-
-	.layer-control:last-child {
-		margin-bottom: 0;
-	}
-
-	.layer-control.disabled {
-		opacity: 0.5;
-	}
-
-	.layer-control label {
-		display: block;
-		margin-bottom: 5px;
-		font-weight: bold;
-		color: #333;
-		font-size: 14px;
-	}
-
-	.disabled-hint {
-		font-weight: normal;
-		font-size: 12px;
-		color: #999;
-		font-style: italic;
-	}
-
-	.part-selectors {
-		display: flex;
-		gap: 5px;
-		align-items: center;
-	}
-
-	.index-select {
-		flex: 2;
-		padding: 8px;
-		border: 1px solid #ccc;
-		border-radius: 3px;
-		background: white;
-		font-size: 14px;
-	}
-
-	.variant-select {
-		flex: 1;
-		padding: 8px;
-		border: 1px solid #ccc;
-		border-radius: 3px;
-		background: white;
-		font-size: 14px;
-	}
-
-	.clear-btn {
-		background: #f44336;
-		color: white;
-		border: none;
-		width: 30px;
-		height: 30px;
-		border-radius: 50%;
-		cursor: pointer;
-		font-size: 12px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		flex-shrink: 0;
-	}
-
-	.clear-btn:hover {
-		background: #d32f2f;
-	}
-</style>
+</Card.Root>

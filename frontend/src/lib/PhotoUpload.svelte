@@ -1,9 +1,11 @@
 <script>
-	export let onPhotoAnalyzed = (character) => {};
+	import { Card } from '$lib/components/ui/card';
 
-	let analyzing = false;
-	let error = null;
-	let dragActive = false;
+	let { onPhotoAnalyzed } = $props();
+
+	let analyzing = $state(false);
+	let error = $state(null);
+	let dragActive = $state(false);
 
 	async function handleFileSelect(event) {
 		const file = event.target?.files?.[0] || event.dataTransfer?.files?.[0];
@@ -11,14 +13,12 @@
 
 		error = null;
 
-		// Validate file type
 		const validTypes = ['image/jpeg', 'image/png', 'image/heic', 'image/webp'];
 		if (!validTypes.includes(file.type)) {
 			error = 'Invalid file type. Please upload JPEG, PNG, HEIC, or WebP';
 			return;
 		}
 
-		// Validate file size (2MB max)
 		if (file.size > 2 * 1024 * 1024) {
 			error = 'File too large. Maximum size is 2MB';
 			return;
@@ -32,7 +32,6 @@
 		error = null;
 
 		try {
-			// Convert to base64
 			const reader = new FileReader();
 			const base64 = await new Promise((resolve, reject) => {
 				reader.onload = () => resolve(reader.result.split(',')[1]);
@@ -42,7 +41,6 @@
 
 			console.log('Uploading photo for analysis...');
 
-			// Call Django backend API
 			const apiUrl = 'https://blindflugstudios.pythonanywhere.com';
 			const response = await fetch(`${apiUrl}/api/analyze-photo`, {
 				method: 'POST',
@@ -61,7 +59,6 @@
 			const result = await response.json();
 			console.log('Photo analyzed successfully!');
 
-			// Pass generated character to parent
 			onPhotoAnalyzed(result.character);
 		} catch (err) {
 			console.error('Photo analysis error:', err);
@@ -87,156 +84,50 @@
 	}
 </script>
 
-<div class="upload-container">
-	<h3>📸 Generate from Photo</h3>
-	<p class="description">Upload a portrait photo to automatically generate a matching character</p>
+<Card.Root class="p-6">
+	<h3 class="text-xl font-bold mb-2">📸 Generate from Photo</h3>
+	<p class="text-sm text-muted-foreground mb-4">
+		Upload a portrait photo to automatically generate a matching character
+	</p>
 
 	{#if analyzing}
-		<div class="analyzing">
-			<div class="spinner"></div>
-			<p>Analyzing photo...</p>
-			<small>This may take a few seconds</small>
+		<div class="text-center p-10 bg-muted/50 rounded-lg">
+			<div
+				class="w-12 h-12 border-4 border-muted-foreground/20 border-t-foreground rounded-full animate-spin mx-auto mb-5"
+			></div>
+			<p class="font-medium mb-1">Analyzing photo...</p>
+			<small class="text-muted-foreground">This may take a few seconds</small>
 		</div>
 	{:else}
 		<div
-			class="drop-zone"
-			class:drag-active={dragActive}
-			on:drop={handleDrop}
-			on:dragover={handleDragOver}
-			on:dragleave={handleDragLeave}
+			class="border-2 border-dashed rounded-lg p-10 text-center cursor-pointer transition-all hover:border-primary hover:bg-accent/50"
+			class:border-primary={dragActive}
+			class:bg-accent={dragActive}
+			class:scale-105={dragActive}
+			ondrop={handleDrop}
+			ondragover={handleDragOver}
+			ondragleave={handleDragLeave}
 			role="button"
 			tabindex="0"
 		>
 			<input
 				type="file"
 				accept="image/jpeg,image/png,image/heic,image/webp"
-				on:change={handleFileSelect}
+				onchange={handleFileSelect}
 				id="photo-upload"
-				style="display: none;"
+				class="hidden"
 			/>
-			<label for="photo-upload">
-				<div class="upload-icon">📷</div>
-				<p class="upload-text">Click to upload or drag & drop</p>
-				<small class="upload-hint">JPEG, PNG, HEIC, WebP (max 2MB)</small>
+			<label for="photo-upload" class="cursor-pointer block">
+				<div class="text-5xl mb-3">📷</div>
+				<p class="font-medium mb-2">Click to upload or drag & drop</p>
+				<small class="text-muted-foreground">JPEG, PNG, HEIC, WebP (max 2MB)</small>
 			</label>
 		</div>
 	{/if}
 
 	{#if error}
-		<div class="error">
+		<div class="bg-destructive/10 border border-destructive text-destructive p-3 rounded mt-4 text-sm border-l-4">
 			<strong>Error:</strong> {error}
 		</div>
 	{/if}
-</div>
-
-<style>
-	.upload-container {
-		background: white;
-		border: 2px solid #333;
-		border-radius: 8px;
-		padding: 20px;
-		margin-bottom: 20px;
-	}
-
-	.upload-container h3 {
-		margin: 0 0 8px 0;
-		color: #333;
-		font-size: 20px;
-	}
-
-	.description {
-		margin: 0 0 15px 0;
-		color: #666;
-		font-size: 14px;
-	}
-
-	.drop-zone {
-		border: 2px dashed #ccc;
-		border-radius: 8px;
-		padding: 40px;
-		text-align: center;
-		cursor: pointer;
-		transition: all 0.3s ease;
-		background: #fafafa;
-	}
-
-	.drop-zone:hover,
-	.drop-zone.drag-active {
-		border-color: #4caf50;
-		background: #f0f9f0;
-		transform: scale(1.02);
-	}
-
-	.drop-zone label {
-		cursor: pointer;
-		display: block;
-	}
-
-	.upload-icon {
-		font-size: 48px;
-		margin-bottom: 10px;
-	}
-
-	.upload-text {
-		margin: 10px 0;
-		color: #333;
-		font-size: 16px;
-		font-weight: 500;
-	}
-
-	.upload-hint {
-		color: #999;
-		font-size: 13px;
-	}
-
-	.analyzing {
-		text-align: center;
-		padding: 40px;
-		background: #f0f9f0;
-		border-radius: 8px;
-	}
-
-	.spinner {
-		width: 50px;
-		height: 50px;
-		border: 5px solid #e0e0e0;
-		border-top: 5px solid #4caf50;
-		border-radius: 50%;
-		animation: spin 1s linear infinite;
-		margin: 0 auto 20px;
-	}
-
-	@keyframes spin {
-		0% {
-			transform: rotate(0deg);
-		}
-		100% {
-			transform: rotate(360deg);
-		}
-	}
-
-	.analyzing p {
-		margin: 0 0 5px 0;
-		color: #333;
-		font-size: 16px;
-		font-weight: 500;
-	}
-
-	.analyzing small {
-		color: #666;
-		font-size: 13px;
-	}
-
-	.error {
-		color: #d32f2f;
-		padding: 12px;
-		background: #ffebee;
-		border-radius: 4px;
-		margin-top: 15px;
-		border-left: 4px solid #d32f2f;
-	}
-
-	.error strong {
-		font-weight: 600;
-	}
-</style>
+</Card.Root>

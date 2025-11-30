@@ -2,13 +2,12 @@
 	import { onMount } from 'svelte';
 	import { LAYERS, COLOR_PALETTES, getAssetPath } from './assetData.js';
 
-	export let character = {};
-	export let canvasSize = 512;
+	let { character, canvasSize = 512 } = $props();
 
-	let canvas;
-	let ctx;
+	let canvas = $state();
+	let ctx = $state();
 	let loadedImages = new Map();
-	let isLoading = false;
+	let isLoading = $state(false);
 
 	onMount(() => {
 		ctx = canvas.getContext('2d');
@@ -68,18 +67,22 @@
 		ctx.clearRect(0, 0, canvasSize, canvasSize);
 
 		// Get color values
-		const skinColor = character.colorIndices?.Skin !== undefined
-			? COLOR_PALETTES.Skin[character.colorIndices.Skin]?.hex
-			: COLOR_PALETTES.Skin[2].hex;
-		const hairColor = character.colorIndices?.Hair !== undefined
-			? COLOR_PALETTES.Hair[character.colorIndices.Hair]?.hex
-			: COLOR_PALETTES.Hair[3].hex;
-		const eyeColor = character.colorIndices?.Eye !== undefined
-			? COLOR_PALETTES.Eye[character.colorIndices.Eye]?.hex
-			: COLOR_PALETTES.Eye[2].hex;
-		const accessoryColor = character.colorIndices?.Accessory !== undefined
-			? COLOR_PALETTES.Accessory[character.colorIndices.Accessory]?.hex
-			: COLOR_PALETTES.Accessory[1].hex;
+		const skinColor =
+			character.colorIndices?.Skin !== undefined
+				? COLOR_PALETTES.Skin[character.colorIndices.Skin]?.hex
+				: COLOR_PALETTES.Skin[2].hex;
+		const hairColor =
+			character.colorIndices?.Hair !== undefined
+				? COLOR_PALETTES.Hair[character.colorIndices.Hair]?.hex
+				: COLOR_PALETTES.Hair[3].hex;
+		const eyeColor =
+			character.colorIndices?.Eye !== undefined
+				? COLOR_PALETTES.Eye[character.colorIndices.Eye]?.hex
+				: COLOR_PALETTES.Eye[2].hex;
+		const accessoryColor =
+			character.colorIndices?.Accessory !== undefined
+				? COLOR_PALETTES.Accessory[character.colorIndices.Accessory]?.hex
+				: COLOR_PALETTES.Accessory[1].hex;
 
 		// Sort layers by ID (back to front: 20 to 0)
 		const sortedLayers = Object.entries(LAYERS).sort((a, b) => b[1].id - a[1].id);
@@ -99,9 +102,16 @@
 				}
 			}
 
-			const assetPath = getAssetPath(layerName, partData.index, partData.variant, character.gender || 'Male');
+			const assetPath = getAssetPath(
+				layerName,
+				partData.index,
+				partData.variant,
+				character.gender || 'Male'
+			);
 			if (!assetPath) {
-				console.warn(`Invalid asset for ${layerName}: index ${partData.index}, variant ${partData.variant}, gender ${character.gender}`);
+				console.warn(
+					`Invalid asset for ${layerName}: index ${partData.index}, variant ${partData.variant}, gender ${character.gender}`
+				);
 				continue;
 			}
 
@@ -140,70 +150,29 @@
 	}
 
 	// Watch for character changes and re-render
-	$: if (character && ctx) {
-		renderPortrait();
-	}
+	$effect(() => {
+		if (character && ctx) {
+			renderPortrait();
+		}
+	});
 </script>
 
-<div class="portrait-container">
+<div class="relative inline-block border-2 border-border rounded-lg overflow-hidden bg-muted">
 	<canvas
 		bind:this={canvas}
 		width={canvasSize}
 		height={canvasSize}
-		class="portrait-canvas"
-		class:loading={isLoading}
+		class="block"
+		class:opacity-70={isLoading}
+		style="image-rendering: pixelated; image-rendering: -moz-crisp-edges; image-rendering: crisp-edges;"
 	/>
 	{#if isLoading}
-		<div class="loading-overlay">
-			<div class="spinner"></div>
+		<div
+			class="absolute inset-0 flex items-center justify-center bg-background/80"
+		>
+			<div
+				class="w-10 h-10 border-4 border-muted-foreground/20 border-t-foreground rounded-full animate-spin"
+			></div>
 		</div>
 	{/if}
 </div>
-
-<style>
-	.portrait-container {
-		position: relative;
-		display: inline-block;
-		border: 2px solid #333;
-		border-radius: 8px;
-		overflow: hidden;
-		background: #f5f5f5;
-	}
-
-	.portrait-canvas {
-		display: block;
-		image-rendering: pixelated;
-		image-rendering: -moz-crisp-edges;
-		image-rendering: crisp-edges;
-	}
-
-	.portrait-canvas.loading {
-		opacity: 0.7;
-	}
-
-	.loading-overlay {
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		background: rgba(255, 255, 255, 0.8);
-	}
-
-	.spinner {
-		width: 40px;
-		height: 40px;
-		border: 4px solid #f3f3f3;
-		border-top: 4px solid #333;
-		border-radius: 50%;
-		animation: spin 1s linear infinite;
-	}
-
-	@keyframes spin {
-		0% { transform: rotate(0deg); }
-		100% { transform: rotate(360deg); }
-	}
-</style>

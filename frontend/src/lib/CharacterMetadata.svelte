@@ -1,5 +1,11 @@
 <script>
-	export let metadata = {};
+	import { Card } from '$lib/components/ui/card';
+	import { Label } from '$lib/components/ui/label';
+	import { Input } from '$lib/components/ui/input';
+	import { Textarea } from '$lib/components/ui/textarea';
+	import * as Select from '$lib/components/ui/select';
+
+	let { metadata = $bindable() } = $props();
 
 	// Initialize metadata if empty
 	if (!metadata.Id) {
@@ -37,7 +43,15 @@
 	const genders = ['Male', 'Female'];
 	const classes = ['AirCrew', 'BaseCrew'];
 	const jobs = ['None', 'AAFCook', 'FieldMechanic', 'FieldEngineer', 'RAFMedic', 'AAFLabour'];
-	const roles = ['None', 'Pilot', 'Gunner', 'Navigator', 'BombAimer', 'FlightEngineer', 'RadioOperator'];
+	const roles = [
+		'None',
+		'Pilot',
+		'Gunner',
+		'Navigator',
+		'BombAimer',
+		'FlightEngineer',
+		'RadioOperator'
+	];
 
 	function updateField(field, value) {
 		metadata = { ...metadata, [field]: value };
@@ -65,265 +79,190 @@
 	}
 </script>
 
-<div class="metadata-container">
-	<h2>Character Information</h2>
+<Card.Root class="p-6">
+	<h2 class="text-2xl font-bold mb-6 pb-4 border-b">Character Information</h2>
 
-	<div class="form-section">
-		<h3>Basic Info</h3>
+	<div class="space-y-6">
+		<!-- Basic Info -->
+		<div class="space-y-4 p-4 bg-muted/50 rounded-lg border">
+			<h3 class="text-lg font-semibold mb-3 pb-2 border-b">Basic Info</h3>
 
-		<div class="form-row">
-			<label for="creatorName">Creator Name</label>
-			<input
-				id="creatorName"
-				type="text"
-				value={metadata.CreatorName}
-				on:input={(e) => updateField('CreatorName', e.target.value)}
-				placeholder="Your name"
-			/>
-		</div>
-
-		<div class="form-row">
-			<label for="firstName">First Name</label>
-			<input
-				id="firstName"
-				type="text"
-				value={metadata.FirstName}
-				on:input={(e) => updateField('FirstName', e.target.value)}
-				placeholder="Character's first name"
-			/>
-		</div>
-
-		<div class="form-row">
-			<label for="lastName">Last Name</label>
-			<input
-				id="lastName"
-				type="text"
-				value={metadata.LastName}
-				on:input={(e) => updateField('LastName', e.target.value)}
-				placeholder="Character's last name"
-			/>
-		</div>
-
-		{#if metadata.Class === 'AirCrew'}
-			<div class="form-row">
-				<label for="nickname">Nickname</label>
-				<input
-					id="nickname"
+			<div class="space-y-2">
+				<Label for="creatorName">Creator Name</Label>
+				<Input
+					id="creatorName"
 					type="text"
-					value={metadata.Nickname}
-					on:input={(e) => updateField('Nickname', e.target.value)}
-					placeholder="e.g., Chief, Ace, etc."
+					value={metadata.CreatorName}
+					oninput={(e) => updateField('CreatorName', e.target.value)}
+					placeholder="Your name"
 				/>
 			</div>
-		{/if}
 
-		<div class="form-row">
-			<label for="birthDate">Birth Date</label>
-			<input
-				id="birthDate"
-				type="date"
-				value={metadata.BirthDate}
-				max="1921-12-31"
-				on:input={(e) => updateField('BirthDate', e.target.value)}
+			<div class="space-y-2">
+				<Label for="firstName">First Name</Label>
+				<Input
+					id="firstName"
+					type="text"
+					value={metadata.FirstName}
+					oninput={(e) => updateField('FirstName', e.target.value)}
+					placeholder="Character's first name"
+				/>
+			</div>
+
+			<div class="space-y-2">
+				<Label for="lastName">Last Name</Label>
+				<Input
+					id="lastName"
+					type="text"
+					value={metadata.LastName}
+					oninput={(e) => updateField('LastName', e.target.value)}
+					placeholder="Character's last name"
+				/>
+			</div>
+
+			{#if metadata.Class === 'AirCrew'}
+				<div class="space-y-2">
+					<Label for="nickname">Nickname</Label>
+					<Input
+						id="nickname"
+						type="text"
+						value={metadata.Nickname}
+						oninput={(e) => updateField('Nickname', e.target.value)}
+						placeholder="e.g., Chief, Ace, etc."
+					/>
+				</div>
+			{/if}
+
+			<div class="space-y-2">
+				<Label for="birthDate">Birth Date</Label>
+				<Input
+					id="birthDate"
+					type="date"
+					value={metadata.BirthDate}
+					max="1921-12-31"
+					oninput={(e) => updateField('BirthDate', e.target.value)}
+				/>
+				<p class="text-xs text-muted-foreground">Must be before 1922</p>
+			</div>
+
+			<div class="space-y-2">
+				<Label>Gender</Label>
+				<Select.Root
+					selected={{ value: metadata.Gender, label: metadata.Gender }}
+					onSelectedChange={(v) => v && updateField('Gender', v.value)}
+				>
+					<Select.Trigger>
+						<Select.Value />
+					</Select.Trigger>
+					<Select.Content>
+						{#each genders as gender}
+							<Select.Item value={gender}>{gender}</Select.Item>
+						{/each}
+					</Select.Content>
+				</Select.Root>
+			</div>
+		</div>
+
+		<!-- Role & Class -->
+		<div class="space-y-4 p-4 bg-muted/50 rounded-lg border">
+			<h3 class="text-lg font-semibold mb-3 pb-2 border-b">Role & Class</h3>
+
+			<div class="space-y-2">
+				<Label>Class</Label>
+				<Select.Root
+					selected={{ value: metadata.Class, label: metadata.Class }}
+					onSelectedChange={(v) => v && handleClassChange(v.value)}
+				>
+					<Select.Trigger>
+						<Select.Value />
+					</Select.Trigger>
+					<Select.Content>
+						{#each classes as cls}
+							<Select.Item value={cls}>{cls}</Select.Item>
+						{/each}
+					</Select.Content>
+				</Select.Root>
+			</div>
+
+			{#if metadata.Class === 'BaseCrew'}
+				<div class="space-y-2">
+					<Label>Job</Label>
+					<Select.Root
+						selected={{ value: metadata.Job, label: metadata.Job.replace(/([A-Z])/g, ' $1').trim() }}
+						onSelectedChange={(v) => v && updateField('Job', v.value)}
+					>
+						<Select.Trigger>
+							<Select.Value />
+						</Select.Trigger>
+						<Select.Content>
+							{#each jobs as job}
+								<Select.Item value={job}>{job.replace(/([A-Z])/g, ' $1').trim()}</Select.Item>
+							{/each}
+						</Select.Content>
+					</Select.Root>
+				</div>
+			{:else}
+				<div class="space-y-2">
+					<Label>Role</Label>
+					<Select.Root
+						selected={{ value: metadata.Role, label: metadata.Role.replace(/([A-Z])/g, ' $1').trim() }}
+						onSelectedChange={(v) => v && updateField('Role', v.value)}
+					>
+						<Select.Trigger>
+							<Select.Value />
+						</Select.Trigger>
+						<Select.Content>
+							{#each roles as role}
+								<Select.Item value={role}>{role.replace(/([A-Z])/g, ' $1').trim()}</Select.Item>
+							{/each}
+						</Select.Content>
+					</Select.Root>
+				</div>
+			{/if}
+		</div>
+
+		<!-- Biography -->
+		<div class="space-y-4 p-4 bg-muted/50 rounded-lg border">
+			<h3 class="text-lg font-semibold mb-3 pb-2 border-b">Biography</h3>
+			<Textarea
+				value={metadata.Biography?.en || ''}
+				oninput={(e) => updateBiography(e.target.value)}
+				placeholder="Write the character's background story..."
+				rows={4}
 			/>
-			<small>Must be before 1922</small>
 		</div>
 
-		<div class="form-row">
-			<label for="gender">Gender</label>
-			<select id="gender" value={metadata.Gender} on:change={(e) => updateField('Gender', e.target.value)}>
-				{#each genders as gender}
-					<option value={gender}>{gender}</option>
-				{/each}
-			</select>
-		</div>
-	</div>
-
-	<div class="form-section">
-		<h3>Role & Class</h3>
-
-		<div class="form-row">
-			<label for="class">Class</label>
-			<select id="class" value={metadata.Class} on:change={(e) => handleClassChange(e.target.value)}>
-				{#each classes as cls}
-					<option value={cls}>{cls}</option>
-				{/each}
-			</select>
-		</div>
-
-		{#if metadata.Class === 'BaseCrew'}
-			<div class="form-row">
-				<label for="job">Job</label>
-				<select id="job" value={metadata.Job} on:change={(e) => updateField('Job', e.target.value)}>
-					{#each jobs as job}
-						<option value={job}>{job.replace(/([A-Z])/g, ' $1').trim()}</option>
+		<!-- Skill Ranks -->
+		{#if metadata.Class === 'AirCrew'}
+			<div class="space-y-4 p-4 bg-muted/50 rounded-lg border">
+				<h3 class="text-lg font-semibold mb-3 pb-2 border-b">Skill Ranks (0-6)</h3>
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+					{#each Object.entries(metadata.SkillRanks) as [skill, rank]}
+						<div class="space-y-2">
+							<Label for="skill-{skill}">{skill}</Label>
+							<div class="flex items-center gap-3">
+								<Input
+									id="skill-{skill}"
+									type="number"
+									min="0"
+									max="6"
+									value={rank}
+									oninput={(e) => updateSkillRank(skill, e.target.value)}
+									class="w-20 text-center"
+								/>
+								<input
+									type="range"
+									min="0"
+									max="6"
+									value={rank}
+									oninput={(e) => updateSkillRank(skill, e.target.value)}
+									class="flex-1"
+								/>
+							</div>
+						</div>
 					{/each}
-				</select>
-			</div>
-		{:else}
-			<div class="form-row">
-				<label for="role">Role</label>
-				<select id="role" value={metadata.Role} on:change={(e) => updateField('Role', e.target.value)}>
-					{#each roles as role}
-						<option value={role}>{role.replace(/([A-Z])/g, ' $1').trim()}</option>
-					{/each}
-				</select>
+				</div>
 			</div>
 		{/if}
 	</div>
-
-	<div class="form-section">
-		<h3>Biography</h3>
-		<textarea
-			value={metadata.Biography?.en || ''}
-			on:input={(e) => updateBiography(e.target.value)}
-			placeholder="Write the character's background story..."
-			rows="4"
-		/>
-	</div>
-
-	{#if metadata.Class === 'AirCrew'}
-		<div class="form-section">
-			<h3>Skill Ranks (0-6)</h3>
-			<div class="skills-grid">
-				{#each Object.entries(metadata.SkillRanks) as [skill, rank]}
-					<div class="skill-control">
-						<label for="skill-{skill}">{skill}</label>
-						<div class="skill-input">
-							<input
-								id="skill-{skill}"
-								type="number"
-								min="0"
-								max="6"
-								value={rank}
-								on:input={(e) => updateSkillRank(skill, e.target.value)}
-							/>
-							<input
-								type="range"
-								min="0"
-								max="6"
-								value={rank}
-								on:input={(e) => updateSkillRank(skill, e.target.value)}
-							/>
-						</div>
-					</div>
-				{/each}
-			</div>
-		</div>
-	{/if}
-</div>
-
-<style>
-	.metadata-container {
-		background: white;
-		border: 2px solid #333;
-		border-radius: 8px;
-		padding: 20px;
-		max-height: 80vh;
-		overflow-y: auto;
-	}
-
-	h2 {
-		margin: 0 0 20px 0;
-		color: #333;
-		font-size: 24px;
-		border-bottom: 2px solid #333;
-		padding-bottom: 10px;
-	}
-
-	.form-section {
-		margin-bottom: 25px;
-		padding: 15px;
-		background: #fafafa;
-		border: 1px solid #ddd;
-		border-radius: 5px;
-	}
-
-	.form-section h3 {
-		margin: 0 0 15px 0;
-		color: #555;
-		font-size: 18px;
-		border-bottom: 1px solid #ddd;
-		padding-bottom: 5px;
-	}
-
-	.form-row {
-		margin-bottom: 15px;
-	}
-
-	.form-row:last-child {
-		margin-bottom: 0;
-	}
-
-	label {
-		display: block;
-		margin-bottom: 5px;
-		font-weight: bold;
-		color: #333;
-		font-size: 14px;
-	}
-
-	input[type='text'],
-	input[type='date'],
-	select,
-	textarea {
-		width: 100%;
-		padding: 8px;
-		border: 1px solid #ccc;
-		border-radius: 3px;
-		font-size: 14px;
-		font-family: inherit;
-	}
-
-	input[type='text']:focus,
-	input[type='date']:focus,
-	select:focus,
-	textarea:focus {
-		outline: none;
-		border-color: #667eea;
-		box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
-	}
-
-	small {
-		display: block;
-		margin-top: 5px;
-		color: #666;
-		font-size: 12px;
-	}
-
-	textarea {
-		resize: vertical;
-		min-height: 80px;
-	}
-
-	.skills-grid {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 15px;
-	}
-
-	.skill-control label {
-		font-size: 13px;
-	}
-
-	.skill-input {
-		display: flex;
-		align-items: center;
-		gap: 10px;
-	}
-
-	.skill-input input[type='number'] {
-		width: 60px;
-		text-align: center;
-	}
-
-	.skill-input input[type='range'] {
-		flex: 1;
-	}
-
-	@media (max-width: 768px) {
-		.skills-grid {
-			grid-template-columns: 1fr;
-		}
-	}
-</style>
+</Card.Root>
