@@ -1,13 +1,19 @@
-<script lang="ts">
+<script lang="ts" module>
 	import type { HTMLAttributes } from "svelte/elements";
-	import { cn, type WithElementRef } from "$lib/utils.js";
+	import { type WithElementRef } from "$lib/utils.js";
+
+	export type CardProps = WithElementRef<HTMLAttributes<HTMLDivElement>>;
+</script>
+
+<script lang="ts">
+	import { cn } from "$lib/utils.js";
 
 	let {
 		ref = $bindable(null),
 		class: className,
 		children,
 		...restProps
-	}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();
+	}: CardProps = $props();
 </script>
 
 <div

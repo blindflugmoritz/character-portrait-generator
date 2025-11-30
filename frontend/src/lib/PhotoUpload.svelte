@@ -1,5 +1,4 @@
 <script>
-	import { Card } from '$lib/components/ui/card';
 
 	let { onPhotoAnalyzed } = $props();
 
@@ -84,7 +83,7 @@
 	}
 </script>
 
-<Card.Root class="p-6">
+<div class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm p-6">
 	<h3 class="text-xl font-bold mb-2">📸 Generate from Photo</h3>
 	<p class="text-sm text-muted-foreground mb-4">
 		Upload a portrait photo to automatically generate a matching character
@@ -130,4 +129,4 @@
 			<strong>Error:</strong> {error}
 		</div>
 	{/if}
-</Card.Root>
+</div>

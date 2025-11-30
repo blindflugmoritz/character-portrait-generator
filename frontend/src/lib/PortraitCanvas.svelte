@@ -151,7 +151,13 @@
 
 	// Watch for character changes and re-render
 	$effect(() => {
+		// Access properties to make effect reactive to deep changes
 		if (character && ctx) {
+			// Touch all reactive properties to trigger on any change
+			const parts = character.parts;
+			const colors = character.colorIndices;
+			const body = character.bodyShapeIndex;
+			const gender = character.gender;
 			renderPortrait();
 		}
 	});

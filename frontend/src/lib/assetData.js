@@ -490,27 +490,6 @@ export function generateRandomCharacter(gender = 'Male', options = {}) {
  * @returns {object}
  */
 export function createDefaultCharacter(gender = 'Male') {
-	return {
-		gender: gender,
-		bodyShapeIndex: 1, // Average
-		colorIndices: {
-			Skin: 2,
-			Hair: 3,
-			Eye: 2,
-			Accessory: 1
-		},
-		parts: {
-			Body: { index: 0, variant: 0 },
-			Headshape: { index: 0, variant: 0 },
-			Ears: { index: 0, variant: 0 },
-			Eyes: { index: 0, variant: 0 },
-			Nose: { index: 0, variant: 0 },
-			Mouth: { index: 0, variant: 0 },
-			Eyebrows: { index: 0, variant: 0 },
-			Hair: { index: 0, variant: 0 },
-			HairBack: { index: 4, variant: 0 },
-			Clothes: { index: 0, variant: 0 },
-			ClothesBack: { index: 0, variant: 0 }
-		}
-	};
+	// Use generateRandomCharacter to ensure all sprites are valid for the gender
+	return generateRandomCharacter(gender);
 }

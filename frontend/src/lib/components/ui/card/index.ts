@@ -1,4 +1,4 @@
-import Root from "./card.svelte";
+import Root, { type CardProps } from "./card.svelte";
 import Content from "./card-content.svelte";
 import Description from "./card-description.svelte";
 import Footer from "./card-footer.svelte";
@@ -22,4 +22,5 @@ export {
 	Header as CardHeader,
 	Title as CardTitle,
 	Action as CardAction,
+	type CardProps,
 };

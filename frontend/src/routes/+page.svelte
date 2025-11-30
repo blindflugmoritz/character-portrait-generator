@@ -29,7 +29,7 @@
 	// Initialize with one crew member
 	onMount(() => {
 		// Check for data version - clear if old version
-		const DATA_VERSION = '2.0';
+		const DATA_VERSION = '2.1';
 		const savedVersion = localStorage.getItem('crewDataVersion');
 
 		if (savedVersion !== DATA_VERSION) {
@@ -436,7 +436,7 @@
 		/>
 
 		<div class="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-8 items-start">
-			<div class="flex flex-col items-center gap-4">
+			<div class="lg:sticky lg:top-5 flex flex-col items-center gap-4">
 				<h3 class="text-white text-xl font-semibold px-5 py-2 bg-black/30 rounded-lg">
 					Editing: {metadata.FirstName || 'Unnamed'} {metadata.LastName || ''}
 				</h3>

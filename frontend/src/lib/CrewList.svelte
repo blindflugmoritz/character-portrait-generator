@@ -1,6 +1,5 @@
 <script>
 	import { Button } from '$lib/components/ui/button';
-	import { Card } from '$lib/components/ui/card';
 	import { LAYERS, COLOR_PALETTES, getAssetPath } from './assetData.js';
 
 	let { crew = $bindable([]), selectedIndex = $bindable(0), onSelect, onDelete, onAdd } = $props();
@@ -8,7 +7,7 @@
 	// Generate thumbnail for a crew member
 	async function generateThumbnail(member, canvasElement) {
 		const ctx = canvasElement.getContext('2d');
-		const size = 100;
+		const size = 256;
 
 		ctx.clearRect(0, 0, size, size);
 
@@ -115,7 +114,7 @@
 	});
 </script>
 
-<Card.Root class="p-4 mb-5">
+<div class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm p-4 mb-5">
 	<div class="flex justify-between items-center mb-4 pb-3 border-b-2">
 		<h3 class="text-lg font-semibold">Crew Members ({crew.length})</h3>
 		<Button onclick={onAdd} variant="default" size="sm"> + New Member </Button>
@@ -135,8 +134,8 @@
 			>
 				<canvas
 					bind:this={thumbnailCanvases[index]}
-					width="100"
-					height="100"
+					width="256"
+					height="256"
 					class="w-full h-auto block mb-2 rounded bg-muted"
 					style="image-rendering: pixelated; image-rendering: -moz-crisp-edges; image-rendering: crisp-edges;"
 				/>
@@ -165,4 +164,4 @@
 			</div>
 		{/each}
 	</div>
-</Card.Root>
+</div>

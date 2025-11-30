@@ -1,5 +1,4 @@
 <script>
-	import { Card } from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
 	import { Textarea } from '$lib/components/ui/textarea';
 	import { Label } from '$lib/components/ui/label';
@@ -66,7 +65,7 @@
 	}
 </script>
 
-<Card.Root class="p-6">
+<div class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm p-6">
 	<div class="mb-5">
 		<h3 class="text-xl font-bold mb-2">🤖 AI Crew Generator</h3>
 		<p class="text-sm text-muted-foreground mb-1">
@@ -131,4 +130,4 @@
 			✨ Generate Crew
 		{/if}
 	</Button>
-</Card.Root>
+</div>

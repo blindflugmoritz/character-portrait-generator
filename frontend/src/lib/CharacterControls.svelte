@@ -1,6 +1,5 @@
 <script>
 	import { Button } from '$lib/components/ui/button';
-	import { Card } from '$lib/components/ui/card';
 	import { Label } from '$lib/components/ui/label';
 	import * as Select from '$lib/components/ui/select';
 	import {
@@ -19,6 +18,66 @@
 
 	let { character = $bindable() } = $props();
 
+	// Local state for Select components
+	let genderValue = $state(character.gender);
+	let bodyShapeValue = $state(String(character.bodyShapeIndex));
+	let skinColorValue = $state(String(character.colorIndices?.Skin ?? 2));
+	let hairColorValue = $state(String(character.colorIndices?.Hair ?? 3));
+	let eyeColorValue = $state(String(character.colorIndices?.Eye ?? 2));
+	let accessoryColorValue = $state(String(character.colorIndices?.Accessory ?? 1));
+
+	// Sync local state with character when it changes externally
+	$effect(() => {
+		genderValue = character.gender;
+		bodyShapeValue = String(character.bodyShapeIndex);
+		skinColorValue = String(character.colorIndices?.Skin ?? 2);
+		hairColorValue = String(character.colorIndices?.Hair ?? 3);
+		eyeColorValue = String(character.colorIndices?.Eye ?? 2);
+		accessoryColorValue = String(character.colorIndices?.Accessory ?? 1);
+	});
+
+	// Watch local state and update character
+	$effect(() => {
+		if (genderValue !== character.gender) {
+			updateGender(genderValue);
+		}
+	});
+
+	$effect(() => {
+		const newBodyShape = parseInt(bodyShapeValue);
+		if (newBodyShape !== character.bodyShapeIndex) {
+			updateBodyShape(bodyShapeValue);
+		}
+	});
+
+	$effect(() => {
+		const newSkin = parseInt(skinColorValue);
+		if (newSkin !== (character.colorIndices?.Skin ?? 2)) {
+			updateColor('Skin', skinColorValue);
+		}
+	});
+
+	$effect(() => {
+		const newHair = parseInt(hairColorValue);
+		if (newHair !== (character.colorIndices?.Hair ?? 3)) {
+			updateColor('Hair', hairColorValue);
+		}
+	});
+
+	$effect(() => {
+		const newEye = parseInt(eyeColorValue);
+		if (newEye !== (character.colorIndices?.Eye ?? 2)) {
+			updateColor('Eye', eyeColorValue);
+		}
+	});
+
+	$effect(() => {
+		const newAccessory = parseInt(accessoryColorValue);
+		if (newAccessory !== (character.colorIndices?.Accessory ?? 1)) {
+			updateColor('Accessory', accessoryColorValue);
+		}
+	});
+
 	// Initialize with default character if empty
 	if (!character.parts) {
 		character = createDefaultCharacter();
@@ -31,13 +90,23 @@
 
 	// Randomize character
 	function randomizeCharacter() {
-		character = generateRandomCharacter(character.gender);
+		const newCharacter = generateRandomCharacter(character.gender);
+		// Update properties in-place to maintain binding
+		character.gender = newCharacter.gender;
+		character.bodyShapeIndex = newCharacter.bodyShapeIndex;
+		character.colorIndices = { ...newCharacter.colorIndices };
+		character.parts = { ...newCharacter.parts };
 	}
 
 	// Update gender - regenerate random character with new gender
 	function updateGender(newGender) {
-		console.log('Gender changed to:', newGender, '- generating new random character');
-		character = generateRandomCharacter(newGender);
+		const newCharacter = generateRandomCharacter(newGender);
+
+		// Update properties in-place to maintain binding
+		character.gender = newCharacter.gender;
+		character.bodyShapeIndex = newCharacter.bodyShapeIndex;
+		character.colorIndices = { ...newCharacter.colorIndices };
+		character.parts = { ...newCharacter.parts };
 	}
 
 	// Update part
@@ -152,9 +221,10 @@
 		// Look up label using base filename (labels are stored without _female suffix)
 		return spriteLabels[folder]?.[baseFilename] || `${layerName} ${index}`;
 	}
+
 </script>
 
-<Card.Root class="p-6">
+<div class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm p-6">
 	<div class="flex justify-between items-center mb-6">
 		<h2 class="text-2xl font-bold">Character Customization</h2>
 		<Button onclick={randomizeCharacter} variant="default">
@@ -165,12 +235,9 @@
 	<!-- Gender Selection -->
 	<div class="mb-6">
 		<Label>Gender</Label>
-		<Select.Root
-			selected={{ value: character.gender, label: character.gender }}
-			onSelectedChange={(v) => v && updateGender(v.value)}
-		>
+		<Select.Root type="single" bind:value={genderValue}>
 			<Select.Trigger class="w-full">
-				<Select.Value placeholder="Select gender" />
+				{genderValue}
 			</Select.Trigger>
 			<Select.Content>
 				<Select.Item value="Male">Male</Select.Item>
@@ -182,12 +249,9 @@
 	<!-- Body Shape Selection -->
 	<div class="mb-6">
 		<Label>Body Shape</Label>
-		<Select.Root
-			selected={{ value: String(character.bodyShapeIndex), label: BODY_SHAPES.find(s => s.index === character.bodyShapeIndex)?.name || 'Average' }}
-			onSelectedChange={(v) => v && updateBodyShape(v.value)}
-		>
+		<Select.Root type="single" bind:value={bodyShapeValue}>
 			<Select.Trigger class="w-full">
-				<Select.Value placeholder="Select body shape" />
+				{BODY_SHAPES.find(s => String(s.index) === bodyShapeValue)?.name || 'Average'}
 			</Select.Trigger>
 			<Select.Content>
 				{#each BODY_SHAPES as shape}
@@ -204,12 +268,9 @@
 			<!-- Skin Color -->
 			<div class="flex items-center gap-3">
 				<Label class="w-32">Skin Color</Label>
-				<Select.Root
-					selected={{ value: String(character.colorIndices?.Skin ?? 2), label: COLOR_PALETTES.Skin[character.colorIndices?.Skin ?? 2].name }}
-					onSelectedChange={(v) => v && updateColor('Skin', v.value)}
-				>
+				<Select.Root type="single" bind:value={skinColorValue}>
 					<Select.Trigger class="flex-1">
-						<Select.Value />
+						{COLOR_PALETTES.Skin.find(c => String(c.index) === skinColorValue)?.name || 'Unknown'}
 					</Select.Trigger>
 					<Select.Content>
 						{#each COLOR_PALETTES.Skin as color}
@@ -219,19 +280,16 @@
 				</Select.Root>
 				<div
 					class="w-8 h-8 rounded border-2 border-gray-300"
-					style="background-color: {COLOR_PALETTES.Skin[character.colorIndices?.Skin ?? 2].hex}"
+					style="background-color: {COLOR_PALETTES.Skin[parseInt(skinColorValue)].hex}"
 				></div>
 			</div>
 
 			<!-- Hair Color -->
 			<div class="flex items-center gap-3">
 				<Label class="w-32">Hair Color</Label>
-				<Select.Root
-					selected={{ value: String(character.colorIndices?.Hair ?? 3), label: COLOR_PALETTES.Hair[character.colorIndices?.Hair ?? 3].name }}
-					onSelectedChange={(v) => v && updateColor('Hair', v.value)}
-				>
+				<Select.Root type="single" bind:value={hairColorValue}>
 					<Select.Trigger class="flex-1">
-						<Select.Value />
+						{COLOR_PALETTES.Hair.find(c => String(c.index) === hairColorValue)?.name || 'Unknown'}
 					</Select.Trigger>
 					<Select.Content>
 						{#each COLOR_PALETTES.Hair as color}
@@ -241,19 +299,16 @@
 				</Select.Root>
 				<div
 					class="w-8 h-8 rounded border-2 border-gray-300"
-					style="background-color: {COLOR_PALETTES.Hair[character.colorIndices?.Hair ?? 3].hex}"
+					style="background-color: {COLOR_PALETTES.Hair[parseInt(hairColorValue)].hex}"
 				></div>
 			</div>
 
 			<!-- Eye Color -->
 			<div class="flex items-center gap-3">
 				<Label class="w-32">Eye Color</Label>
-				<Select.Root
-					selected={{ value: String(character.colorIndices?.Eye ?? 2), label: COLOR_PALETTES.Eye[character.colorIndices?.Eye ?? 2].name }}
-					onSelectedChange={(v) => v && updateColor('Eye', v.value)}
-				>
+				<Select.Root type="single" bind:value={eyeColorValue}>
 					<Select.Trigger class="flex-1">
-						<Select.Value />
+						{COLOR_PALETTES.Eye.find(c => String(c.index) === eyeColorValue)?.name || 'Unknown'}
 					</Select.Trigger>
 					<Select.Content>
 						{#each COLOR_PALETTES.Eye as color}
@@ -263,19 +318,16 @@
 				</Select.Root>
 				<div
 					class="w-8 h-8 rounded border-2 border-gray-300"
-					style="background-color: {COLOR_PALETTES.Eye[character.colorIndices?.Eye ?? 2].hex}"
+					style="background-color: {COLOR_PALETTES.Eye[parseInt(eyeColorValue)].hex}"
 				></div>
 			</div>
 
 			<!-- Accessory Color -->
 			<div class="flex items-center gap-3">
 				<Label class="w-32">Accessory Color</Label>
-				<Select.Root
-					selected={{ value: String(character.colorIndices?.Accessory ?? 1), label: COLOR_PALETTES.Accessory[character.colorIndices?.Accessory ?? 1].name }}
-					onSelectedChange={(v) => v && updateColor('Accessory', v.value)}
-				>
+				<Select.Root type="single" bind:value={accessoryColorValue}>
 					<Select.Trigger class="flex-1">
-						<Select.Value />
+						{COLOR_PALETTES.Accessory.find(c => String(c.index) === accessoryColorValue)?.name || 'Unknown'}
 					</Select.Trigger>
 					<Select.Content>
 						{#each COLOR_PALETTES.Accessory as color}
@@ -285,7 +337,7 @@
 				</Select.Root>
 				<div
 					class="w-8 h-8 rounded border-2 border-gray-300"
-					style="background-color: {COLOR_PALETTES.Accessory[character.colorIndices?.Accessory ?? 1].hex}"
+					style="background-color: {COLOR_PALETTES.Accessory[parseInt(accessoryColorValue)].hex}"
 				></div>
 			</div>
 		</div>
@@ -308,6 +360,7 @@
 						{@const isFemaleHiddenLayer = character.gender === 'Female' && (layer.name === 'Beard' || layer.name === 'Moustache')}
 
 						{#if indices.length > 0 && !isFemaleHiddenLayer}
+							{@const indexLabel = partData.index === -1 ? 'None' : getSpriteLabel(layer.name, partData.index, getAvailableVariants(layer.name, partData.index, character.gender)[0] || 0)}
 							<div class:opacity-50={isMouthDisabled}>
 								<Label>
 									{layer.name.replace(/([A-Z])/g, ' $1').trim()}
@@ -317,11 +370,12 @@
 								</Label>
 								<div class="flex gap-2 mt-2">
 									<!-- Index selector -->
-									<Select.Root
-										selected={partData.index === -1 ? { value: '-1', label: 'None' } : { value: String(partData.index), label: getSpriteLabel(layer.name, partData.index, getAvailableVariants(layer.name, partData.index, character.gender)[0] || 0) }}
-										onSelectedChange={(v) => {
-											if (!v || isMouthDisabled) return;
-											const newIndex = parseInt(v.value);
+									<select
+										class="flex h-10 flex-[2] items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+										value={partData.index}
+										onchange={(e) => {
+											if (isMouthDisabled) return;
+											const newIndex = parseInt(e.target.value);
 											if (newIndex === -1) {
 												removePart(layer.name);
 											} else {
@@ -331,36 +385,34 @@
 										}}
 										disabled={isMouthDisabled}
 									>
-										<Select.Trigger class="flex-[2]">
-											<Select.Value />
-										</Select.Trigger>
-										<Select.Content>
-											{#if layer.canBeNone}
-												<Select.Item value="-1">None</Select.Item>
-											{/if}
-											{#each indices as index}
-												{@const firstVariant = getAvailableVariants(layer.name, index, character.gender)[0] || 0}
-												<Select.Item value={String(index)}>{getSpriteLabel(layer.name, index, firstVariant)}</Select.Item>
-											{/each}
-										</Select.Content>
-									</Select.Root>
+										{#if layer.canBeNone}
+											<option value="-1">None</option>
+										{/if}
+										{#each indices as index}
+											{@const firstVariant = getAvailableVariants(layer.name, index, character.gender)[0] || 0}
+											{@const label = getSpriteLabel(layer.name, index, firstVariant)}
+											<option value={index}>{label}</option>
+										{/each}
+									</select>
 
 									<!-- Variant selector (only show if index is selected AND has multiple variants) -->
 									{#if partData.index !== -1 && variants.length > 1}
-										<Select.Root
-											selected={{ value: String(partData.variant), label: getSpriteLabel(layer.name, partData.index, partData.variant) }}
-											onSelectedChange={(v) => v && !isMouthDisabled && updatePart(layer.name, partData.index, v.value)}
+										{@const variantLabel = getSpriteLabel(layer.name, partData.index, partData.variant)}
+										<select
+											class="flex h-10 flex-1 items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+											value={partData.variant}
+											onchange={(e) => {
+												if (!isMouthDisabled) {
+													updatePart(layer.name, partData.index, e.target.value);
+												}
+											}}
 											disabled={isMouthDisabled}
 										>
-											<Select.Trigger class="flex-1">
-												<Select.Value />
-											</Select.Trigger>
-											<Select.Content>
-												{#each variants as variant}
-													<Select.Item value={String(variant)}>{getSpriteLabel(layer.name, partData.index, variant)}</Select.Item>
-												{/each}
-											</Select.Content>
-										</Select.Root>
+											{#each variants as variant}
+												{@const label = getSpriteLabel(layer.name, partData.index, variant)}
+												<option value={variant}>{label}</option>
+											{/each}
+										</select>
 									{/if}
 
 									<!-- Remove button -->
@@ -377,4 +429,4 @@
 			</div>
 		{/each}
 	</div>
-</Card.Root>
+</div>

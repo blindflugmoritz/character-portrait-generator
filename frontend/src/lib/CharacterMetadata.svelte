@@ -1,5 +1,4 @@
 <script>
-	import { Card } from '$lib/components/ui/card';
 	import { Label } from '$lib/components/ui/label';
 	import { Input } from '$lib/components/ui/input';
 	import { Textarea } from '$lib/components/ui/textarea';
@@ -79,7 +78,7 @@
 	}
 </script>
 
-<Card.Root class="p-6">
+<div class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm p-6">
 	<h2 class="text-2xl font-bold mb-6 pb-4 border-b">Character Information</h2>
 
 	<div class="space-y-6">
@@ -147,19 +146,10 @@
 
 			<div class="space-y-2">
 				<Label>Gender</Label>
-				<Select.Root
-					selected={{ value: metadata.Gender, label: metadata.Gender }}
-					onSelectedChange={(v) => v && updateField('Gender', v.value)}
-				>
-					<Select.Trigger>
-						<Select.Value />
-					</Select.Trigger>
-					<Select.Content>
-						{#each genders as gender}
-							<Select.Item value={gender}>{gender}</Select.Item>
-						{/each}
-					</Select.Content>
-				</Select.Root>
+				<div class="flex h-10 w-full rounded-md border border-input bg-muted px-3 py-2 text-sm">
+					{metadata.Gender}
+				</div>
+				<p class="text-xs text-muted-foreground">Change gender in the Appearance tab</p>
 			</div>
 		</div>
 
@@ -170,15 +160,16 @@
 			<div class="space-y-2">
 				<Label>Class</Label>
 				<Select.Root
-					selected={{ value: metadata.Class, label: metadata.Class }}
+					type="single"
+					value={metadata.Class}
 					onSelectedChange={(v) => v && handleClassChange(v.value)}
 				>
 					<Select.Trigger>
-						<Select.Value />
+						{metadata.Class}
 					</Select.Trigger>
 					<Select.Content>
 						{#each classes as cls}
-							<Select.Item value={cls}>{cls}</Select.Item>
+							<Select.Item value={cls} label={cls}>{cls}</Select.Item>
 						{/each}
 					</Select.Content>
 				</Select.Root>
@@ -188,15 +179,17 @@
 				<div class="space-y-2">
 					<Label>Job</Label>
 					<Select.Root
-						selected={{ value: metadata.Job, label: metadata.Job.replace(/([A-Z])/g, ' $1').trim() }}
+						type="single"
+						value={metadata.Job}
 						onSelectedChange={(v) => v && updateField('Job', v.value)}
 					>
 						<Select.Trigger>
-							<Select.Value />
+							{metadata.Job.replace(/([A-Z])/g, ' $1').trim()}
 						</Select.Trigger>
 						<Select.Content>
 							{#each jobs as job}
-								<Select.Item value={job}>{job.replace(/([A-Z])/g, ' $1').trim()}</Select.Item>
+								{@const label = job.replace(/([A-Z])/g, ' $1').trim()}
+								<Select.Item value={job} label={label}>{label}</Select.Item>
 							{/each}
 						</Select.Content>
 					</Select.Root>
@@ -205,15 +198,17 @@
 				<div class="space-y-2">
 					<Label>Role</Label>
 					<Select.Root
-						selected={{ value: metadata.Role, label: metadata.Role.replace(/([A-Z])/g, ' $1').trim() }}
+						type="single"
+						value={metadata.Role}
 						onSelectedChange={(v) => v && updateField('Role', v.value)}
 					>
 						<Select.Trigger>
-							<Select.Value />
+							{metadata.Role.replace(/([A-Z])/g, ' $1').trim()}
 						</Select.Trigger>
 						<Select.Content>
 							{#each roles as role}
-								<Select.Item value={role}>{role.replace(/([A-Z])/g, ' $1').trim()}</Select.Item>
+								{@const label = role.replace(/([A-Z])/g, ' $1').trim()}
+								<Select.Item value={role} label={label}>{label}</Select.Item>
 							{/each}
 						</Select.Content>
 					</Select.Root>
@@ -265,4 +260,4 @@
 			</div>
 		{/if}
 	</div>
-</Card.Root>
+</div>
