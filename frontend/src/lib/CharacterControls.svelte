@@ -16,7 +16,7 @@
 	} from './assetData.js';
 	import { spriteLabels } from './spriteLabels.js';
 
-	let { character = $bindable() } = $props();
+	let { character = $bindable(), onRandomize, onUpdate } = $props();
 
 	// Local state for Select components
 	let genderValue = $state(character.gender);
@@ -96,6 +96,14 @@
 		character.bodyShapeIndex = newCharacter.bodyShapeIndex;
 		character.colorIndices = { ...newCharacter.colorIndices };
 		character.parts = { ...newCharacter.parts };
+
+		// Notify parent to update thumbnail immediately
+		if (onRandomize) {
+			onRandomize();
+		}
+
+		// Also notify parent to save changes (onRandomize handles this, but kept for clarity)
+		// Note: onRandomize already calls forceUpdateThumbnail which saves to crew array
 	}
 
 	// Update gender - regenerate random character with new gender
@@ -107,6 +115,9 @@
 		character.bodyShapeIndex = newCharacter.bodyShapeIndex;
 		character.colorIndices = { ...newCharacter.colorIndices };
 		character.parts = { ...newCharacter.parts };
+
+		// Notify parent to save changes
+		if (onUpdate) onUpdate();
 	}
 
 	// Update part
@@ -157,6 +168,9 @@
 			...character,
 			parts: newParts
 		};
+
+		// Notify parent to save changes
+		if (onUpdate) onUpdate();
 	}
 
 	// Remove part (set to -1)
@@ -168,6 +182,9 @@
 				[layerName]: { index: -1, variant: -1 }
 			}
 		};
+
+		// Notify parent to save changes
+		if (onUpdate) onUpdate();
 	}
 
 	// Update color
@@ -179,6 +196,9 @@
 				[colorType]: parseInt(colorIndex)
 			}
 		};
+
+		// Notify parent to save changes
+		if (onUpdate) onUpdate();
 	}
 
 	// Update body shape
@@ -187,6 +207,9 @@
 			...character,
 			bodyShapeIndex: parseInt(shapeIndex)
 		};
+
+		// Notify parent to save changes
+		if (onUpdate) onUpdate();
 	}
 
 	// Get layers grouped by category

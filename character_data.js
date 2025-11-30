@@ -75,22 +75,22 @@ const data = {
 
         // Nose (PortraitSprites/2_Nose_Skin/nose_##_##.png)
         // Cannot be -1.
-        // Valid combinations (no gender-specific files; used for both genders):
-        //   Index 00: Variants 0, 1, 2
-        //   Index 01: Variants 0, 1
-        //   Index 02: Variants 0
-        //   Index 03: Variants 0
-        //   Index 04: Variants 0, 1
-        //   Index 05: Variants 0, 1
-        //   Index 06: Variants 0, 1
-        //   Index 07: Variants 0, 1
-        //   Index 08: Variants 0, 1
-        //   Index 09: Variants 0, 1
-        //   Index 10: Variants 0
-        //   Index 11: Variants 0
-        //   Index 12: Variants 0, 1
-        //   Index 20: Variants 0
-        //   Index 21: Variants 0
+        // Valid combinations per gender:
+        //   Index 00: Variants 0 (M), 1 (M), 2 (M)
+        //   Index 01: Variants 0 (M), 1 (M)
+        //   Index 02: Variants 0 (M)
+        //   Index 03: Variants 0 (M)
+        //   Index 04: Variants 0 (M), 1 (M)
+        //   Index 05: Variants 0 (M+F), 1 (M+F)
+        //   Index 06: Variants 0 (M+F), 1 (M+F)
+        //   Index 07: Variants 0 (M+F), 1 (M+F)
+        //   Index 08: Variants 0 (F), 1 (F)
+        //   Index 09: Variants 0 (F), 1 (F)
+        //   Index 10: Variants 0 (F)
+        //   Index 11: Variants 0 (F)
+        //   Index 12: Variants 0 (F), 1 (F)
+        //   Index 20: Variants 0 (F)
+        //   Index 21: Variants 0 (F)
         "Nose": {
             "Index": 6,
             "Variant": 0
@@ -98,15 +98,18 @@ const data = {
 
         // Eyebrows (PortraitSprites/4_Eyebrows_Hair/eyebrows_##_##.png)
         // Cannot be -1.
-        // Valid combinations (no gender-specific files; used for both genders):
-        //   Index 00: Variants 0, 1
-        //   Index 01: Variants 0
-        //   Index 02: Variants 0, 1
-        //   Index 03: Variants 0, 1
-        //   Index 04: Variants 0
-        //   Index 05: Variants 0, 1, 2
-        //   Index 06: Variants 0, 1
-        //   Index 07: Variants 0
+        // Valid combinations per gender:
+        //   Index 00: Variants 0 (M), 1 (M)
+        //   Index 01: Variants 0 (M+F)
+        //   Index 02: Variants 0 (M+F), 1 (M+F)
+        //   Index 03: Variants 0 (M), 1 (M)
+        //   Index 04: Variants 0 (M+F)
+        //   Index 05: Variants 0 (M+F), 1 (M+F), 2 (M+F)
+        //   Index 06: Variants 0 (M), 1 (M)
+        //   Index 07: Variants 0 (M)
+        //   Index 08: Variants 0 (F)
+        //   Index 09: Variants 0 (F)
+        //   Index 10: Variants 0 (F)
         "Eyebrows": {
             "Index": 5,
             "Variant": 1
@@ -117,20 +120,17 @@ const data = {
         // Valid combinations per gender:
         //   Index 00: Variants 0 (M), 1 (M)
         //   Index 01: Variants 0 (M)
-        //   Index 02: Variants 0 (M)
-        //   Index 03: Variants 0 (M), 1 (M), 2 (M), 3 (M), 4 (M), 5 (M)
+        //   Index 02: Variants 0 (M+F)
+        //   Index 03: Variants 0 (M+F), 1 (M+F), 2 (M+F), 3 (M+F), 4 (M+F), 5 (M+F)
         //   Index 04: Variants 0 (M), 1 (M)
         //   Index 05: Variants 0 (M)
         //   Index 06: Variants 0 (M)
-        //   Index 07: Variants 0 (M), 1 (M)
-        //   Index 08: Variants 0 (M), 1 (M), 2 (M), 3 (M)
-        //   Index 09: Variants 0 (M+F), 1 (M+F)
-        //   Index 10: Variants 0 (M)
-        //   Index 11: Variants 0 (M)
-        //   Index 12: Variants 0 (M), 1 (M)
-        // Notes:
-        //   (M)   = only base sprite exists, used for both genders.
-        //   (M+F) = both base and _female sprite exist; game picks by Gender.
+        //   Index 07: Variants 0 (M+F), 1 (M+F)
+        //   Index 08: Variants 0 (F), 1 (F), 2 (F), 3 (F)
+        //   Index 09: Variants 0 (F), 1 (F)
+        //   Index 10: Variants 0 (F)
+        //   Index 11: Variants 0 (F)
+        //   Index 12: Variants 0 (F), 1 (F)
         "Eyes": {
             "Index": 3,
             "Variant": 4
@@ -195,13 +195,13 @@ const data = {
         //   Index 04: Variants 0 (M)
         //   Index 05: Variants 0 (M), 1 (M)
         //   Index 06: Variants 0 (M), 1 (M), 2 (M)
-        //   Index 07: Variants 0 (M+F), 1 (M+F), 2 (F), 3 (F)
-        //   Index 08: Variants 0 (M+F), 1 (M+F)
-        //   Index 09: Variants 0 (M+F), 1 (M+F), 2 (F), 3 (F)
-        //   Index 10: Variants 0 (M+F), 1 (M+F)
-        //   Index 11: Variants 0 (M), 1 (M)
-        //   Index 12: Variants 0 (M)
-        //   Index 13: Variants 0 (M)
+        //   Index 07: Variants 0 (F), 1 (F), 2 (F), 3 (F)
+        //   Index 08: Variants 0 (F), 1 (F)
+        //   Index 09: Variants 0 (F), 1 (F), 2 (F), 3 (F)
+        //   Index 10: Variants 0 (F), 1 (F)
+        //   Index 11: Variants 0 (F), 1 (F)
+        //   Index 12: Variants 0 (F)
+        //   Index 13: Variants 0 (F)
         //
         // Interpretation:
         //   (M)   = only base sprite exists.
@@ -255,14 +255,14 @@ const data = {
         //   Index 05: Variants 0 (M)
         //   Index 06: Variants 0 (M)
         //   Index 07: Variants 0 (M), 1 (M)
-        //   Index 08: Variants 0 (M+F), 1 (M+F), 2 (M)
-        //   Index 09: Variants 0 (M+F), 1 (F)
-        //   Index 10: Variants 0 (M)
-        //   Index 11: Variants 0 (M)
-        //   Index 12: Variants 0 (M)
-        //   Index 13: Variants 0 (M)
-        //   Index 14: Variants 0 (M)
-        //   Index 15: Variants 0 (M)
+        //   Index 08: Variants 0 (F), 1 (F), 2 (F)
+        //   Index 09: Variants 0 (F), 1 (F)
+        //   Index 10: Variants 0 (F)
+        //   Index 11: Variants 0 (F)
+        //   Index 12: Variants 0 (F)
+        //   Index 13: Variants 0 (F)
+        //   Index 14: Variants 0 (F)
+        //   Index 15: Variants 0 (F)
         "Headshape": {
             "Index": 7,
             "Variant": 0
@@ -285,9 +285,13 @@ const data = {
         },
 
         // The color index is an index in the preconfigured array of available colors for each type
+        // Valid colors: "000000", "6F4429", "9F7F44"
         "AccessoryColorIndex": 1,
+        // Valid colors: "F5CCBA", "E0BAB4", "ECA696", "CF9895", "CA7E5B", "9C7162", "A65C3F", "765543", "603121", "4B342E"
         "SkinColorIndex": 4,
+        // Valid colors: "73361F", "994E2A", "673719", "7B511F", "6F3B17", "09090A", "29150C", "482518", "684834", "442B28", "AE9D88", "AC8C7A", "8E6E51", "C2A370", "735145", "685F5F", "383434", "817778"
         "HairColorIndex": 2,
+        // Valid colors: "333C82", "2B3041", "2E2E2E", "2E5224", "4E5224", "5B4708", "5E351B", "76442D", "3F2417", "29180F", "1D0E06", "261F1B"
         "EyeColorIndex": 1
     }
 

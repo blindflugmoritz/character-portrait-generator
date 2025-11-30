@@ -122,6 +122,16 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
+# For development: point to frontend static directory
+# For production: this should point to the deployed static files
+import os
+if DEBUG:
+    # Local development - use frontend static directory
+    STATIC_ROOT = os.path.join(BASE_DIR.parent, 'frontend', 'static')
+else:
+    # Production - use standard location
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 

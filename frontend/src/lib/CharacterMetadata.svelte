@@ -4,7 +4,7 @@
 	import { Textarea } from '$lib/components/ui/textarea';
 	import * as Select from '$lib/components/ui/select';
 
-	let { metadata = $bindable() } = $props();
+	let { metadata = $bindable(), onUpdate } = $props();
 
 	// Initialize metadata if empty
 	if (!metadata.Id) {
@@ -52,12 +52,19 @@
 		'RadioOperator'
 	];
 
+
 	function updateField(field, value) {
 		metadata = { ...metadata, [field]: value };
+
+		// Notify parent to save changes
+		if (onUpdate) onUpdate();
 	}
 
 	function updateBiography(value) {
 		metadata = { ...metadata, Biography: { ...metadata.Biography, en: value } };
+
+		// Notify parent to save changes
+		if (onUpdate) onUpdate();
 	}
 
 	function updateSkillRank(skill, value) {
@@ -66,15 +73,33 @@
 			...metadata,
 			SkillRanks: { ...metadata.SkillRanks, [skill]: rank }
 		};
+
+		// Notify parent to save changes
+		if (onUpdate) onUpdate();
 	}
 
 	// Handle class change - reset Job or Role accordingly
 	function handleClassChange(newClass) {
+		if (!newClass) return;
+
 		if (newClass === 'BaseCrew') {
 			metadata = { ...metadata, Class: newClass, Role: 'None' };
 		} else {
 			metadata = { ...metadata, Class: newClass, Job: 'None' };
 		}
+
+		// Notify parent to save changes
+		if (onUpdate) onUpdate();
+	}
+
+	function updateJob(newJob) {
+		if (!newJob) return;
+		updateField('Job', newJob);
+	}
+
+	function updateRole(newRole) {
+		if (!newRole) return;
+		updateField('Role', newRole);
 	}
 </script>
 
@@ -159,59 +184,44 @@
 
 			<div class="space-y-2">
 				<Label>Class</Label>
-				<Select.Root
-					type="single"
+				<select
+					class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
 					value={metadata.Class}
-					onSelectedChange={(v) => v && handleClassChange(v.value)}
+					onchange={(e) => handleClassChange(e.target.value)}
 				>
-					<Select.Trigger>
-						{metadata.Class}
-					</Select.Trigger>
-					<Select.Content>
-						{#each classes as cls}
-							<Select.Item value={cls} label={cls}>{cls}</Select.Item>
-						{/each}
-					</Select.Content>
-				</Select.Root>
+					{#each classes as cls}
+						<option value={cls}>{cls}</option>
+					{/each}
+				</select>
 			</div>
 
 			{#if metadata.Class === 'BaseCrew'}
 				<div class="space-y-2">
 					<Label>Job</Label>
-					<Select.Root
-						type="single"
+					<select
+						class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
 						value={metadata.Job}
-						onSelectedChange={(v) => v && updateField('Job', v.value)}
+						onchange={(e) => updateJob(e.target.value)}
 					>
-						<Select.Trigger>
-							{metadata.Job.replace(/([A-Z])/g, ' $1').trim()}
-						</Select.Trigger>
-						<Select.Content>
-							{#each jobs as job}
-								{@const label = job.replace(/([A-Z])/g, ' $1').trim()}
-								<Select.Item value={job} label={label}>{label}</Select.Item>
-							{/each}
-						</Select.Content>
-					</Select.Root>
+						{#each jobs as job}
+							{@const label = job.replace(/([A-Z])/g, ' $1').trim()}
+							<option value={job}>{label}</option>
+						{/each}
+					</select>
 				</div>
 			{:else}
 				<div class="space-y-2">
 					<Label>Role</Label>
-					<Select.Root
-						type="single"
+					<select
+						class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
 						value={metadata.Role}
-						onSelectedChange={(v) => v && updateField('Role', v.value)}
+						onchange={(e) => updateRole(e.target.value)}
 					>
-						<Select.Trigger>
-							{metadata.Role.replace(/([A-Z])/g, ' $1').trim()}
-						</Select.Trigger>
-						<Select.Content>
-							{#each roles as role}
-								{@const label = role.replace(/([A-Z])/g, ' $1').trim()}
-								<Select.Item value={role} label={label}>{label}</Select.Item>
-							{/each}
-						</Select.Content>
-					</Select.Root>
+						{#each roles as role}
+							{@const label = role.replace(/([A-Z])/g, ' $1').trim()}
+							<option value={role}>{label}</option>
+						{/each}
+					</select>
 				</div>
 			{/if}
 		</div>

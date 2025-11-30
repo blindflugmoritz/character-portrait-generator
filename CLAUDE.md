@@ -2,6 +2,23 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## ⚠️ CRITICAL DEPLOYMENT RULES ⚠️
+
+**NEVER DEPLOY TO PYTHONANYWHERE WITHOUT EXPLICIT USER PERMISSION**
+
+- DO NOT upload files to the server using rsync, scp, or MCP tools
+- DO NOT install packages on the server
+- DO NOT reload the webapp
+- DO NOT make ANY changes to the production environment
+- Development happens LOCALLY only
+- Only deploy when the user explicitly says "deploy to production" or "upload to server"
+
+If the user asks to implement a server-side feature:
+1. Create the code locally in the `/backend` directory
+2. Test it locally
+3. Ask the user if they want to deploy it
+4. Wait for explicit confirmation before any server operations
+
 ## Project Overview
 A web-based character portrait generator for creating customizable character portraits using layered transparent PNG assets. The frontend SvelteKit application is functional with HTML5 Canvas rendering, asset management, and export capabilities. Backend integration is planned but not yet implemented.
 

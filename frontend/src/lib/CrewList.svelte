@@ -2,7 +2,7 @@
 	import { Button } from '$lib/components/ui/button';
 	import { LAYERS, COLOR_PALETTES, getAssetPath } from './assetData.js';
 
-	let { crew = $bindable([]), selectedIndex = $bindable(0), onSelect, onDelete, onAdd } = $props();
+	let { crew = $bindable([]), selectedIndex = $bindable(0), onSelect, onDelete, onAdd, onNavigateToPostcard } = $props();
 
 	// Generate thumbnail for a crew member
 	async function generateThumbnail(member, canvasElement) {
@@ -43,7 +43,7 @@
 				}
 			}
 
-			const assetPath = getAssetPath(layerName, partData.index, partData.variant);
+			const assetPath = getAssetPath(layerName, partData.index, partData.variant, member.character?.gender || 'Male');
 			if (assetPath) {
 				try {
 					const img = await loadImageAsync(assetPath);
@@ -103,21 +103,37 @@
 
 	// Re-render thumbnails when crew changes
 	let thumbnailCanvases = $state([]);
+
+	// Watch for any changes to the crew array and re-render ALL thumbnails
 	$effect(() => {
-		if (crew.length > 0 && thumbnailCanvases.length > 0) {
-			crew.forEach((member, index) => {
+		// Access crew to make effect reactive to any changes
+		const currentCrew = crew;
+
+		// Re-render all thumbnails whenever crew changes
+		if (thumbnailCanvases.length > 0) {
+			currentCrew.forEach((member, index) => {
 				if (thumbnailCanvases[index]) {
 					generateThumbnail(member, thumbnailCanvases[index]);
 				}
 			});
 		}
 	});
+
+	// Function to manually update a specific thumbnail (called by parent)
+	function updateThumbnail(index) {
+		if (thumbnailCanvases[index] && crew[index]) {
+			generateThumbnail(crew[index], thumbnailCanvases[index]);
+		}
+	}
 </script>
 
 <div class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm p-4 mb-5">
 	<div class="flex justify-between items-center mb-4 pb-3 border-b-2">
 		<h3 class="text-lg font-semibold">Crew Members ({crew.length})</h3>
-		<Button onclick={onAdd} variant="default" size="sm"> + New Member </Button>
+		<div class="flex gap-2">
+			<Button onclick={onAdd} variant="default" size="sm"> + New Member </Button>
+			<Button onclick={onNavigateToPostcard} variant="secondary" size="sm"> 🖼️ Create Postcard </Button>
+		</div>
 	</div>
 
 	<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 max-h-[300px] overflow-y-auto">

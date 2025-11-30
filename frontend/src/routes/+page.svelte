@@ -1,5 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
+	import { goto } from '$app/navigation';
 	import { Button } from '$lib/components/ui/button';
 	import * as Tabs from '$lib/components/ui/tabs';
 	import PortraitCanvas from '$lib/PortraitCanvas.svelte';
@@ -15,44 +16,50 @@
 	let selectedCrewIndex = $state(0);
 
 	// Current crew member being edited
-	let character = $state(createDefaultCharacter());
-	let metadata = $state(createDefaultMetadata());
+	let character = $state(null);
+	let metadata = $state(null);
 
 	let portraitCanvas;
 	let activeTab = $state('appearance');
+	let isInitialized = $state(false);
 
-	// Initialize crew array
+	// Helper function to deep clone character/metadata (structuredClone doesn't work with some objects)
+	function deepClone(obj) {
+		return JSON.parse(JSON.stringify(obj));
+	}
+
+	// Initialize crew array with one member
 	crew = [createCrewMember()];
-	character = crew[0].character;
-	metadata = crew[0].metadata;
 
 	// Initialize with one crew member
 	onMount(() => {
 		// Check for data version - clear if old version
-		const DATA_VERSION = '2.1';
+		const DATA_VERSION = '2.2'; // Bumped for postcard feature compatibility
 		const savedVersion = localStorage.getItem('crewDataVersion');
 
 		if (savedVersion !== DATA_VERSION) {
 			console.log('Data version mismatch, clearing localStorage');
 			localStorage.removeItem('crew');
 			localStorage.setItem('crewDataVersion', DATA_VERSION);
-			return;
+		} else {
+			// Try to load from localStorage
+			try {
+				const saved = localStorage.getItem('crew');
+				if (saved) {
+					const parsed = JSON.parse(saved);
+					if (parsed && Array.isArray(parsed) && parsed.length > 0) {
+						crew = parsed;
+					}
+				}
+			} catch (e) {
+				console.error('Failed to load crew from localStorage:', e);
+			}
 		}
 
-		// Try to load from localStorage
-		try {
-			const saved = localStorage.getItem('crew');
-			if (saved) {
-				const parsed = JSON.parse(saved);
-				if (parsed && Array.isArray(parsed) && parsed.length > 0) {
-					crew = parsed;
-					character = crew[selectedCrewIndex].character;
-					metadata = crew[selectedCrewIndex].metadata;
-				}
-			}
-		} catch (e) {
-			console.error('Failed to load crew from localStorage:', e);
-		}
+		// Always load character/metadata after crew is set
+		character = deepClone(crew[selectedCrewIndex].character);
+		metadata = deepClone(crew[selectedCrewIndex].metadata);
+		isInitialized = true;
 	});
 
 	// Save to localStorage whenever crew changes (browser only)
@@ -60,20 +67,66 @@
 		if (typeof window !== 'undefined' && crew.length > 0) {
 			try {
 				localStorage.setItem('crew', JSON.stringify(crew));
+				console.log('✓ Saved crew to localStorage:', crew.length, 'members');
 			} catch (e) {
 				console.error('Failed to save crew to localStorage:', e);
 			}
 		}
 	}
 
-	// Update crew member when character or metadata changes
+	// Auto-save crew to localStorage whenever it changes
 	$effect(() => {
-		if (crew[selectedCrewIndex]) {
-			crew[selectedCrewIndex].character = character;
-			crew[selectedCrewIndex].metadata = metadata;
+		// Access crew to make this reactive
+		const currentCrew = crew;
+
+		// Only save if initialized and has crew members
+		if (isInitialized && currentCrew.length > 0) {
 			saveCrew();
 		}
 	});
+
+	// Reference to CrewList component
+	let crewListComponent;
+
+	// Debounce timer for auto-save
+	let updateTimeout;
+
+	// Update crew member with current character/metadata changes
+	function updateCurrentCrewMember() {
+		if (!isInitialized || !character || !metadata) return;
+
+		// Save changes back to crew array - create new array reference for reactivity
+		crew = crew.map((member, idx) =>
+			idx === selectedCrewIndex
+				? { character: deepClone(character), metadata: deepClone(metadata) }
+				: member
+		);
+
+		// Debounced thumbnail update and localStorage save
+		clearTimeout(updateTimeout);
+		updateTimeout = setTimeout(() => {
+			if (crewListComponent?.updateThumbnail) {
+				crewListComponent.updateThumbnail(selectedCrewIndex);
+			}
+			saveCrew();
+		}, 300);
+	}
+
+	// Force immediate thumbnail update (called by randomize button)
+	function forceUpdateThumbnail() {
+		// Immediately save changes - create new array reference for reactivity
+		crew = crew.map((member, idx) =>
+			idx === selectedCrewIndex
+				? { character: deepClone(character), metadata: deepClone(metadata) }
+				: member
+		);
+
+		clearTimeout(updateTimeout);
+		if (crewListComponent?.updateThumbnail) {
+			crewListComponent.updateThumbnail(selectedCrewIndex);
+		}
+		saveCrew();
+	}
 
 	function createDefaultMetadata() {
 		// Generate UUID with fallback for SSR
@@ -144,8 +197,9 @@
 
 	function selectCrewMember(index) {
 		selectedCrewIndex = index;
-		character = crew[index].character;
-		metadata = crew[index].metadata;
+		// Create deep copies to avoid shared references
+		character = deepClone(crew[index].character);
+		metadata = deepClone(crew[index].metadata);
 	}
 
 	// Handle AI-generated crew
@@ -412,6 +466,13 @@
 				});
 		}
 	}
+
+	// Navigate to postcard generator with crew data
+	function navigateToPostcard() {
+		// Save crew to localStorage before navigating
+		saveCrew();
+		goto('/postcard');
+	}
 </script>
 
 <svelte:head>
@@ -426,22 +487,25 @@
 	</header>
 
 	<div class="max-w-[1600px] mx-auto space-y-5">
-		<!-- Crew List Section -->
-		<CrewList
-			bind:crew
-			bind:selectedIndex={selectedCrewIndex}
-			onSelect={selectCrewMember}
-			onDelete={deleteCrewMember}
-			onAdd={addCrewMember}
-		/>
+		{#if isInitialized && character && metadata}
+			<!-- Crew List Section -->
+			<CrewList
+				bind:this={crewListComponent}
+				bind:crew
+				bind:selectedIndex={selectedCrewIndex}
+				onSelect={selectCrewMember}
+				onDelete={deleteCrewMember}
+				onAdd={addCrewMember}
+				onNavigateToPostcard={navigateToPostcard}
+			/>
 
-		<div class="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-8 items-start">
-			<div class="lg:sticky lg:top-5 flex flex-col items-center gap-4">
-				<h3 class="text-white text-xl font-semibold px-5 py-2 bg-black/30 rounded-lg">
-					Editing: {metadata.FirstName || 'Unnamed'} {metadata.LastName || ''}
-				</h3>
+			<div class="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-8 items-start">
+				<div class="lg:sticky lg:top-5 flex flex-col items-center gap-4">
+					<h3 class="text-white text-xl font-semibold px-5 py-2 bg-black/30 rounded-lg">
+						Editing: {metadata.FirstName || 'Unnamed'} {metadata.LastName || ''}
+					</h3>
 
-				<PortraitCanvas bind:this={portraitCanvas} {character} canvasSize={512} />
+					<PortraitCanvas bind:this={portraitCanvas} {character} canvasSize={512} />
 
 				<div class="flex flex-wrap gap-2 justify-center">
 					<Button onclick={exportPortrait} variant="default">💾 Download PNG</Button>
@@ -462,10 +526,10 @@
 						<Tabs.Trigger value="info">Character Info</Tabs.Trigger>
 					</Tabs.List>
 					<Tabs.Content value="appearance">
-						<CharacterControls bind:character />
+						<CharacterControls bind:character onRandomize={forceUpdateThumbnail} onUpdate={updateCurrentCrewMember} />
 					</Tabs.Content>
 					<Tabs.Content value="info">
-						<CharacterMetadata bind:metadata />
+						<CharacterMetadata bind:metadata onUpdate={updateCurrentCrewMember} />
 					</Tabs.Content>
 				</Tabs.Root>
 			</div>
@@ -476,6 +540,12 @@
 			<CrewGenerator onCrewGenerated={handleCrewGenerated} />
 			<PhotoUpload onPhotoAnalyzed={handlePhotoAnalyzed} />
 		</div>
+		{:else}
+			<div class="text-center text-white py-20">
+				<div class="w-16 h-16 border-4 border-white/30 border-t-white rounded-full animate-spin mx-auto mb-4"></div>
+				<p>Loading...</p>
+			</div>
+		{/if}
 	</div>
 
 	<footer class="text-center mt-10 text-white/80">
