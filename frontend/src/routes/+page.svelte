@@ -422,12 +422,6 @@
 	</header>
 
 	<div class="main-container">
-		<!-- AI Crew Generator -->
-		<CrewGenerator onCrewGenerated={handleCrewGenerated} />
-
-		<!-- Photo Upload -->
-		<PhotoUpload onPhotoAnalyzed={handlePhotoAnalyzed} />
-
 		<!-- Crew List Section -->
 		<CrewList
 			{crew}
@@ -481,6 +475,15 @@
 				{/if}
 			</div>
 		</div>
+
+		<!-- AI Features at Bottom -->
+		<div class="ai-features">
+			<!-- AI Crew Generator -->
+			<CrewGenerator onCrewGenerated={handleCrewGenerated} />
+
+			<!-- Photo Upload -->
+			<PhotoUpload onPhotoAnalyzed={handlePhotoAnalyzed} />
+		</div>
 	</div>
 
 	<footer>
@@ -532,6 +535,13 @@
 		grid-template-columns: auto 1fr;
 		gap: 30px;
 		align-items: start;
+	}
+
+	.ai-features {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 20px;
+		margin-top: 20px;
 	}
 
 	.portrait-section {
@@ -671,6 +681,10 @@
 		.generator-container {
 			grid-template-columns: 1fr;
 			gap: 20px;
+		}
+
+		.ai-features {
+			grid-template-columns: 1fr;
 		}
 
 		.controls-section {
