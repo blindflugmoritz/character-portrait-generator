@@ -13,6 +13,7 @@ import anthropic
 from dotenv import load_dotenv
 from .character_generator import generate_random_character
 from .photo_matcher import match_features_to_sprites
+from . import postcard_generator
 
 # Load environment variables
 load_dotenv()
@@ -242,6 +243,131 @@ Generate the crew now:"""
             },
             status=500
         )
+
+
+@csrf_exempt
+@require_http_methods(["GET"])
+def version_check(request):
+    """
+    Check which version of postcard_generator module is loaded
+    """
+    try:
+        version = getattr(postcard_generator, 'MODULE_VERSION', 'UNKNOWN')
+        return JsonResponse({
+            'module': 'postcard_generator',
+            'version': version,
+            'status': 'loaded'
+        })
+    except Exception as e:
+        return JsonResponse({
+            'error': str(e),
+            'status': 'error'
+        }, status=500)
+
+
+@csrf_exempt
+@require_http_methods(["GET"])
+def health_check(request):
+    """
+    Comprehensive health check for production debugging
+    Returns status of all critical files, modules, and dependencies
+    """
+    import sys
+    from django.conf import settings
+
+    health = {
+        'status': 'healthy',
+        'issues': [],
+        'checks': {}
+    }
+
+    # Check Python files
+    api_dir = os.path.dirname(__file__)
+    required_files = [
+        'views.py',
+        'views_postcard.py',
+        'postcard_generator.py',
+        'character_generator.py',
+        'photo_matcher.py',
+        'sprite-metadata.json',
+        'urls.py'
+    ]
+
+    health['checks']['files'] = {}
+    for filename in required_files:
+        filepath = os.path.join(api_dir, filename)
+        exists = os.path.exists(filepath)
+        health['checks']['files'][filename] = {
+            'exists': exists,
+            'path': filepath
+        }
+        if not exists:
+            health['issues'].append(f'Missing file: {filename}')
+            health['status'] = 'unhealthy'
+
+    # Check module imports
+    health['checks']['imports'] = {}
+    modules_to_check = [
+        ('anthropic', 'Anthropic API client'),
+        ('PIL', 'Pillow (image processing)'),
+        ('dotenv', 'Environment variables'),
+    ]
+
+    for module_name, description in modules_to_check:
+        try:
+            __import__(module_name)
+            health['checks']['imports'][module_name] = {
+                'status': 'ok',
+                'description': description
+            }
+        except ImportError as e:
+            health['checks']['imports'][module_name] = {
+                'status': 'missing',
+                'error': str(e),
+                'description': description
+            }
+            health['issues'].append(f'Missing module: {module_name} ({description})')
+            health['status'] = 'unhealthy'
+
+    # Check environment variables
+    health['checks']['environment'] = {
+        'ANTHROPIC_API_KEY': 'set' if ANTHROPIC_API_KEY else 'missing',
+        'STATIC_ROOT': getattr(settings, 'STATIC_ROOT', 'not configured')
+    }
+
+    if not ANTHROPIC_API_KEY:
+        health['issues'].append('ANTHROPIC_API_KEY not set')
+        health['status'] = 'unhealthy'
+
+    # Check static files directory
+    static_root = getattr(settings, 'STATIC_ROOT', None)
+    if static_root:
+        health['checks']['static_files'] = {
+            'STATIC_ROOT': static_root,
+            'exists': os.path.exists(static_root),
+            'PortraitSprites_exists': os.path.exists(os.path.join(static_root, 'PortraitSprites')),
+            'PostcardTemplates_exists': os.path.exists(os.path.join(static_root, 'PostcardTemplates'))
+        }
+
+        if not os.path.exists(static_root):
+            health['issues'].append(f'STATIC_ROOT directory does not exist: {static_root}')
+            health['status'] = 'unhealthy'
+
+    # Check module versions
+    health['checks']['versions'] = {
+        'postcard_generator': getattr(postcard_generator, 'MODULE_VERSION', 'UNKNOWN'),
+        'python_version': sys.version,
+        'django_settings_module': os.getenv('DJANGO_SETTINGS_MODULE', 'not set')
+    }
+
+    # Check current working directory and Python path
+    health['checks']['system'] = {
+        'cwd': os.getcwd(),
+        'api_dir': api_dir,
+        'sys_path': sys.path[:3]  # First 3 paths only
+    }
+
+    return JsonResponse(health, status=200 if health['status'] == 'healthy' else 500)
 
 
 @csrf_exempt
