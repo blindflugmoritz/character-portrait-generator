@@ -6,3 +6,10 @@ node_modules/
 .svelte-kit/
 build/
 dist/
+node_modules/
+build/
+.DS_Store
+*.pyc
+__pycache__/
+venv/
+.env
