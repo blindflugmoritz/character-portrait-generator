@@ -7,6 +7,10 @@ from PIL import Image, ImageDraw
 from io import BytesIO
 import base64
 
+# VERSION IDENTIFIER - increment to verify module is loaded
+MODULE_VERSION = "1.0.1"
+print(f"postcard_generator.py MODULE_VERSION {MODULE_VERSION} loaded")
+
 # Postcard dimensions
 CANVAS_WIDTH = 1024
 CANVAS_HEIGHT = 614
