@@ -54,7 +54,7 @@ A web-based character portrait generator for creating customizable character por
 ## Current Architecture
 - **Frontend**: SvelteKit with Svelte 5 (runes), shadcn-svelte UI components, Tailwind CSS
 - **Backend**: Django REST API with PIL/Pillow for image processing
-- **Deployment**: PythonAnywhere (blindflugstudios.pythonanywhere.com)
+- **Deployment**: PythonAnywhere (station.groundofaces.com)
 - **Remote Server**: Accessible via MCP (use mcp__pythonanywhere__* tools for deployment operations)
 - **Assets**: 21-layer portrait system with 193+ PNG sprites in `frontend/static/PortraitSprites/`
 - **Local Storage**: Crew data persisted in browser localStorage
@@ -62,7 +62,7 @@ A web-based character portrait generator for creating customizable character por
 ## Deployment
 - **Django Backend**: `/home/blindflugstudios/CharacterEditor`
 - **Frontend Build**: `/home/blindflugstudios/build/` (THIS is where the live site serves from)
-- **Domain**: blindflugstudios.pythonanywhere.com
+- **Domain**: station.groundofaces.com
 - **Python**: 3.10 with virtualenv at `/home/blindflugstudios/crew-generator-backend/venv`
 - **Control**: Use MCP tools (mcp__pythonanywhere__*) to read/write files, reload webapp, etc.
 - **Password**: `HFY.ecy5mem1gcd-nhx`
@@ -87,7 +87,7 @@ A web-based character portrait generator for creating customizable character por
 
 3. **Reload webapp**:
    ```bash
-   # Use MCP: mcp__pythonanywhere__reload_webapp with domain: blindflugstudios.pythonanywhere.com
+   # Use MCP: mcp__pythonanywhere__reload_webapp with domain: station.groundofaces.com
    ```
 
 ### Uploading Only Assets (PortraitSprites)

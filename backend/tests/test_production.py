@@ -10,7 +10,7 @@ from io import BytesIO
 from PIL import Image
 
 
-PRODUCTION_URL = 'https://blindflugstudios.pythonanywhere.com'
+PRODUCTION_URL = 'http://station.groundofaces.com'
 
 
 def test_health_endpoint():

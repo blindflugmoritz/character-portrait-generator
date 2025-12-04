@@ -25,7 +25,12 @@ SECRET_KEY = "django-insecure-16*5k*(c2x)lj0jc-qhnu%_d!t#0a2_+pmt7qiv0$qj5t35*rx
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'station.groundofaces.com',
+    'blindflugstudios.pythonanywhere.com',
+    'localhost',
+    '127.0.0.1'
+]
 
 
 # Application definition
@@ -122,15 +127,9 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
-# For development: point to frontend static directory
-# For production: this should point to the deployed static files
+# Static root - always use CharacterEditor/static for production
 import os
-if DEBUG:
-    # Local development - use frontend static directory
-    STATIC_ROOT = os.path.join(BASE_DIR.parent, 'frontend', 'static')
-else:
-    # Production - use standard location
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -141,15 +140,18 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Allow frontend to make requests from localhost during development
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # SvelteKit dev server
+    "http://localhost:5174",  # SvelteKit dev server (alternative port)
     "http://localhost:4173",  # SvelteKit preview server
     "http://localhost:3000",  # Alternative port
     "http://127.0.0.1:5173",
+    "http://127.0.0.1:5174",
     "http://127.0.0.1:4173",
     "http://127.0.0.1:3000",
+    "http://station.groundofaces.com",  # Production
+    "https://station.groundofaces.com",  # Production (https)
+    "http://blindflugstudios.pythonanywhere.com",
+    "https://blindflugstudios.pythonanywhere.com",
 ]
-
-# For production, you would add your deployed frontend URL:
-# CORS_ALLOWED_ORIGINS = ["https://your-frontend-domain.com"]
 
 # Allow credentials (cookies, authorization headers)
 CORS_ALLOW_CREDENTIALS = True

@@ -8,7 +8,7 @@ from io import BytesIO
 import base64
 
 # VERSION IDENTIFIER - increment to verify module is loaded
-MODULE_VERSION = "1.0.1"
+MODULE_VERSION = "1.0.5"
 print(f"postcard_generator.py MODULE_VERSION {MODULE_VERSION} loaded")
 
 # Postcard dimensions
@@ -18,41 +18,58 @@ CANVAS_HEIGHT = 614
 # Character canvas size (for rendering individual portraits)
 CHARACTER_SIZE = 256
 
-# Color palettes - MUST match frontend assetData.js exactly!
+# Color palettes - MUST match frontend assetData.js exactly! Matches game's color system.
 COLOR_PALETTES = {
     'Skin': [
-        '#FFE0BD',  # 0: Very Light
-        '#FFCD94',  # 1: Light
-        '#EAC086',  # 2: Light Medium
-        '#C68642',  # 3: Medium
-        '#A67C52',  # 4: Olive
-        '#8D5524',  # 5: Brown
-        '#664229'   # 6: Dark Brown
+        '#F5CCBA',  # 0
+        '#E0BAB4',  # 1
+        '#ECA696',  # 2
+        '#CF9895',  # 3
+        '#CA7E5B',  # 4
+        '#9C7162',  # 5
+        '#A65C3F',  # 6
+        '#765543',  # 7
+        '#603121',  # 8
+        '#4B342E'   # 9
     ],
     'Hair': [
-        '#F5F5DC',  # 0: Platinum Blonde
-        '#E5C18A',  # 1: Blonde
-        '#A67C52',  # 2: Light Brown
-        '#6E4A2D',  # 3: Brown
-        '#4A2C1C',  # 4: Dark Brown
-        '#1C1C1C',  # 5: Black
-        '#8B4513',  # 6: Auburn
-        '#C85A32'   # 7: Red
+        '#73361F',  # 0
+        '#994E2A',  # 1
+        '#673719',  # 2
+        '#7B511F',  # 3
+        '#6F3B17',  # 4
+        '#09090A',  # 5
+        '#29150C',  # 6
+        '#482518',  # 7
+        '#684834',  # 8
+        '#442B28',  # 9
+        '#AE9D88',  # 10
+        '#AC8C7A',  # 11
+        '#8E6E51',  # 12
+        '#C2A370',  # 13
+        '#735145',  # 14
+        '#685F5F',  # 15
+        '#383434',  # 16
+        '#817778'   # 17
     ],
     'Eye': [
-        '#5A9BCF',  # 0: Blue
-        '#5FA777',  # 1: Green
-        '#6E4A2D',  # 2: Brown
-        '#8D6E49',  # 3: Hazel
-        '#8FA8B0',  # 4: Gray
-        '#D4A650'   # 5: Amber
+        '#333C82',  # 0
+        '#2B3041',  # 1
+        '#2E2E2E',  # 2
+        '#2E5224',  # 3
+        '#4E5224',  # 4
+        '#5B4708',  # 5
+        '#5E351B',  # 6
+        '#76442D',  # 7
+        '#3F2417',  # 8
+        '#29180F',  # 9
+        '#1D0E06',  # 10
+        '#261F1B'   # 11
     ],
     'Accessory': [
-        '#1C1C1C',  # 0: Black
-        '#6E4A2D',  # 1: Brown
-        '#808080',  # 2: Gray
-        '#C0C0C0',  # 3: Silver
-        '#FFD700'   # 4: Gold
+        '#000000',  # 0: Black
+        '#6F4429',  # 1: Brown
+        '#9F7F44'   # 2: Gold
     ]
 }
 
@@ -177,18 +194,43 @@ def get_asset_path(layer_name, index, variant, gender, base_path):
     }
 
     prefix = filename_prefixes.get(layer_name, layer_name.lower())
-    filename = f"{prefix}_{index:02d}_{variant:02d}.png"
 
+    # Try gender-specific filename first for female characters
+    if gender == 'Female':
+        # For clothes layers, try _F suffix (e.g., clothes_07_00_F.png)
+        if layer_name in ['Clothes', 'ClothesBack']:
+            female_filename = f"{prefix}_{index:02d}_{variant:02d}_F.png"
+            female_path = os.path.join(base_path, 'PortraitSprites', folder, female_filename)
+            if os.path.exists(female_path):
+                return female_path
+
+        # For hair layers, try _female suffix (e.g., hair_07_00_female.png)
+        if layer_name in ['Hair', 'HairBack']:
+            female_filename = f"{prefix}_{index:02d}_{variant:02d}_female.png"
+            female_path = os.path.join(base_path, 'PortraitSprites', folder, female_filename)
+            if os.path.exists(female_path):
+                return female_path
+
+    # Fall back to base filename (for male or unisex sprites)
+    filename = f"{prefix}_{index:02d}_{variant:02d}.png"
     full_path = os.path.join(base_path, 'PortraitSprites', folder, filename)
 
     return full_path if os.path.exists(full_path) else None
 
 
-def render_character(character, base_path):
+def render_character(character, base_path, size=None):
     """
     Render a single character portrait to a PIL Image
-    Returns a CHARACTER_SIZE x CHARACTER_SIZE RGBA image
+    Returns a CHARACTER_SIZE x CHARACTER_SIZE RGBA image (or custom size if specified)
+
+    Args:
+        character: Character data dict
+        base_path: Base path to static files
+        size: Optional custom size (defaults to CHARACTER_SIZE)
     """
+    if size is None:
+        size = CHARACTER_SIZE
+
     print(f'\n=== RENDERING CHARACTER ===')
     print(f'Base path: {base_path}')
     print(f'Character keys: {character.keys()}')
@@ -199,7 +241,7 @@ def render_character(character, base_path):
         print(f'First few parts: {list(character.get("parts", {}).keys())[:5]}')
 
     # Create transparent canvas
-    canvas = Image.new('RGBA', (CHARACTER_SIZE, CHARACTER_SIZE), (0, 0, 0, 0))
+    canvas = Image.new('RGBA', (size, size), (0, 0, 0, 0))
 
     # Get color values
     skin_color = COLOR_PALETTES['Skin'][character.get('colorIndices', {}).get('Skin', 2)]
@@ -249,9 +291,9 @@ def render_character(character, base_path):
         img = Image.open(asset_path).convert('RGBA')
         layers_rendered += 1
 
-        # Resize to CHARACTER_SIZE if needed
-        if img.size != (CHARACTER_SIZE, CHARACTER_SIZE):
-            img = img.resize((CHARACTER_SIZE, CHARACTER_SIZE), Image.Resampling.LANCZOS)
+        # Resize to target size if needed
+        if img.size != (size, size):
+            img = img.resize((size, size), Image.Resampling.LANCZOS)
 
         # Apply color tinting
         if layer_info['useSkinColor']:
@@ -309,25 +351,30 @@ def generate_postcard(color, characters, base_path):
     postcard = Image.alpha_composite(postcard, template)
 
     # Character slot positions
-    # If single character with blue template, use larger centered slot
-    if len(characters) == 1 and color == 'blue':
-        slots = [
-            {'x': 5.37, 'y': 8.23, 'width': 24.88, 'height': 39.44},  # Adjusted: 55,53 with size 255×254 to fit inside border
-        ]
+    # If single character, use larger centered slot (different positioning for blue vs orange)
+    if len(characters) == 1:
+        if color == 'blue':
+            slots = [
+                {'x': 4.8, 'y': 8.8, 'width': 25.4, 'height': 41.5},  # Blue template box: centered in upper-left tan box
+            ]
+        else:  # orange
+            slots = [
+                {'x': 18.0, 'y': 32.0, 'width': 30.0, 'height': 30.0},  # Orange template box: centered in white box on left
+            ]
     else:
-        # Multiple characters - 6 on top row, 4 on bottom row
-        # Top row ends at ~80% to avoid overlapping the right edge and logo text
+        # Multiple characters - 3 per row layout with much larger portraits
+        # Taking up more of the left side of the postcard
         slots = [
-            {'x': 5.5, 'y': 5.5, 'width': 13.0, 'height': 26.0},   # Slot 1 - Top row
-            {'x': 19.5, 'y': 5.5, 'width': 13.0, 'height': 26.0},  # Slot 2 - Top row
-            {'x': 33.5, 'y': 5.5, 'width': 13.0, 'height': 26.0},  # Slot 3 - Top row
-            {'x': 47.5, 'y': 5.5, 'width': 13.0, 'height': 26.0},  # Slot 4 - Top row
-            {'x': 61.5, 'y': 5.5, 'width': 13.0, 'height': 26.0},  # Slot 5 - Top row
-            {'x': 75.5, 'y': 5.5, 'width': 13.0, 'height': 26.0},  # Slot 6 - Top row (last to fit)
-            {'x': 5.5, 'y': 33.0, 'width': 13.0, 'height': 26.0},  # Slot 7 - Bottom row
-            {'x': 19.5, 'y': 33.0, 'width': 13.0, 'height': 26.0}, # Slot 8 - Bottom row
-            {'x': 33.5, 'y': 33.0, 'width': 13.0, 'height': 26.0}, # Slot 9 - Bottom row
-            {'x': 47.5, 'y': 33.0, 'width': 13.0, 'height': 26.0}  # Slot 10 - Bottom row
+            {'x': 2.0, 'y': 5.0, 'width': 28.0, 'height': 28.0},   # Slot 1 - Top row
+            {'x': 32.0, 'y': 5.0, 'width': 28.0, 'height': 28.0},  # Slot 2 - Top row
+            {'x': 2.0, 'y': 36.0, 'width': 28.0, 'height': 28.0},  # Slot 3 - Middle row
+            {'x': 32.0, 'y': 36.0, 'width': 28.0, 'height': 28.0}, # Slot 4 - Middle row
+            {'x': 2.0, 'y': 67.0, 'width': 28.0, 'height': 28.0},  # Slot 5 - Bottom row
+            {'x': 32.0, 'y': 67.0, 'width': 28.0, 'height': 28.0}, # Slot 6 - Bottom row
+            {'x': 17.0, 'y': 5.0, 'width': 28.0, 'height': 28.0},  # Slot 7 - Extra
+            {'x': 17.0, 'y': 36.0, 'width': 28.0, 'height': 28.0}, # Slot 8 - Extra
+            {'x': 17.0, 'y': 67.0, 'width': 28.0, 'height': 28.0}, # Slot 9 - Extra
+            {'x': 47.0, 'y': 36.0, 'width': 28.0, 'height': 28.0}  # Slot 10 - Extra
         ]
 
     # Render each character
@@ -345,9 +392,9 @@ def generate_postcard(color, characters, base_path):
         slot_width = int((slot['width'] / 100) * CANVAS_WIDTH)
         slot_height = int((slot['height'] / 100) * CANVAS_HEIGHT)
 
-        # For single character blue template, use full rectangular slot
+        # For single character templates (both blue and orange), don't draw background/border
         # For multiple characters, use square slots with background/border
-        is_single_char = len(characters) == 1 and color == 'blue'
+        is_single_char = len(characters) == 1
         print(f"\n=== CHARACTER {i} RENDERING ===")
         print(f"Characters count: {len(characters)}, Color: {color}")
         print(f"Is single character mode: {is_single_char}")

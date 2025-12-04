@@ -7,7 +7,8 @@ from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 from django.conf import settings
-from .postcard_generator import generate_postcard, postcard_to_base64
+from .postcard_generator import postcard_to_base64
+from .postcard_generator_v2 import generate_postcard_v2
 
 
 @csrf_exempt
@@ -56,8 +57,8 @@ def generate_postcard_api(request):
         # Get base path for static files
         base_path = settings.STATIC_ROOT
 
-        # Generate postcard
-        postcard_image = generate_postcard(color, characters, base_path)
+        # Generate postcard using V2 generator
+        postcard_image = generate_postcard_v2(color, characters, base_path)
 
         print('Postcard generated successfully')
 

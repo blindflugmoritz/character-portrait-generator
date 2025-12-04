@@ -7,47 +7,64 @@ import uuid
 
 # Body shape options
 BODY_SHAPES = [
-    {'index': 0, 'name': 'Thin'},
-    {'index': 1, 'name': 'Average'},
-    {'index': 2, 'name': 'Bulky'},
-    {'index': 3, 'name': 'Fat'}
+    {'index': 3, 'name': 'Thin'},
+    {'index': 2, 'name': 'Average'},
+    {'index': 1, 'name': 'Bulky'},
+    {'index': 0, 'name': 'Fat'}
 ]
 
-# Color palettes
+# Color palettes - Matches game's color system exactly
 COLOR_PALETTES = {
     'Skin': [
-        {'index': 0, 'name': 'Very Light', 'hex': '#FFE0BD'},
-        {'index': 1, 'name': 'Light', 'hex': '#FFCD94'},
-        {'index': 2, 'name': 'Light Medium', 'hex': '#EAC086'},
-        {'index': 3, 'name': 'Medium', 'hex': '#C68642'},
-        {'index': 4, 'name': 'Olive', 'hex': '#A67C52'},
-        {'index': 5, 'name': 'Brown', 'hex': '#8D5524'},
-        {'index': 6, 'name': 'Dark Brown', 'hex': '#664229'}
+        {'index': 0, 'name': 'Skin 0', 'hex': '#F5CCBA'},
+        {'index': 1, 'name': 'Skin 1', 'hex': '#E0BAB4'},
+        {'index': 2, 'name': 'Skin 2', 'hex': '#ECA696'},
+        {'index': 3, 'name': 'Skin 3', 'hex': '#CF9895'},
+        {'index': 4, 'name': 'Skin 4', 'hex': '#CA7E5B'},
+        {'index': 5, 'name': 'Skin 5', 'hex': '#9C7162'},
+        {'index': 6, 'name': 'Skin 6', 'hex': '#A65C3F'},
+        {'index': 7, 'name': 'Skin 7', 'hex': '#765543'},
+        {'index': 8, 'name': 'Skin 8', 'hex': '#603121'},
+        {'index': 9, 'name': 'Skin 9', 'hex': '#4B342E'}
     ],
     'Hair': [
-        {'index': 0, 'name': 'Platinum Blonde', 'hex': '#F5F5DC'},
-        {'index': 1, 'name': 'Blonde', 'hex': '#E5C18A'},
-        {'index': 2, 'name': 'Light Brown', 'hex': '#A67C52'},
-        {'index': 3, 'name': 'Brown', 'hex': '#6E4A2D'},
-        {'index': 4, 'name': 'Dark Brown', 'hex': '#4A2C1C'},
-        {'index': 5, 'name': 'Black', 'hex': '#1C1C1C'},
-        {'index': 6, 'name': 'Auburn', 'hex': '#8B4513'},
-        {'index': 7, 'name': 'Red', 'hex': '#C85A32'}
+        {'index': 0, 'name': 'Hair 0', 'hex': '#73361F'},
+        {'index': 1, 'name': 'Hair 1', 'hex': '#994E2A'},
+        {'index': 2, 'name': 'Hair 2', 'hex': '#673719'},
+        {'index': 3, 'name': 'Hair 3', 'hex': '#7B511F'},
+        {'index': 4, 'name': 'Hair 4', 'hex': '#6F3B17'},
+        {'index': 5, 'name': 'Hair 5', 'hex': '#09090A'},
+        {'index': 6, 'name': 'Hair 6', 'hex': '#29150C'},
+        {'index': 7, 'name': 'Hair 7', 'hex': '#482518'},
+        {'index': 8, 'name': 'Hair 8', 'hex': '#684834'},
+        {'index': 9, 'name': 'Hair 9', 'hex': '#442B28'},
+        {'index': 10, 'name': 'Hair 10', 'hex': '#AE9D88'},
+        {'index': 11, 'name': 'Hair 11', 'hex': '#AC8C7A'},
+        {'index': 12, 'name': 'Hair 12', 'hex': '#8E6E51'},
+        {'index': 13, 'name': 'Hair 13', 'hex': '#C2A370'},
+        {'index': 14, 'name': 'Hair 14', 'hex': '#735145'},
+        {'index': 15, 'name': 'Hair 15', 'hex': '#685F5F'},
+        {'index': 16, 'name': 'Hair 16', 'hex': '#383434'},
+        {'index': 17, 'name': 'Hair 17', 'hex': '#817778'}
     ],
     'Eye': [
-        {'index': 0, 'name': 'Blue', 'hex': '#5A9BCF'},
-        {'index': 1, 'name': 'Green', 'hex': '#5FA777'},
-        {'index': 2, 'name': 'Brown', 'hex': '#6E4A2D'},
-        {'index': 3, 'name': 'Hazel', 'hex': '#8D6E49'},
-        {'index': 4, 'name': 'Gray', 'hex': '#8FA8B0'},
-        {'index': 5, 'name': 'Amber', 'hex': '#D4A650'}
+        {'index': 0, 'name': 'Eye 0', 'hex': '#333C82'},
+        {'index': 1, 'name': 'Eye 1', 'hex': '#2B3041'},
+        {'index': 2, 'name': 'Eye 2', 'hex': '#2E2E2E'},
+        {'index': 3, 'name': 'Eye 3', 'hex': '#2E5224'},
+        {'index': 4, 'name': 'Eye 4', 'hex': '#4E5224'},
+        {'index': 5, 'name': 'Eye 5', 'hex': '#5B4708'},
+        {'index': 6, 'name': 'Eye 6', 'hex': '#5E351B'},
+        {'index': 7, 'name': 'Eye 7', 'hex': '#76442D'},
+        {'index': 8, 'name': 'Eye 8', 'hex': '#3F2417'},
+        {'index': 9, 'name': 'Eye 9', 'hex': '#29180F'},
+        {'index': 10, 'name': 'Eye 10', 'hex': '#1D0E06'},
+        {'index': 11, 'name': 'Eye 11', 'hex': '#261F1B'}
     ],
     'Accessory': [
-        {'index': 0, 'name': 'Black', 'hex': '#1C1C1C'},
-        {'index': 1, 'name': 'Brown', 'hex': '#6E4A2D'},
-        {'index': 2, 'name': 'Gray', 'hex': '#808080'},
-        {'index': 3, 'name': 'Silver', 'hex': '#C0C0C0'},
-        {'index': 4, 'name': 'Gold', 'hex': '#FFD700'}
+        {'index': 0, 'name': 'Black', 'hex': '#000000'},
+        {'index': 1, 'name': 'Brown', 'hex': '#6F4429'},
+        {'index': 2, 'name': 'Gold', 'hex': '#9F7F44'}
     ]
 }
 
@@ -178,13 +195,64 @@ def get_matching_hairback_indices(hair_index, gender=None):
     return [idx for idx in hairback_indices if idx == hair_index]
 
 
+def get_clothes_for_class_job_gender(character_class, job, gender):
+    """
+    Get clothes sprites based on Class, Job, and Gender
+
+    Args:
+        character_class: 'AirCrew' or 'BaseCrew'
+        job: Job for BaseCrew: 'None', 'AAFCook', 'FieldMechanic', 'FieldEngineer', 'RAFMedic', 'AAFLabour'
+        gender: 'Male' or 'Female'
+
+    Returns:
+        dict: {'clothes': {'index': int, 'variant': int}, 'clothesBack': {'index': int, 'variant': int}}
+    """
+    # AirCrew always gets clothes_01_00.png and clothesback_14_00.png
+    if character_class == 'AirCrew':
+        return {
+            'clothes': {'index': 1, 'variant': 0},
+            'clothesBack': {'index': 14, 'variant': 0}
+        }
+
+    # BaseCrew clothing depends on Job and Gender
+    clothes_map = {
+        'Male': {
+            'None': {'index': 0, 'variant': 0},          # clothes_00_00.png
+            'AAFCook': {'index': 2, 'variant': 0},       # clothes_02_00.png
+            'FieldMechanic': {'index': 3, 'variant': 0}, # clothes_03_00.png
+            'FieldEngineer': {'index': 4, 'variant': 0}, # clothes_04_00.png
+            'RAFMedic': {'index': 5, 'variant': 0},      # clothes_05_00.png
+            'AAFLabour': {'index': 6, 'variant': 0}      # clothes_06_00.png
+        },
+        'Female': {
+            'AAFCook': {'index': 7, 'variant': 0},       # clothes_07_00_F.png
+            'FieldEngineer': {'index': 8, 'variant': 0}, # clothes_08_00_F.png
+            'AAFLabour': {'index': 9, 'variant': 0},     # clothes_09_00_F.png
+            'FieldMechanic': {'index': 10, 'variant': 0},# clothes_10_00_F.png
+            'RAFMedic': {'index': 11, 'variant': 0},     # clothes_11_00_F.png
+            'None': {'index': 12, 'variant': 0}          # clothes_12_00_F.png
+        }
+    }
+
+    clothes = clothes_map.get(gender, {}).get(job) or clothes_map.get(gender, {}).get('None') or {'index': 0, 'variant': 0}
+
+    # ClothesBack: Only Male BaseCrew with Job=None gets clothesback_00_00.png
+    # All other BaseCrew get no ClothesBack (index: -1)
+    if gender == 'Male' and job == 'None':
+        clothes_back = {'index': 0, 'variant': 0}  # clothesback_00_00.png
+    else:
+        clothes_back = {'index': -1, 'variant': -1}  # No ClothesBack
+
+    return {'clothes': clothes, 'clothesBack': clothes_back}
+
+
 def generate_random_character(gender='Male', skin_color_range=None):
     """
     Generate random character data
 
     Args:
         gender: 'Male' or 'Female'
-        skin_color_range: Tuple of (min, max) skin color indices, default (0, 6)
+        skin_color_range: Tuple of (min, max) skin color indices, default (0, 9)
 
     Returns:
         dict: Character data with gender, bodyShapeIndex, colorIndices, and parts
@@ -192,10 +260,27 @@ def generate_random_character(gender='Male', skin_color_range=None):
     if skin_color_range is None:
         skin_color_range = (0, len(COLOR_PALETTES['Skin']) - 1)
 
-    # Pick random skin color within allowed range
+    # Pick random skin color with weighted distribution
+    # 90% chance for lighter tones (0-4), 10% chance for darker tones (5-9)
     min_skin = max(0, skin_color_range[0])
     max_skin = min(len(COLOR_PALETTES['Skin']) - 1, skin_color_range[1])
-    skin_color_index = random.randint(min_skin, max_skin)
+
+    if max_skin <= 4:
+        # If range doesn't include darker tones, pick uniformly
+        skin_color_index = random.randint(min_skin, max_skin)
+    elif min_skin >= 5:
+        # If range only includes darker tones, pick uniformly
+        skin_color_index = random.randint(min_skin, max_skin)
+    else:
+        # Range includes both lighter and darker tones, use weighted distribution
+        if random.random() < 0.9:
+            # 90% chance: pick from lighter tones (0-4)
+            lighter_max = min(4, max_skin)
+            skin_color_index = random.randint(min_skin, lighter_max)
+        else:
+            # 10% chance: pick from darker tones (5-9)
+            darker_min = max(5, min_skin)
+            skin_color_index = random.randint(darker_min, max_skin)
 
     character = {
         'gender': gender,
@@ -209,6 +294,19 @@ def generate_random_character(gender='Male', skin_color_range=None):
         'parts': {}
     }
 
+    # Probability weights for optional features (matching in-game generator)
+    FEATURE_PROBABILITIES = {
+        'Moustache': 0.50,      # 50% - Matches in-game generator
+        'Beard': 0.10,          # 10% - Matches in-game generator
+        'AccessoryFace': 0.50,  # 50% - Glasses/monocle (matches in-game accessories)
+        'AccessoryFront': 0.50, # 50% - Pipe (matches in-game accessories)
+        'AccessoryHead': 0.50,  # 50% - Hats, etc. (matches in-game accessories)
+        'Blemish': 0.15,        # 15% - Scars, marks
+        'DetailUpper': 0.20,    # 20% - Wrinkles, etc.
+        'DetailLower': 0.20,    # 20% - Chin details
+        'Background': 0.80      # 80% - Usually want background
+    }
+
     # First pass: Add each layer (except Mouth, ClothesBack, and HairBack which have dependencies)
     for layer_name, layer in LAYERS.items():
         if layer_name in ['Mouth', 'ClothesBack', 'HairBack']:
@@ -220,7 +318,14 @@ def generate_random_character(gender='Male', skin_color_range=None):
             continue
 
         # Required layers always get a value
-        if not layer.get('canBeNone') or random.random() > 0.3:
+        # Optional layers use specific probabilities
+        if not layer.get('canBeNone'):
+            should_add = True
+        else:
+            probability = FEATURE_PROBABILITIES.get(layer_name, 0.3)
+            should_add = random.random() < probability
+
+        if should_add:
             indices = get_available_indices(layer_name, gender)
             if indices:
                 random_index = random.choice(indices)
